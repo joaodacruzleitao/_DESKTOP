@@ -2,16 +2,12 @@ https://www.google.pt/search?sugexp=chrome,mod=14&sourceid=chrome&ie=UTF-8&q=hap
 https://www.google.pt/search?sugexp=chrome,mod=14&sourceid=chrome&ie=UTF-8&q=haproxy+in+front+of+nignx+and+apache#q=haproxy+in+front+of+nginx+and+apache&hl=pt-PT&safe=off&prmd=imvns&ei=ddiRT5uMGYjIhAfx-_SNBA&start=160&sa=N&bav=on.2,or.r_gc.r_pw.r_cp.,cf.osb&fp=ded6bd2e44386bf7
 http://coder28.wordpress.com/2009/06/29/low-cost-load-balancing-with-nginx-and-haproxy-on-linux/
 
-rumonet
-Qy}7sKfVn^+Q
-
----------------------------------------------->>>>http://cityvillebot.forumotion.eu/f5-unofficial-updates-by-users
 
 /scripts/restartsrv_chkservd
 
-yum update rhn-setup --enablerepo=cloudlinux-updates-testing  
-/usr/sbin/normal-to-hybrid 
-reboot 
+yum update rhn-setup --enablerepo=cloudlinux-updates-testing
+/usr/sbin/normal-to-hybrid
+reboot
 
 service nginx stop
 chkconfig nginx off
@@ -34,9 +30,6 @@ chmod 755 /etc/init.d/haproxy
 chkconfig --add haproxy
 chkconfig haproxy on
 service haproxy restart
-
-joanav
-GCCo@eh8Z^
 
 ## DISABLE IPV6 - CENTOS 6+ ####################################
 sysctl -w net.ipv6.conf.all.disable_ipv6=1

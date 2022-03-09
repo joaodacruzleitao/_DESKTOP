@@ -1,11 +1,4 @@
-secret
-d2064d358136996bd22421584a7cb33e:trd7TvKHx6dMeoMmBVxYmg0vuXEA4199
 
-vertigo0..
-7818c006d288a7db014858ba43a80676:5PIbnZGLKuBdUCVKPcFKllXBNpdpFiCa
-
-FmSzm$2g7q
-4f562943914dd99d3d151f1f51ee579d:I4qwxrxAscgeYGPqUQYprbSvcXdZnms5
 
 
 /usr/local/maldetect/maldet -b -r /home?/?/public_html 1
@@ -15,36 +8,19 @@ grep -RPn "(passthru|shell_exec|system|base64_decode|chmod|php_uname|eval) *\(" 
 grep -RPn "(base64_decode) *\(" /home/bvloriga/public_html
 
 
-JOOMLA 1.0
-====================
-secret
-5ebe2294ecd0e0f08eab7690d2a6ee69
-e06154d4a37504dda2185dae59fb28d0
-2012-03-08 19:43:19
-
 find . -iname '*' -mtime -2 -type f > 1.txt
 
 */1 * * * * root /sbin/insmod /root/dumploadavg/dumploadavg.ko >> /dev/null 2>&1
-ferpal1vil
-RipN%7YE8l@T
-
-p(m9q^b($2K9
-
-madger@eprin.net
-+2iM}[nSvCIf
-
-eprin.df@iol.pt
 
 find . -name '.htaccess' -print -exec rm -f {} \;
 find . -name '*' -print -exec rm -rf {} \;
 
 find . -name '*.inc' -exec grep -Hn "32M" {} \;
 
-@2eAZ%gm154}
 
 ln -s /usr/local/spri/spri /usr/sbin/spri
 
-==================================
+#==================================
 cp -rf mysql 1
 
 cd /var/lib
@@ -65,9 +41,7 @@ rpm -e MariaDB-shared-5.3.3-108.el5
 
 /scripts/mysqlup --force
 /scripts/makecpphp
-==================================
-vertigo0.1
-E7Gf32XX7cQw
+#==================================
 
 cd /backups/nginxdir
 cd mysql
@@ -138,14 +112,14 @@ echo 512 > /sys/block/sdb/queue/max_sectors_kb
 
 echo "cfq" > /sys/block/sda/queue/scheduler
 echo "cfq" > /sys/block/sdb/queue/scheduler
-echo 1024 > /sys/block/sda/queue/max_sectors_kb 
+echo 1024 > /sys/block/sda/queue/max_sectors_kb
 echo 1024 > /sys/block/sda/queue/read_ahead_kb
-echo 1024 > /sys/block/sdb/queue/max_sectors_kb 
+echo 1024 > /sys/block/sdb/queue/max_sectors_kb
 echo 1024 > /sys/block/sdb/queue/read_ahead_kb
 
-echo 4096 > /sys/block/sda/queue/max_sectors_kb 
+echo 4096 > /sys/block/sda/queue/max_sectors_kb
 echo 4096 > /sys/block/sda/queue/read_ahead_kb
-echo 4096 > /sys/block/sdb/queue/max_sectors_kb 
+echo 4096 > /sys/block/sdb/queue/max_sectors_kb
 echo 4096 > /sys/block/sdb/queue/read_ahead_kb
 
 /usr/sbin/named

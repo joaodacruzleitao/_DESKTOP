@@ -13,26 +13,6 @@ ln -s /var/lib/mysql/mysql.sock /tmp/mysql.sock
 ln -s /var/lib/mysql1/mysql.sock /tmp/mysql.sock
 
 
-
-CPANEL
-=======================
-http://www.socarimbos.pt/cpanel
-user -> socarimb
-pass -> Fh3dT0vD~xJO
-
-FTP
-=======================
-ftp.socarimbos.pt
-Porta: 21
-user -> socarimb
-pass -> Fh3dT0vD~xJO
-
-BD
-==================================
-bd_name -> socarimb_minfo
-user_bd -> socarimb_glups
-pass_bd -> +k$QwlEoh-}t
-
 yum clean all; yum update -y; cagefsctl --force-update;
 
 yum clean all; yum update -y; /scripts/upcp; cagefsctl --force-update;
@@ -44,29 +24,19 @@ cagefsctl --enter freitasb
 /opt/alt/php53/usr/bin/pear list
 /opt/alt/php52/usr/bin/pear list | grep Auth
 
-http://195.8.59.180:2030
-SSL: https://195.8.59.180:2031
-MYSQL
-root
-2aI6Ryds5..z
-
-lojaweb
-,]NNuB4JOkx$
-96 537 59 40
 
 find . -maxdepth 1 -type d -newermt 20140101 -not -newermt 20150914  -exec rm -rf {} \;
-
-Dados Painel de Controle
-*************************************
-Para aceder ao Painel de controle Plesk, deve usar um browser e usar os seguintes dados:
-URL:	https://144.76.225.86:8443
-Username:	Administrator
-Password: EOpA9YUd2sU+J-V
-
-O Plesk vai pedir-lhe na primeira vez que aceder para colocar uma password, que deve colocar, para depois então poder entrar no painel de controle.
 
 Area Comercial ONI
 =========================
 808 500 150
 Gestor:
 Manuel Grilo - mgrilo@oni.pt - 93 367 45 56
+
+
+echo "50 22 * * * /bin/umount -a -t cifs -l" >>/var/spool/cron/root; echo "0 23 * * * /bin/mount /backups" >>/var/spool/cron/root; service crond restart;
+
+nano /etc/crontab
+/var/spool/cron
+
+/remind me "SAIR JA" at 7:10pm every day

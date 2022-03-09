@@ -1,23 +1,18 @@
-Ultimas Noticias de Hacks de Joomla 
-======================================= 
-http://blog.sucuri.net/?s=joomla 
+Ultimas Noticias de Hacks de Joomla
+=======================================
+http://blog.sucuri.net/?s=joomla
 http://www.exploit-db.com/search/?action=search&filter_page=1&filter_description=&filter_exploit_text=joomla&filter_author=&filter_platform=0&filter_type=0&filter_lang_id=0&filter_port=&filter_osvdb=&filter_cve=
 
-Lista Oficial de problemas de extensoes 
-============================================== 
-http://docs.joomla.org/Vulnerable_Extensions_List 
-http://docs.joomla.org/Archived_vel 
+Lista Oficial de problemas de extensoes
+==============================================
+http://docs.joomla.org/Vulnerable_Extensions_List
+http://docs.joomla.org/Archived_vel
 
-jHackGuard (extensão de segurança para joomla) 
-================================================== 
-http://www.siteground.com/joomla-hosting/joomla-extensions/ver1.5/jhack.htm 
+jHackGuard (extensï¿½o de seguranï¿½a para joomla)
+==================================================
+http://www.siteground.com/joomla-hosting/joomla-extensions/ver1.5/jhack.htm
 
-B23
-info@socontentores.pt
-P25
-j.aparicio@iberlab.pt
 
-540 largura
 find . -name '*.html' -exec sed -i 's#jquery.cookie-text-size.js#jquery_cookie-text-size.js#g' {} \;
 find . -name '*.php' -exec grep -i "easy" {} \; | more
 find . -name 'php.ini' -print -exec rm -f {} \;
@@ -76,5 +71,3 @@ deb http://security.debian.org/ squeeze/updates main
 deb-src http://security.debian.org/ squeeze/updates main
 
 apt-get install openssh-server
-
-dh932gf45

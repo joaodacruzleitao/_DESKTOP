@@ -1,0 +1,33 @@
+
+/scripts/perlinstaller Regexp::Common
+/scripts/perlinstaller cPanel::PublicAPI
+/scripts/perlinstaller Mail::RBL
+/scripts/perlinstaller Net::IP
+/scripts/perlinstaller Net::DNS
+/scripts/perlinstaller Net::Whois::Raw
+
+chattr -i /etc/cpanel_exim_system_filter
+chattr +i /etc/cpanel_exim_system_filter
+service exim restart
+spri -v
+ip.addr==195.8.59.26
+
+
+AcceptMutex fcntl
+If you add this above "<IfModule prefork.c>" in the file, you could 
+then try running these commands to distill the change and restart Apache:
+
+
+/usr/local/cpanel/bin/apache_conf_distiller --update
+/scripts/rebuildhttpdconf
+/etc/init.d/httpd restart
+
+haproxy 80 -> nginx 83 -> haproxy 82 -> apache 8081
+nginx 80 -> haproxy 8081 -> apache 82
+
+*/2 * * * * root spri -q >> /dev/null 2>&1
+*/10 * * * * root exiqgrep -o 7200 -i | xargs exim -Mrm >> /dev/null 2>&1
+* */1 * * * root /root/manutencao_nginx.sh  >> /dev/null 2>&1
+15 20 * * * root /root/manutencao_tmp.sh  >> /dev/null 2>&1
+* */6 * * * root /etc/init.d/haproxy restart >> /dev/null 2>&1
+5,10,15,20,25,30,35,40,45,50,55 * * * * root exim -q

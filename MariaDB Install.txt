@@ -1,0 +1,334 @@
+﻿MariaDB is a database server that offers drop-in replacement functionality for MySQL;with improved speed and a large number of storage engines not available in Oracle MySQL.
+
+MariaDB is not officially supported by Cpanel ;but it can installed very easily without breaking Cpanel MySQL management interface including phpMyAdmin .Please note that once we upgrade to MariaDB and start using new storage engines a change to MySQL may not be feasible.Please use this documentation at your own personal risk .
+
+1.Find out the currently installed MySQL rpm packages.
+
+[~]# rpm -qa|grep MySQL
+MySQL-client-5.0.92-0.glibc23
+MySQL-server-5.0.92-0.glibc23
+MySQL-devel-5.0.92-0.glibc23
+MySQL-bench-5.0.92-0.glibc23
+MySQL-shared-5.0.92-0.glibc23
+
+Your cpanel.config file should show the mysql-version as 5.0
+
+[~]# grep -i mysql-version /var/cpanel/cpanel.config
+mysql-version=5.0
+
+2.Remove the mysql rpm packages .This will not remove your mysql data directory or current databases under /var/lib/mysql
+
+rpm -e MySQL-client MySQL-server MySQL-devel MySQL-test MySQL-shared
+
+3.Download the correct MariaDB rpm files from http://downloads.askmonty.org/... . You must download either "CentOS 5 amd64 RPMs" or "CentOS 5 x86 RPMs" according to your machine arch.Install the rpm's
+
+# MariaDB-client-5.2.5-99.el5.x86_64.rpm
+# MariaDB-debuginfo-5.2.5-99.el5.x86_64.rpm
+# MariaDB-devel-5.2.5-99.el5.x86_64.rpm
+# MariaDB-server-5.2.5-99.el5.x86_64.rpm
+# MariaDB-shared-5.2.5-99.el5.x86_64.rpm
+# MariaDB-test-5.2.5-99.el5.x86_64.rpm
+
+cd /home/_src
+wget http://mirrors.fe.up.pt/pub/mariadb/mariadb-5.1.55/kvm-rpm-centos5-amd64/rpms/MariaDB-shared-5.1.55-98.el5.x86_64.rpm
+wget http://mirrors.fe.up.pt/pub/mariadb/mariadb-5.1.55/kvm-rpm-centos5-amd64/rpms/MariaDB-client-5.1.55-98.el5.x86_64.rpm
+wget http://mirrors.fe.up.pt/pub/mariadb/mariadb-5.1.55/kvm-rpm-centos5-amd64/rpms/MariaDB-server-5.1.55-98.el5.x86_64.rpm
+wget http://mirrors.fe.up.pt/pub/mariadb/mariadb-5.1.55/kvm-rpm-centos5-amd64/rpms/MariaDB-devel-5.1.55-98.el5.x86_64.rpm
+rpm -e MariaDB-shared-5.1.55-98.el5.x86_64
+rpm -e MariaDB-client-5.1.55-98.el5.x86_64
+rpm -e MariaDB-devel-5.1.55-98.el5.x86_64
+rpm -e MariaDB-server-5.1.55-98.el5.x86_64 --nodeps
+
+cd /home/_src
+wget http://mirrors.fe.up.pt/pub/mariadb/mariadb-5.2.6/kvm-rpm-centos5-amd64/rpms/MariaDB-shared-5.2.6-101.el5.x86_64.rpm
+wget http://mirrors.fe.up.pt/pub/mariadb/mariadb-5.2.6/kvm-rpm-centos5-amd64/rpms/MariaDB-client-5.2.6-101.el5.x86_64.rpm
+wget http://mirrors.fe.up.pt/pub/mariadb/mariadb-5.2.6/kvm-rpm-centos5-amd64/rpms/MariaDB-server-5.2.6-101.el5.x86_64.rpm
+wget http://mirrors.fe.up.pt/pub/mariadb/mariadb-5.2.6/kvm-rpm-centos5-amd64/rpms/MariaDB-devel-5.2.6-101.el5.x86_64.rpm
+rpm -Uvh MariaDB-shared-5.2.6-101.el5.x86_64.rpm
+rpm -Uvh MariaDB-client-5.2.6-101.el5.x86_64.rpm
+rpm -Uvh MariaDB-devel-5.2.6-101.el5.x86_64.rpm
+rpm -e MariaDB-server-5.2.5-99.el5
+rpm -ivh MariaDB-server-5.2.6-101.el5.x86_64.rpm --nodeps
+mysql_upgrade
+
+VERSAO 5.2.5
+=======================
+cd /home/_src
+wget http://mirrors.fe.up.pt/pub/mariadb/mariadb-5.2.5/kvm-rpm-centos5-amd64/rpms/MariaDB-shared-5.2.5-99.el5.x86_64.rpm
+wget http://mirrors.fe.up.pt/pub/mariadb/mariadb-5.2.5/kvm-rpm-centos5-amd64/rpms/MariaDB-client-5.2.5-99.el5.x86_64.rpm
+wget http://mirrors.fe.up.pt/pub/mariadb/mariadb-5.2.5/kvm-rpm-centos5-amd64/rpms/MariaDB-server-5.2.5-99.el5.x86_64.rpm
+wget http://mirrors.fe.up.pt/pub/mariadb/mariadb-5.2.5/kvm-rpm-centos5-amd64/rpms/MariaDB-devel-5.2.5-99.el5.x86_64.rpm
+rpm -ivh MariaDB-shared-5.2.5-99.el5.x86_64.rpm
+rpm -ivh MariaDB-client-5.2.5-99.el5.x86_64.rpm
+rpm -ivh MariaDB-devel-5.2.5-99.el5.x86_64.rpm
+rpm -ivh MariaDB-server-5.2.5-99.el5.x86_64.rpm --nodeps
+
+rpm -e MariaDB-shared-5.2.6-101.el5
+rpm -e MariaDB-client-5.2.6-101.el5
+rpm -e MariaDB-devel-5.2.6-101.el5
+rpm -e MariaDB-server-5.2.6-101.el5m --nodeps
+
+MariaDB-server-5.2.6-101.el5
+MariaDB-client-5.2.6-101.el5
+MariaDB-shared-5.2.6-101.el5
+MariaDB-devel-5.2.6-101.el5
+
+
+VERSAO 5.2.7
+=======================
+Se tiver 5.2.5;
+rpm -e MariaDB-client-5.2.5-99.el5
+rpm -e MariaDB-devel-5.2.5-99.el5
+rpm -e MariaDB-server-5.2.5-99.el5 --nodeps
+rpm -e MariaDB-shared-5.2.5-99.el5
+
+Se tiver 5.2.6:
+rpm -e MariaDB-client-5.2.6-101.el5
+rpm -e MariaDB-devel-5.2.6-101.el5
+rpm -e MariaDB-server-5.2.6-101.el5 --nodeps
+rpm -e MariaDB-shared-5.2.6-101.el5
+
+Se tiver 5.2.7:
+rpm -e MariaDB-client-5.2.7-101.el5
+rpm -e MariaDB-devel-5.2.7-101.el5
+rpm -e MariaDB-server-5.2.7-101.el5 --nodeps
+rpm -e MariaDB-shared-5.2.7-101.el5
+
+Se tiver 5.3.0:
+rpm -e MariaDB-client-5.3.0-101.el5
+rpm -e MariaDB-devel-5.3.0-101.el5
+rpm -e MariaDB-server-5.3.0-101.el5 --nodeps
+rpm -e MariaDB-shared-5.3.0-101.el5
+
+Se tiver 5.3.1:
+rpm -e MariaDB-client-5.3.1-102.el5
+rpm -e MariaDB-devel-5.3.1-102.el5
+rpm -e MariaDB-server-5.3.1-102.el5 --nodeps
+rpm -e MariaDB-shared-5.3.1-102.el5
+
+
+cd /home/_src
+wget http://mirrors.fe.up.pt/pub/mariadb/mariadb-5.3.2-beta/kvm-rpm-centos5-amd64/rpms/MariaDB-shared-5.3.2-102.el5.x86_64.rpm
+wget http://mirrors.fe.up.pt/pub/mariadb/mariadb-5.3.2-beta/kvm-rpm-centos5-amd64/rpms/MariaDB-client-5.3.2-102.el5.x86_64.rpm
+wget http://mirrors.fe.up.pt/pub/mariadb/mariadb-5.3.2-beta/kvm-rpm-centos5-amd64/rpms/MariaDB-server-5.3.2-102.el5.x86_64.rpm
+wget http://mirrors.fe.up.pt/pub/mariadb/mariadb-5.3.2-beta/kvm-rpm-centos5-amd64/rpms/MariaDB-devel-5.3.2-102.el5.x86_64.rpm
+rpm -ivh MariaDB-shared-5.3.2-102.el5.x86_64.rpm
+rpm -ivh MariaDB-client-5.3.2-102.el5.x86_64.rpm
+rpm -ivh MariaDB-devel-5.3.2-102.el5.x86_64.rpm
+rpm -ivh MariaDB-server-5.3.2-102.el5.x86_64.rpm --nodeps
+mysql_upgrade --verbose
+Se tiver 5.3.2:
+rpm -e MariaDB-client-5.3.2-102.el5
+rpm -e MariaDB-devel-5.3.2-102.el5
+rpm -e MariaDB-server-5.3.2-102.el5 --nodeps
+rpm -e MariaDB-shared-5.3.2-102.el5
+
+
+cd /home/_src
+wget http://mirrors.fe.up.pt/pub/mariadb/mariadb-5.3.3-rc/kvm-rpm-centos5-amd64/rpms/MariaDB-shared-5.3.3-108.el5.x86_64.rpm
+wget http://mirrors.fe.up.pt/pub/mariadb/mariadb-5.3.3-rc/kvm-rpm-centos5-amd64/rpms/MariaDB-client-5.3.3-108.el5.x86_64.rpm
+wget http://mirrors.fe.up.pt/pub/mariadb/mariadb-5.3.3-rc/kvm-rpm-centos5-amd64/rpms/MariaDB-server-5.3.3-108.el5.x86_64.rpm
+wget http://mirrors.fe.up.pt/pub/mariadb/mariadb-5.3.3-rc/kvm-rpm-centos5-amd64/rpms/MariaDB-devel-5.3.3-108.el5.x86_64.rpm
+rpm -ivh MariaDB-shared-5.3.3-108.el5.x86_64.rpm
+rpm -ivh MariaDB-client-5.3.3-108.el5.x86_64.rpm
+rpm -ivh MariaDB-devel-5.3.3-108.el5.x86_64.rpm
+rpm -ivh MariaDB-server-5.3.3-108.el5.x86_64.rpm --nodeps
+mysql_upgrade --verbose
+
+remover 5.3.3
+rpm -e MariaDB-client-5.3.3-108.el5
+rpm -e MariaDB-devel-5.3.3-108.el5
+rpm -e MariaDB-server-5.3.3-108.el5 --nodeps
+rpm -e MariaDB-shared-5.3.3-108.el5
+
+touch /etc/mysqldisable
+touch /etc/mysqlupdisable
+
+ALTER TABLE `` ENGINE=`MARIA` TRANSACTIONAL=1;
+
+mysql -e "select concat('alter table ',TABLE_SCHEMA ,'.',table_name,' ENGINE=MyISAM;') FROM INFORMATION_SCHEMA.tables where table_type='BASE TABLE' and engine = 'Aria';" > 1.txt
+
+=============================================================
+TIPICO MY.CNF
+=============================================================
+[mysqld]
+datadir=/var/lib/mysql
+socket=/var/lib/mysql/mysql.sock
+tmpdir=/backups/mysqltmp
+skip-name-resolve
+skip-external-locking
+#skip-innodb
+local-infile=0
+userstat = 1
+
+optimizer_switch='semijoin=on,firstmatch=on,materialization=on,loosescan=on,index_condition_pushdown=on,subquery_cache=on,index_merge_sort_intersection=on,outer_join_with_cache=on,semijoin_with_cache=on,optimize_join_buffer_size=on'
+interactive_timeout = 20
+wait_timeout = 20
+connect_timeout = 6
+ 
+server-id = 1
+default-storage-engine = MyISAM
+ 
+log_warnings
+slow_query_log = 1
+long_query_time = 1
+#log_slow_verbosity = "Query_plan"
+slow_query_log_file=/var/lib/mysql/logs_slow.log
+
+max_connections = 250
+max_user_connections = 10
+max_connect_errors = 10
+
+key_buffer_size = 288M
+#sort_buffer_size=4M
+#read_rnd_buffer_size=512K
+
+max_allowed_packet = 64M
+bulk_insert_buffer_size = 8M
+
+#
+# MariaDB
+#################################
+key_cache_segments = 64
+
+#
+# Query Cache
+#################################
+query_cache_type=1
+query_cache_size=36M
+query_cache_limit=1M
+query_cache_min_res_unit = 2K
+#query_prealloc_size = 65536
+#query_alloc_block_size = 131072
+#max_seeks_for_key = 100
+####
+
+myisam_sort_buffer_size = 64M
+myisam_max_sort_file_size = 10G
+myisam_repair_threads = 1
+myisam_recover = "BACKUP,FORCE"
+ 
+tmp_table_size = 128M
+max_heap_table_size = 128M
+thread_cache_size = 128
+table_open_cache = 6000
+table_definition_cache = 6000
+
+###########################################################
+# Se for um MYSQL NOVO sem BD's, instalar estas 2 opcoes
+# mas apenas se nao houver muitas bds com InnoDB:
+# innodb_file_per_table = 1
+# innodb_data_file_path = ibdata1:10M:autoextend
+###########################################################
+innodb_buffer_pool_size = 256M # 128M minimo
+innodb_additional_mem_pool_size = 20M
+innodb_log_file_size = 64M
+innodb_log_files_in_group = 2
+innodb_log_buffer_size = 16M
+innodb_flush_log_at_trx_commit = 2
+innodb_lock_wait_timeout = 50
+innodb_open_files = 300
+innodb_support_xa = false
+innodb_autoinc_lock_mode = 2
+innodb_read_ahead = none
+innodb_flush_method = O_DIRECT
+innodb_adaptive_flushing = 1
+innodb_adaptive_checkpoint = estimate
+innodb_doublewrite = 1
+innodb_use_purge_thread = 4
+ 
+[mysqldump]
+quick
+max_allowed_packet = 256M
+ 
+[mysql]
+local-infile=0
+no-auto-rehash
+reconnect
+ 
+[mysql.server]
+user=mysql
+pid-file=/var/lib/mysql/mysqld_pid.pid
+ 
+[mysqld_safe]
+log-error=/var/lib/mysql/log_errors.log
+nice = -5
+open_files_limit = 12192
+
+[isamchk]
+key_buffer = 384M
+sort_buffer = 384M
+read_buffer = 256M
+write_buffer = 256M
+
+[myisamchk]
+key_buffer = 384M
+sort_buffer = 384M
+read_buffer = 256M
+write_buffer = 256M
+ 
+[mysqlhotcopy]
+interactive-timeout
+
+*********************************************************************************
+
+
+
+
+[mysqld]
+datadir=/var/lib/mysql
+socket=/var/lib/mysql/mysql.sock
+#skip-name-resolve
+#skip-innodb
+skip-bdb
+skip-ndbcluster
+local-infile=0
+back_log = 50
+max_connections = 500
+key_buffer_size = 144M
+myisam_sort_buffer_size = 64M
+join_buffer_size = 1M
+read_buffer_size = 1M
+sort_buffer_size = 2M
+table_cache = 5000
+thread_cache_size = 384
+wait_timeout = 20
+connect_timeout = 10
+tmp_table_size = 64M
+max_heap_table_size = 64M
+max_allowed_packet = 64M
+net_buffer_length = 16384
+max_connect_errors = 100000
+thread_concurrency = 4
+concurrent_insert = 2
+table_lock_wait_timeout = 30
+read_rnd_buffer_size = 786432
+bulk_insert_buffer_size = 8M
+query_cache_limit = 3M
+query_cache_size = 80M
+query_cache_type = 1
+query_prealloc_size = 262144
+query_alloc_block_size = 65536
+transaction_alloc_block_size = 8192
+transaction_prealloc_size = 4096
+default-storage-engine = MyISAM
+max_write_lock_count = 8
+
+[mysql.server]
+user=mysql
+
+[mysqld_safe]
+err-log=/var/log/mysqld.log
+pid-file = /var/lib/mysql/mysqld.pid
+nice = -15
+open_files_limit = 8192
+
+[mysqldump]
+quick
+max_allowed_packet = 16M
+
+[myisamchk]
+key_buffer = 64M
+sort_buffer = 64M
+read_buffer = 16M
+write_buffer = 16M

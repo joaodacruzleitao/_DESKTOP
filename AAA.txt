@@ -1,0 +1,40 @@
+http://hocnet.org/
+power12x
+,N<=Qjzj$7y?
+tar -cvzf 
+
+echo "50 22 * * * /bin/umount -a -t cifs -l" >>/var/spool/cron/root; echo "0 23 * * * /bin/mount /backups" >>/var/spool/cron/root; service crond restart;
+
+nano /etc/crontab
+/var/spool/cron
+
+/remind me "SAIR JA" at 7:10pm every day
+
+
+
+https://server.noboring.eu:2087
+noboring
+b~hD&)!3;nuh
+
+
+919203184, e o email para:
+ajgoncalves16@sapo.pt.
+
+Escolho esta foto pela criatividade, dificuldade de execução e perfeição
+pedro.amaral@gmail.com
+
+
+= The Sunset Train / O Comboio do Por do Sol =
+**Project: Trains 
+
+E porque os comboios também podem ser possuidores de grande beleza, esta é um comboio relativamente comum para quem anda todos os dias nele, mas que faz toda a diferença quando para numa estação e temos o por do sol a acontece ao  mesmo tempo.
+
+#JoaoDaCruzLeitao #trains #colors
+
+moloni_11_15_2017-21_30.sql                   100%   56GB  34.3MB/s   27:56
+
+
+RewriteCond %{HTTP_HOST} ^(www\.)?moloni\.com$
+RewriteRule (.*) http://www.moloni.pt/$1 [R=301,L]
+
+

@@ -1,0 +1,46 @@
+﻿suporteh
+s{nddb=^H;=5
+
+
+mysql -e "SELECT CONCAT('ALTER TABLE ',table_schema,'.',table_name,' engine=MyISAM;') FROM information_schema.tables WHERE engine = 'InnoDB';"
+mysql -e "SELECT CONCAT('ALTER TABLE ',table_schema,'.',table_name,' engine=InnoDB;') FROM information_schema.tables WHERE engine = 'MyISAM';"
+
+/usr/bin/mysqldump --single-transaction --routines --triggers espacosp_site > /home/_backups/cpbackup/espacosp_site.sql
+
+suporteh_heska
+__9anmWaf2qm
+
+/home/suporteh/public_html/inc/mail/hesk_pipe.php
+
+4i-_^CP+,0TL
+
+cp -r /home/mdpub/public_html/imagens /home/mdpublic/public_html/
+public_html e _core_site da conta do ciga.pt para o treegood.pt
+=======================================================================================================
+###############
+#*/1 * * * * root /sbin/insmod /root/dumploadavg/dumploadavg.ko >> /dev/null 2>&1
+###############
+tmpfs                   /tmp                    tmpfs   defaults,noexec,nosuid,nodev,noatime,nodiratime,mode=1777    0 0
+
+
+mkdir -p /home/_src
+cd /home/_src
+wget http://pecl.php.net/get/oauth-1.2.2.tgz
+tar -zxvf oauth-*.tgz
+cd oauth-*
+phpize
+./configure
+make
+make install
+cd /home/_src
+rm -rf oauth*
+
+
+~,1pl)%(6?^f
+
+TA94hyM
+Chave privada
+openssl pkcs12 -nocerts -in 0000016354.p12 -out chavePrivada.pem
+
+Chave pública
+openssl pkcs12 -clcerts -nokeys -in 0000016354.p12 -out chavePublica.pem

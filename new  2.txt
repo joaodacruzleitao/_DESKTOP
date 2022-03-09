@@ -1,0 +1,98 @@
+https://www.google.pt/search?sugexp=chrome,mod=14&sourceid=chrome&ie=UTF-8&q=haproxy+on+single+web+server#q=haproxy+on+single+web+server&hl=pt-PT&safe=off&prmd=imvns&ei=192RT4PlBsX80QXvkvnpAQ&start=150&sa=N&bav=on.2,or.r_gc.r_pw.r_cp.,cf.osb&fp=ded6bd2e44386bf7
+https://www.google.pt/search?sugexp=chrome,mod=14&sourceid=chrome&ie=UTF-8&q=haproxy+in+front+of+nignx+and+apache#q=haproxy+in+front+of+nginx+and+apache&hl=pt-PT&safe=off&prmd=imvns&ei=ddiRT5uMGYjIhAfx-_SNBA&start=160&sa=N&bav=on.2,or.r_gc.r_pw.r_cp.,cf.osb&fp=ded6bd2e44386bf7
+http://coder28.wordpress.com/2009/06/29/low-cost-load-balancing-with-nginx-and-haproxy-on-linux/
+
+/scripts/restartsrv_chkservd
+
+yum update rhn-setup --enablerepo=cloudlinux-updates-testing  
+/usr/sbin/normal-to-hybrid 
+reboot 
+
+service nginx stop
+chkconfig nginx off
+chkconfig --del nginx
+
+useradd haproxy
+passwd haproxy
+cd /home/_src
+mkdir /etc/haproxy
+tar xvfz haproxy-1.5-*.tar.gz
+cd haproxy-1.5-*
+make install
+cd ..
+cp haproxy.cfg /etc/haproxy/
+chmod 755 /etc/haproxy/haproxy.cfg
+cp _etc_chkserv.d/haproxy /etc/chkserv.d/
+chmod 755 /etc/chkserv.d/haproxy
+cp _etc_init.d/haproxy /etc/init.d/
+chmod 755 /etc/init.d/haproxy
+chkconfig --add haproxy
+chkconfig haproxy on
+service haproxy restart
+
+joanav
+GCCo@eh8Z^
+
+## DISABLE IPV6 - CENTOS 6+ ####################################
+sysctl -w net.ipv6.conf.all.disable_ipv6=1
+sysctl -w net.ipv6.conf.default.disable_ipv6=1
+## DISABLE IPV6 - CENTOS 6+ ####################################
+
+echo 1024 > /sys/block/sda/queue/max_sectors_kb
+echo 1024 > /sys/block/sdb/queue/max_sectors_kb
+
+echo 512 > /sys/block/sda/queue/max_sectors_kb
+echo 512 > /sys/block/sdb/queue/max_sectors_kb
+.sN1&,Kwebi8
+https://www.google.pt/search?sugexp=chrome,mod=7&sourceid=chrome&ie=UTF-8&q=sysctl+tuning+2.6.32#q=sysctl+tuning+2.6.32&hl=pt-PT&safe=off&prmd=imvns&ei=AQCgT4S0Mqi_0QXj2pWwAw&start=10&sa=N&bav=on.2,or.r_gc.r_pw.r_cp.,cf.osb&fp=75c89949e96b70d8&biw=1024&bih=667
+
+<IfModule mod_deflate.c>
+# Insert filter
+SetOutputFilter DEFLATE
+
+# Netscape 4.x has some problems...
+BrowserMatch ^Mozilla/4 gzip-only-text/html
+
+# Netscape 4.06-4.08 have some more problems
+BrowserMatch ^Mozilla/4\.0[678] no-gzip
+
+# MSIE masquerades as Netscape, but it is fine
+BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+
+# NOTE: Due to a bug in mod_setenvif up to Apache 2.0.48
+# the above regex won't work. You can use the following
+# workaround to get the desired effect:
+BrowserMatch \bMSI[E] !no-gzip !gzip-only-text/html
+
+# Don't compress images
+SetEnvIfNoCase Request_URI \
+\.(?:gif|jpe?g|png|pdf)$ no-gzip dont-vary
+
+# Make sure proxies don't deliver the wrong content
+Header append Vary User-Agent env=!dont-vary
+</IfModule>
+ 
+<IfModule mod_expires.c>
+# ExpiresActive  Off
+ExpiresActive  On
+ExpiresDefault A0
+ExpiresByType  application/x-javascript "access plus 1 week"
+ExpiresByType  application/javascript   "access plus 1 week"
+ExpiresByType  text/css                 "access plus 1 week"
+ExpiresByType  image/gif                "access plus 15 minutes"
+ExpiresByType  image/png                "access plus 15 minutes"
+ExpiresByType  image/jpeg               "access plus  15 minutes"
+
+# Now we have Expires: headers, ETags are unecessary and only slow things down:
+FileETag None
+</IfModule>
+
+http://www.wireshark.org/
+
+ip route change default via 195.8.58.254 initcwnd 10
+
+xanubi
+TgyYUUss45SSer23
+
+https://www.google.pt/webhp?sourceid=chrome-instant&ie=UTF-8#sclient=psy-ab&hl=pt-PT&safe=off&site=webhp&q=gcc+tuning+flags&oq=gcc+tuning+flags&aq=f&aqi=&aql=&gs_l=serp.3...1820.4192.0.4373.12.12.0.0.0.0.107.1040.11j1.12.0...0.0.1N_eFzTopDk&pbx=1&bav=on.2,or.r_gc.r_pw.r_cp.,cf.osb&fp=9a8852d9d5a7119c&biw=1024&bih=667
+http://software.intel.com/en-us/forums/showthread.php?t=63801

@@ -1,0 +1,71 @@
+vamos-conseguir-ter-tudo_9,0.4,2
+
+1Z96193R0407123456
+d- nginx_config;service nginx restart
+
+dU-;d- nginx_config;service nginx restart
+
+find . -maxdepth 1 -type d -newermt 20151209 -not -newermt 20151217  -exec rm -rf {} \;
+find . -type f -newermt 20151115 -not -newermt 20151117;
+
+
+vertigem
+6b441c1c29b2290dff0f128f4010bb16:kr2insafJxhprKgNohzGx7TtMlawqjR1
+
+Exmo. Sr. Inspector Hugo Monteiro,
+
+No dia 24th de Agosto ás 09:39, detectámos no servidor de alojamento partilhado onde se encontrava a conta srconsultores.net, que a conta de email  raquel.amparo@srconsultores.net, estava a tentar enviar milhares de emails  de SPAM.
+Não suspendemos absolutamente nada, o que fizemos foi proteger o alojamento do cliente, mudando a password e de seguida enviando email ao cliente e fazendo um telefonema de aviso.
+
+Nestas situações, o que acontece é que o cliente usou a password do seu email em algum local e perdeu-a para um hacker, e o hacker usou a conta para enviar SPAM.
+Não lhe podemos dar informações sobre malwares e afins, pois isso não se passou nos nossos servidores, isso só o cliente pode ajudar, dando-lhe indicações dos computadores dele, ou de locais que tenha passado e usado a password da conta de email.
+
+wireless radio state=enabled channel=11 interop=802.11b/g/n frameburst=enabled channelwidth=20/40 sgi=enabled cdd=enabled stbc=enabled frameaggregation=ampdu
+sumeo
+bfd,10ng
+/var/cpanel/ssl/installed/certs/www_rita_c_com_ba3fb_b211f_1477846098_53a8659ab2ee84e004b12940def32cef.crt
+/var/cpanel/ssl/installed/keys/ba3fb_b211f_0fbc78bad55243326861b36e79c39b49.key
+
+somos-muito-fixes-9.1.z
+
+kika-zara-joana-777
+
+
+/sbin/blockdev --setra 8192 /dev/sdc
+echo "0" > /sys/block/sdc/queue/iosched/front_merges
+echo "8" > /sys/block/sdc/queue/iosched/fifo_batch
+
+echo "1" > /sys/block/sdc/queue/iosched/front_merges
+echo "16" > /sys/block/sdc/queue/iosched/fifo_batch
+
+http://chat.moloni.com/cpanel
+U: chatmolo
+P: 8sa4.MS_aZNo
+
+FTR: chat.moloni.com
+U: chatmolo
+P: 8sa4.MS_aZNo
+
+/opt/MegaRAID/storcli/storcli64
+
+cp -Rf /var/named/ /var/named.bak
+/scripts/update_local_rpm_versions --edit target_settings.bind uninstalled
+/scripts/update_local_rpm_versions --edit target_settings.bind-devel uninstalled
+/scripts/update_local_rpm_versions --edit target_settings.bind-libs uninstalled
+/scripts/update_local_rpm_versions --edit target_settings.bind-utils uninstalled
+/scripts/update_local_rpm_versions --edit target_settings.caching-nameserver uninstalled
+yum remove bind bind-utils bind-devel bind-libs caching-nameserver
+yum -y install bind97 bind97-libs bind97-utils bind97-devel
+/usr/local/cpanel/scripts/rebuilddnsconfig
+    <Entry AccounType="1" Account="Psacln" Path="C:\componentes\AspUpload\Bin" SubPath="" AccessMask="FullAccess" EntryFlags="0x0" Tag="" Tag2="" />
+    <Entry AccounType="1" Account="Psaadm" Path="C:\componentes\AspUpload\Bin" SubPath="" AccessMask="FullAccess" EntryFlags="0x0" Tag="" Tag2="" />
+
+z8q6-aE.W9e
+
+https://195.8.58.248:8083
+admin
+iu4w4p8bew
+
+"root" with the following password: b5hpfHrtJMUHyr
+
+mv /home/cpmove-U1.tar /home/U1/; chmod 644 /home/U1/cpmove-U1.tar; chown U1:U1 /home/U1/cpmove-U1.tar

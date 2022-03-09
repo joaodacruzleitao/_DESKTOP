@@ -1,0 +1,57 @@
+mkdir /usr/local/apache/conf/modsec_rules
+cd /usr/local/apache/conf/modsec_rules
+rm -f *.dat
+wget -N -q http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz
+gunzip *.gz
+
+*/5 * * * * root pkill -9 -P 1 php  >> /dev/null 2>&1
+0 14 10-15 * 1 root /scripts/_GeoIP_Update
+
+
+mkdir /home/_src
+cd /home/_src
+wget http://sourceforge.net/projects/rkhunter/files/latest/download?source=files
+tar -zxvf rkhunter-*.tar.gz
+cd rkhunter-*
+./installer.sh --layout default --install
+/usr/local/bin/rkhunter --update
+/usr/local/bin/rkhunter --propupd
+cd /home/_src
+rm -rf *
+cd /etc/cron.daily/
+wget http://hocnet:oveFZuX25In4lzSN5W@dev.hocnet.info/cpanel/rkhunter/rkhunter.sh
+chmod 700 rkhunter.sh
+service crond restart
+
+
+yum install cagefs
+########################
+# se quisermos meter o directorio dentro do /home por falta de espaço
+###########
+mkdir /home/cagefs-skeleton
+ln -s /home/cagefs-skeleton /usr/share/cagefs-skeleton
+########################
+/usr/sbin/cagefsctl --init
+/usr/sbin/cagefsctl --enable-all
+
+cagefsctl --securelinks-enable
+cagefsctl --securelinks
+
+Include "/usr/local/apache/conf/modhostinglimits.conf"
+Include "/usr/local/apache/conf/php.conf"
+Include "/usr/local/apache/conf/includes/rpaf.conf"
+Include "/usr/local/apache/conf/includes/errordocument.conf"
+Include "/usr/local/apache/conf/modsec2.conf"
+
+cagefsctl --remount-all
+cagefsctl --setup-cl-selector
+ln -s /home/isceeed/.cpanel/admin.ini /var/cagefs/`cagefsctl --getprefix isceeed`/isceeed/etc/cl.php.d/alt-php52/admin.ini
+abuse@clean-mx.de
+ipcs -s | grep nobody | perl -e 'while (<STDIN>) { @a=split(/\s+/); print `ipcrm sem $a[1]`}'
+find . -type f -regex ".*/core\.[0-9][0-9][0-9][0-9]$" -exec rm {} \;
+find . -name ".htaccess" -exec rm {} \;
+
+/dev/sda8               /tempo                  xfs     noatime,nodiratime,logbufs=8        0 2
+mkfs.ext4 /dev/sda8
+tune4fs -O extents,uninit_bg,dir_index,flex_bg -m 1 /dev/sda8
+e4fsck /dev/sda8

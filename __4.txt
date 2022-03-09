@@ -1,0 +1,76 @@
+#
+# This group is read both both by the client and the server
+# use it for options that affect everything
+#
+[client-server]
+
+#
+# include all files from the config directory
+#
+!includedir /etc/my.cnf.d
+
+[mysqld]
+sql_mode= ""
+wait_timeout = 90
+log-error=/var/lib/mysql/p49.hocnet.org.err
+performance-schema=0
+#default-storage-engine=MyISAM
+innodb_file_per_table=1
+max_allowed_packet=268435456
+open_files_limit=40000
+default-storage-engine=MyISAM
+
+
+
++------------+--------------+
+| username   | password     |
++------------+--------------+
+| easyengine | iPxS3jpQih5h |
++------------+--------------+
+
+"DOMINIO: {{ wp_domain }}\n\nOlá, Bom Dia,\n\nAgradecemos desde já a sua preferência nos serviços da Hocnet.\nA sua conta de wordpress foi configurada e este e-mail contém toda a informação de que necessita para começar a utilizar a mesma.\n\nSeguem os Dados de Acesso:\n====================================\n{{ textofinal.stdout }}\n\nDados para phpmyadmin\n==============================\n{{ textofim.stdout }}\n\nObrigado pela escolha.\n\nCom os nossos melhores cumprimentos,\n\nHocnet.pt - Registo e Alojamento de Dominios Web\n================================\nWebsite: www.hocnet.pt\nTel.: 211 45 20 60 ( 09h as 19h de segunda a sexta )\nSuporte Técnico: apoio@hocnet.pt\n\n"
+
+
+Existiu um bug no sistema que enviou emails que não deveria ter enviado, devido a certos produtos que os clientes desistiram mas não canceleram nas suas fichas de cliente.
+Deve ignorar por completo, e as nossas desculpas.
+
+
+UPDATE `tblinvoices` SET `tblinvoices`.`paymentmethod`="multibanco";
+UPDATE `tblclients` SET `defaultgateway`="multibanco";
+
+
+ansible-playbook update_imunify.yml --limit 'dedicadosDEcentos' --list-hosts
+Nameserver 1: ns1.p45.hocnet.com (195.8.59.45)
+Nameserver 2: dns3.hocnet.com (195.8.59.55)
+
+
+andre1@fielmotor.net
+o_U]6Y+N^Q8(
+
+
+
+server {
+        server_name www.example.com;
+        return 301 $scheme://example.com$request_uri;
+}
+/scripts/pkgacct --nocompress tmptrans
+
+
+noauto,vers=3.0,
+tcp|in|d=3306|s=62.28.116.5
+tcp|out|d=3306|s=62.28.116.5
+
+proc /proc proc defaults 0 0
+devpts /dev/pts devpts gid=5,mode=620 0 0
+tmpfs /dev/shm tmpfs defaults 0 0
+sysfs /sys sysfs defaults 0 0
+/dev/md/0 none swap sw 0 0
+/dev/md/1 /boot ext3 defaults 0 0
+/dev/md/2	/	ext4	usrjquota=quota.user,jqfmt=vfsv0	0	0
+/dev/md/3	/home	ext4	usrjquota=quota.user,jqfmt=vfsv0	0	0
+//u138942.your-storagebox.de/backup/_g2 /backup cifs noauto,vers=3.0,iocharset=utf8,rw,credentials=/root/.backupc,uid=0,gid=0,file_mode=0777,dir_mode=0777 0 0
+
+
+FTP Host: 95.217.46.241
+User: motordata
+Password: Wg=R!=5znK4.X8s

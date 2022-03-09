@@ -1,0 +1,15 @@
+
+
+sudo ee site create uhpahche.com --type=wp --cache
+
+
+ansible-playbook install.yml --extra-vars "wp_domain=uhpahche.com wp_email=uhpahche@gmail.com" --user=ansible --private-key="~/.ssh/ansible"
+
+
+sudo ee site create {{ wp_domain }} --type=wp --cache --locale=pt_PT --le-mail={{ wp_email }} --quiet
+
+sudo ee admin-tools enable uhpahche.com
+
+fatal: [35.239.7.92]: FAILED! => {"msg": "The conditional check 'textofim.stdout' failed. The error was: error while evaluating conditional (textofim.stdout): 'textofim' is undefined\n\nThe error appears to be in '/root/.playbooks/gcw2/roles/wordpress/tasks/main.yml': line 65, column 3, but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n\n- name: Create ee admin tools\n  ^ here\n"}
+
+sudo ee site update uhpahche.com --ssl=le

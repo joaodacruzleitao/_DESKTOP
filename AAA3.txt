@@ -1,0 +1,126 @@
+OPENVPN
+===================================
+apt-get update
+apt-get upgrade -y
+apt-get install --install-recommends linux-image-virtual-hwe-16.04 -y
+reboot
+cd /usr/local/src; wget https://git.io/vpn -O openvpn-install.sh && bash openvpn-install.sh
+1 (UDP)
+1194 (Port)
+3 (OpenDNS)
+jonix
+
+
+	
+https://ml.hocnet.com:8083
+username: admin
+password: G_iEn~/QK0x0D!vic7
+
+v-add-mail-domain-dkim admin ml.hocnet.com 1024
+
+
+VESTACP DNS SECUNDARIO
+===================================
+apt-get update
+apt-get upgrade -y
+reboot
+cd /tmp ; curl -O http://vestacp.com/pub/vst-install.sh ; bash vst-install.sh
+-> change password
+-> create user: dns-cluster
+******************
+-> No host que é master fazer:
+/usr/local/vesta/bin/v-add-remote-dns-host clouddns.vpsdns.pt 8083 admin Vertigo1...
+/usr/local/vesta/bin/v-update-sys-queue dns-cluster
+******************
+
+VESTACP COM SENDY
+===================================
+-> O HOSTNAME DEVE SER O MESMO ONDE VAI SER INSTALADO O SENDY
+apt-get update
+apt-get upgrade -y
+reboot
+cd /tmp ; curl -O http://vestacp.com/pub/vst-install.sh ; bash vst-install.sh
+-> change password
+reboot
+-> Colocar os DNS's
+-> Instalar o SENDY no dominio criado
+uOU6er]xYJ(5nBz
+bash vst-install.sh --nginx yes --phpfpm yes --apache no --named yes --remi yes --vsftpd no --proftpd no --iptables yes --fail2ban yes --quota no --exim yes --dovecot yes --spamassassin no --clamav no --softaculous no --mysql yes --postgresql no --hostname "mail2.marqueja.pt" --email "joao.leitao@datasource.pt" --password "uOU6er]xYJ(5nBz"
+
+
+-> Todos os sites que vao enviar emails devem adicionar isto ao DNS:
+@ TXT "v=spf1 a mx include:ml.hocnet.com -all"
+
+mail._domainkey TXT "v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA71HhvEUelF1W3zUl4miDwBUsZoumWjt42aDlk9By4KlX2APg/jZRym2GYrWuPdy2SWTqXHvHYEzrvLqvqAGl/j4U/anMYGydXUterq3nLrzBOal6hNbfrA2A/gcY5luVboTwMgZC9ONN+PSk5Ni9rbcHupDXJgSrmtq/D4lHgWWYkBMd5TNmhp05cgFu1F+u+uTuXGIke8auAI/D+IN8oj2e6nmTTruVq7crqKXpebgkrS5OfLyDrFMCDh8lL1fEkZXZ+ZaJo8YlGKBl82PrAVxzjwJ3VidsEudSxKzrwxbyb3YPDexJyb3rZ685Up7pO09snuFRF09Y2/0DKwK3cQIDAQAB"
+
+_domainkey TXT "t=y; o=~;"
+
+_dmarc TXT "v=DMARC1; p=none"
+
+
+ELIMINAR SOFTACULOUS
+=====================================
+> v-delete-vesta-softaculous
+
+
+
+VESTACP, ROUNDCUBE INSTALACAO FALHOU
+CANNOT CONNECT TO DATABASE
+================================================
+1) ir ao putty e fazer estes comandos um a um:
+mysql -e "DELETE DATABASE roundcube"
+mysql -e "DROP USER roundcubar@localhost"
+mysql -e "CREATE DATABASE roundcube"
+mysql -e "GRANT ALL ON roundcube.* TO roundcube@localhost IDENTIFIED BY 'zshwR0xVcMeD'"
+
+2) Editar o ficheiro /etc/roundcube/debian-db-roundcube.php e actualizar a linha $rcmail_config['db_dsnw'] para esta:
+$rcmail_config['db_dsnw'] = 'mysql://roundcube:zshwR0xVcMeD@localhost/roundcube';
+
+3) Editar o ficheiro /etc/roundcube/debian-db.php e mudar a linha da "$dbpass=" para:
+$dbpass='zshwR0xVcMeD';
+
+4) A partir daqui o webmail fica a funcionar
+
+
+
+INSTALAR A LINGUAGEM GO NO UBUNTU
+=====================================
+curl -O https://dl.google.com/go/go1.10.linux-amd64.tar.gz
+tar -xvf go1.10.linux-amd64.tar.gz
+chown -R root:root ./go
+mv go /usr/local
+echo "export PATH=$PATH:/usr/local/go/bin" >> /root/.profile
+source /root/.profile
+
+
+    https://kcnewmedia.vpsdns.pt:8083
+    username: admin
+    password: paH4F8lmnt
+
+    https://cloud112.vpsdns.pt:8083
+    username: admin
+    password: kBZnDg7PM0
+
+
+    https://mail2.marqueja.pt:8083
+    username: admin
+    password: UPJ5wl98tS
+
+cl1.eduteka.pt
+https://195.201.91.114:8083
+username: admin
+password: Vertigo1...
+
+
+lmfpaulacampos@gmail.com
+saharamontebello@gmail.com
+jfanzeres@gmail.com
+
+lmfpaulacampos@gmail.com saharamontebello@gmail.com jfanzeres@gmail.com dina@xanubi.com
+
+http://c.vestacp.com/ubuntu/16.04/
+http://c.vestacp.com/ubuntu/16.04/roundcube/main.inc.php
+$vestacp
+wget $vestacp/roundcube/main.inc.php -O /etc/roundcube/main.inc.php
+
+wget http://c.vestacp.com/ubuntu/16.04/roundcube/db.inc.php -O /etc/roundcube/db.inc.php

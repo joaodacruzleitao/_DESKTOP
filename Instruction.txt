@@ -1,0 +1,749 @@
+G6 password ---> vR3ukfeaMj3WkY --> se-procurares-e-lindo-0..
+
+DR CONCEIÇAO:
+rua gorgel do amaral, 5 - r/c direito
+
+
+
+###############################################
+# Varnish ACL Configuration
+###############################################
+include "/usr/local/varnish/etc/varnish/cpanel.backend.vcl";
+include "/usr/local/varnish/etc/varnish/vhost.vcl";
+
+sub vcl_recv {
+    set req.backend = default;
+    include "/usr/local/varnish/etc/varnish/acl.vcl";
+    include "/usr/local/varnish/etc/varnish/vhost.exclude.vcl";
+
+    set req.grace = 5m;
+
+    # Handle IPv6
+    if (req.http.Host ~ "^ipv6.*") {
+        set req.http.host = regsub(req.http.host, "^ipv6\.(.*)","www\.\1");
+    }
+
+    # shortcut for DFind requests
+    if (req.url ~ "^/w00tw00t") {
+        error 404 "Not Found";
+    }
+
+    # Sanitise X-Forwarded-For...
+    remove req.http.X-Forwarded-For;
+    set req.http.X-Forwarded-For = client.ip;
+    include "/usr/local/varnish/etc/varnish/cpanel.url.vcl";
+
+
+
+    # Normalize the Accept-Encoding header
+    if (req.http.Accept-Encoding) {
+        if (req.url ~ "\.(jpg|jpeg|png|gif|gz|tgz|bz2|tbz|mp3|ogg|swf|flv|pdf|ico)$") {
+            # No point in compressing these
+            remove req.http.Accept-Encoding;
+        } elsif (req.http.Accept-Encoding ~ "gzip") {
+            set req.http.Accept-Encoding = "gzip";
+        } elsif (req.http.Accept-Encoding ~ "deflate") {
+            set req.http.Accept-Encoding = "deflate";
+        } else {
+            # unknown algorithm
+            remove req.http.Accept-Encoding;
+        }
+    }
+
+    include "/usr/local/varnish/etc/varnish/url.exclude.vcl";
+    # Ignore empty cookies
+    if (req.http.Cookie ~ "^\s*$") {
+        remove req.http.Cookie;
+    }
+
+    if (req.request == "PURGE") {
+        if (!client.ip ~ acl127_0_0_1) { error 405 "Not permitted"; }
+        return (lookup);
+    }
+
+    if (req.request != "GET" &&
+        req.request != "HEAD" &&
+        req.request != "PUT" &&
+        req.request != "POST" &&
+        req.request != "TRACE" &&
+        req.request != "OPTIONS" &&
+        req.request != "PATCH" &&
+        req.request != "DELETE") {
+        /* Non-RFC2616 or CONNECT which is weird. */
+        return (pipe);
+    }
+
+    if (req.request != "GET" && req.request != "HEAD") {
+        /* We only deal with GET and HEAD by default, the rest get passed direct to backend */
+        return (pass);
+    }
+
+    # Some generic URL manipulation, useful for all templates that follow
+    # First remove the Google Analytics added parameters, useless for our backend
+    if (req.url ~ "(\?|&)(utm_source|utm_medium|utm_campaign|gclid|cx|ie|cof|siteurl)=") {
+        set req.url = regsuball(req.url, "&(utm_source|utm_medium|utm_campaign|gclid|cx|ie|cof|siteurl)=([A-z0-9_\-\.%25]+)", "");
+        set req.url = regsuball(req.url, "\?(utm_source|utm_medium|utm_campaign|gclid|cx|ie|cof|siteurl)=([A-z0-9_\-\.%25]+)", "?");
+        set req.url = regsub(req.url, "\?&", "?");
+        set req.url = regsub(req.url, "\?$", "");
+    }
+
+    # Strip hash, server doesn't need it.
+    if (req.url ~ "\#") {
+        set req.url = regsub(req.url, "\#.*$", "");
+    }
+
+    # Strip a trailing ? if it exists
+    if (req.url ~ "\?$") {
+        set req.url = regsub(req.url, "\?$", "");
+    }
+
+    # Some generic cookie manipulation, useful for all templates that follow
+    # Remove the "has_js" cookie
+    set req.http.Cookie = regsuball(req.http.Cookie, "has_js=[^;]+(; )?", "");
+
+    # Remove any Google Analytics based cookies
+    set req.http.Cookie = regsuball(req.http.Cookie, "__utm.=[^;]+(; )?", "");
+    set req.http.Cookie = regsuball(req.http.Cookie, "_ga=[^;]+(; )?", "");
+    set req.http.Cookie = regsuball(req.http.Cookie, "utmctr=[^;]+(; )?", "");
+    set req.http.Cookie = regsuball(req.http.Cookie, "utmcmd.=[^;]+(; )?", "");
+    set req.http.Cookie = regsuball(req.http.Cookie, "utmccn.=[^;]+(; )?", "");
+
+    # Remove the Quant Capital cookies (added by some plugin, all __qca)
+    set req.http.Cookie = regsuball(req.http.Cookie, "__qc.=[^;]+(; )?", "");
+
+    # Remove the AddThis cookies
+    set req.http.Cookie = regsuball(req.http.Cookie, "__atuvc=[^;]+(; )?", "");
+
+    # Remove a ";" prefix in the cookie if present
+    set req.http.Cookie = regsuball(req.http.Cookie, "^;\s*", "");
+
+    # Are there cookies left with only spaces or that are empty?
+    if (req.http.cookie ~ "^\s*$") {
+        unset req.http.cookie;
+    }
+
+    set req.url = regsub(req.url, "\.js\?.*", ".js");
+    set req.url = regsub(req.url, "\.css\?.*", ".css");
+    set req.url = regsub(req.url, "\.jpg\?.*", ".jpg");
+    set req.url = regsub(req.url, "\.gif\?.*", ".gif");
+    set req.url = regsub(req.url, "\.swf\?.*", ".swf");
+    set req.url = regsub(req.url, "\.xml\?.*", ".xml");
+
+    # Cache things with these extensions
+	#req.url ~ "\.(js|css|jpg|jpeg|png|gif|gz|tgz|bz2|tbz|mp3|ogg|swf|pdf)$" && ! (req.url ~ "\.(php)") )
+    if (req.url ~ "^[^?]*\.(bmp|bz2|css|doc|eot|flv|gif|gz|ico|jpeg|jpg|js|less|mp[34]|pdf|png|rar|rtf|swf|tar|tgz|txt|wav|woff|xml|zip)(\?.*)?$") {
+        unset req.http.Cookie;
+        return (lookup);
+    }
+
+    if (req.http.Authorization || req.http.Cookie) {
+        # Not cacheable by default
+        return (pass);
+    }
+
+    return (lookup);
+}
+
+
+sub vcl_fetch {
+
+    set beresp.ttl = 45s;
+    set beresp.http.Server = "Dcws v10.1";
+
+    set beresp.do_gzip = true;
+    set beresp.do_gunzip = false;
+    set beresp.do_stream = false;
+    set beresp.do_esi = false;
+
+    set beresp.grace = 5m;
+
+    unset beresp.http.expires;
+    if (req.url ~ "^[^?]*\.(bmp|bz2|css|doc|eot|flv|gif|gz|ico|jpeg|jpg|js|less|mp[34]|pdf|png|rar|rtf|swf|tar|tgz|txt|wav|woff|xml|zip)(\?.*)?$") {
+        unset beresp.http.set-cookie;
+        include  "/usr/local/varnish/etc/varnish/static_file.vcl";
+    }
+    else {
+        include  "/usr/local/varnish/etc/varnish/dynamic_file.vcl";
+    }
+
+    if (beresp.status == 503 || beresp.status == 500) {
+        set beresp.http.X-Cacheable = "NO: beresp.status";
+        set beresp.http.X-Cacheable-status = beresp.status;
+        return (hit_for_pass);
+    }
+
+    if (beresp.status == 404) {
+        set beresp.http.magicmarker = "1";
+        set beresp.http.X-Cacheable = "YES";
+        set beresp.ttl = 20s;
+        return (deliver);
+    }
+
+    set beresp.http.magicmarker = "1";
+    #set beresp.http.X-Cacheable = "YES";
+
+    if(beresp.http.Cache-Control ~ "no-cache" || beresp.http.Cache-Control == ""){
+        set beresp.http.Cache-Control = "max-age=300, public, must-revalidate";
+    }
+
+    # Varnish determined the object was not cacheable
+    if (beresp.ttl <= 0s) {
+        set beresp.http.X-Cacheable = "NO:Not Cacheable";
+
+    # You don't wish to cache content for logged in users
+    } elsif (req.http.Cookie ~ "(UserID|_session)") {
+        set beresp.http.X-Cacheable = "NO:Got Session";
+        return(hit_for_pass);
+
+    # You are respecting the Cache-Control=private header from the backend
+    } elsif (beresp.http.Cache-Control ~ "private") {
+        set beresp.http.X-Cacheable = "NO:Cache-Control=private";
+        return(hit_for_pass);
+
+    # Varnish determined the object was cacheable
+    } else {
+        set beresp.http.X-Cacheable = "YES";
+    }
+
+}
+
+
+sub vcl_deliver {
+
+    if (obj.hits > 0) {
+        set resp.http.X-Cache = "HIT";
+    } else {
+        set resp.http.X-Cache = "MISS";
+    }
+
+   # remove resp.http.X-Varnish;
+    #remove resp.http.Via;
+    #remove resp.http.Age;
+    #remove resp.http.X-Powered-By;
+
+    # Remove some headers: PHP version
+    unset resp.http.X-Powered-By;
+
+    # Remove some headers: Apache version & OS
+    #unset resp.http.Server;
+    unset resp.http.X-Drupal-Cache;
+    unset resp.http.X-Varnish;
+    #unset resp.http.Via;
+    unset resp.http.Link;
+
+}
+
+
+
+
+
+
+
+
+
+        if (req.url ~ "\.(jpg|jpeg|png|gif|gz|tgz|bz2|tbz|mp3|ogg|swf|flv|pdf|ico)$")   {
+/usr/local/varnish/bin/varnishadm "ban req.http.host == www.culturaonline.net && req.url ~ ^/"
+
+    # Retira os cookies de paginas de um dominio, e faz cache
+    include "/usr/local/varnish/etc/varnish/HostRemoveCookies.vcl";
+
+    # Retira os cookies de paginas de um dominio á escolha, e faz SUPER CACHE de uma hora
+    include "/usr/local/varnish/etc/varnish/HostSuperCache.recv.vcl";
+
+
+golias23.a
+U#2as1KppV.e
+0010 0000 24300010001 03
+
+/dev/mapper/vg_v59184-lv_home	/tmp	ext4	relatime,noauto,noexec,nosuid	0	0
+mkfs.ext4 /dev/vdb1 –b 4096 –E stride=16,stripe-width=32
+
+/dev/mapper/vg_v59184-lv_home	/home	ext4	relatime,usrjquota=quota.user,jqfmt=vfsv0	1	2
+/usr/tmpDSK             /tmp                    ext3    defaults,noauto,noexec,nosuid        0 0
+
+Allow apps that have not registered with AppConfig to be run when logged in as a reseller to WHM
+
+Allow PHP to be run when logged in as a reseller to WHM
+
+2ZH;irJA;srX
+grep -i "89.180.212.14" moloni.com-ssl_log | grep -i "moloni/"
+
+i7S${RI$WT%m
+
+Estimado cliente,
+
+Os ficheiros não estão alterados, nem sequer foi feito nenhuma ataque, após investigação.
+
+O que acontece é que os joomlas mais antigos que versão 3, alguns antivirus começaram a dizer que tinham virus no ficheiro
+
+
+ethtool -g eth0
+ethtool -G eth0 rx 511
+ethtool -G eth0 rx 2048 tx 2048
+k2Qto2tL!lZ9
+
+
+23c82581642b50b2dc2d36b2cffa2642:Q9AKStCRBt476lymNdKs7OESM5nikWqt
+5747773e695ba92d97db86f1d2701b2a:pozlineDp4CPZaHTrEbj6i3RIER7xJXI
+
+lover's lane house
+valentines's victorian residence
+
+netstat -nat |grep "190.10.8.87" | awk '{print $6}' | sort | uniq -c | sort -n
+
+
+
+
+delete from db_users where db_id=(SELECT id FROM data_bases where dom_id=(SELECT id FROM domains where name='aguasdocentro.pt'));
+delete from data_bases where dom_id=(SELECT id FROM domains where name='aguasdocentro.pt');
+delete from mail where id=(SELECT id FROM domains where name='aguasdocentro.pt');
+delete from subdomains where id=(SELECT id FROM domains where name='aguasdocentro.pt');
+delete from dns_recs where id=(SELECT id FROM domains where name='aguasdocentro.pt');
+delete from domains where name='aguasdocentro.pt';
+delete from hosting where dom_id=(SELECT id FROM sys_users where home='C:/inetpub/vhosts//aguasdocentro.pt');
+delete from sys_users where home='C:/inetpub/vhosts//aguasdocentro.pt';
+delete from dns_zone where displayName='aguasdocentro.pt';
+
+
+
+]-[D8F,UnQP,
+
+use psa \G
+
+171
+7 dj
+
+id 103
+account_id 924
+pd_id 99
+
+options timeo=20,retrans=5,rsize=8192,wsize=8192,intr,vers=4,proto=tcp
+195.8.59.101:/mnt/vol_raid10/volraid10/linux/B52-A20             /home/1backups          nfs     noauto,noacl,nocto,nfsvers=3,tcp,timeo=600,retrans=2,rsize=32768,wsize=32768,hard,intr,noatime 0 0
+
+
+
+
+
+20678
+000 678 366
+403.48
+
+8 out.
+14h 15m
+dr. barata
+2º andar
+
+Cavalo:	82 cm
+Tronco (153-82):	71 cm (original: 153cm)
+Braço:	62 cm
+
+echo never > /sys/kernel/mm/redhat_transparent_hugepage/enabled
+echo "deadline" > /sys/block/sda/queue/scheduler
+echo "deadline" > /sys/block/sdb/queue/scheduler
+/sbin/blockdev --setra 1024 /dev/md2
+u--CJ.Mx88lN
+echo never > /sys/kernel/mm/redhat_transparent_hugepage/enabled
+echo no > /sys/kernel/mm/redhat_transparent_hugepage/khugepaged/defrag
+echo never >/sys/kernel/mm/redhat_transparent_hugepage/defrag
+
+grep -i huge /proc/meminfo
+root
+vR3ukfeaMj3WkY
+vou-vencer-sempre-9.
+Backup server: u76121.your-backup.de
+u76121
+pu237zFIhQ2GY3sB
+\\u76121.your-backup.de\backup
+hocnetgw1
+pu237zFIhQ2GY3sB
+grupomontanhismovr.com
+asdgaf4ff32d,a
+
+DUMDP_D no registry --> C:\Program Files (x86)\Parallels\Plesk\Backup\
+
+municipal
+===================
+gnome dome
+zombie er
+demented dentist
+transylvania station
+witchwart academy
+
+sou-um-tipo-muito-lindo-1
+
+business
+===================
+backwoods blacksmith
+brain shop
+potion shop
+tomb stone store
+
+residence
+===================
+zombie condo
+zombie walk up
+zombie frat house
+zombie hideout
+poltergeist house
+pranked house
+massacre mansion
+dead man cave
+
+cFsltWcz4ii0
+
+/usr/sbin/pure-ftpd -O clf:/var/log/xferlog --daemonize -A -c80 -B -C8 -D -E -fftp -H -I15 -lextauth:/var/run/ftpd.sock -L10000:8 -m4 -p30000:50000 -s -S0.0.0.0,2122 -T150 -U133:022 -u100 -i -Oxferlog:/usr/local/apache/domlogs/ftpxferlog -o -k99 -Z -Y1 -JHIGH:MEDIUM:+TLSv1:!SSLv2:+SSLv3
+
+GMdWRPBFm7h26C
+188.40.105.194
+255.255.255.192
+188.40.105.193
+
+jonixthe_best_1_OK
+eu-sou-o-number-uno-9.
+Kq5cT#&G*!7W
+Francisco Vicen
+hSaxo%6M4*s
+
+https://www.cpanel.net/store/
+ruben@datasource.pt
+vIsJC7qaCe8Rue0W
+
+
+ethtool -G eth0 rx 2048 tx 2048
+
+find . -name "*.conf" -print | xargs sed -i 's/5.9.105.136:80;/5.9.105.136:80 sndbuf=32K;/g'
+
+find . -name "*.conf" -print | xargs sed -i 's/5.9.105.136:80 sndbuf=32K;/5.9.105.136:80;/g'
+
+
+tar -xf ds-v3.5.1.tar
+cd ds-3.5.1
+sh install.sh
+cd ..
+rm -Rfv ds-3.5.1/ ds-v3.5.1.tar
+
+
+/bin/cp -af /usr/local/cpanel/whostmgr/docroot/cgi/dcc/__install__/Driver/* /usr/local/cpanel/Cpanel/Config/ConfigObj/Driver/  >/dev/null 2>&1
+/usr/local/cpanel/bin/register_appconfig /usr/local/cpanel/whostmgr/docroot/cgi/dcc/__install__/dcc.conf
+
+rdate -s rdate.cpanel.net
+wkhtmltopdf https://www.moloni.com/_testes/mosh.html /home/moloni/public_html/_testes/mosh.pdf
+
+#cpanel #border-efx #heading-top-header-bg #heading-top-billboard #logo { top: 49px; left: 492px; }
+#cpanel #border-efx #heading-top-header-bg #heading-top-billboard #logo img { width: 257px; height: 54px; }
+a{color:#567200;text-decoration:none}a:hover{color:#8AB800;text-decoration:underline}
+
+scp backup_authorized_keys u81881@u81881.your-backup.de:.ssh/authorized_keys
+sftp u81881@u81881.your-backup.de
+//u57992.your-backup.de/backup  /home/1backups       cifs    iocharset=utf8,rw,credentials=/etc/backupc.txt,uid=root,gid=root,file_mode=0660,dir_mode=0770 0 0
+
+rsync -av --inplace --progress /backups/2014-01-26/ /home/1backups/2014-01-26/
+rsync -av --partial --inplace --progress /backups/2014-01-26/ /home/1backups/2014-01-26/
+rsync -avh --progress /home/_backups/backup/2014-01-28/ /home/1backups/backup/2014-01-28/
+rsync -avh --progress obrasegu.tar.gz /home/1backups/backup/1/
+rsync -avh --progress *.tar.gz /home/goncaloc/_backups/
+/usr/local/cpanel/bin/cpuwatch 5.0 rsync -avh --progress --bwlimit=11520 /home/2backups/backup/2014-02-15/ /home/1backups/2014-012-15/
+rsync -avh --progress 2014-02-22 /home/1backups/weekly/
+
+$(function() {
+	updateNumeros();
+});
+
+function updateNumeros() {
+	$.getJSON('_JnX_/AjaX/ajax.php?jx=ligacoes', function(data) {
+		$('div#NHTTP').html(data.nhttp);
+		$('div#HTTP').html(data.http);
+		$('div#POP3').html(data.pop3);
+		$('div#IMAP').html(data.imap);
+		$('div#SMTP').html(data.smtp);
+		$('div#FTP').html(data.ftp);
+		$('div#MYSQL').html(data.mysql);
+	});
+	setTimeout("updateNumeros()",3000);
+}
+
+
+$('#POP3').fadeIn('slow');
+$('#POP3').html("<img src='img/ajax-loader-small.gif' />");
+$('#POP3').load("_JnX_/AjaX/ajax.php?jx=ligacoes.1");
+$('#POP3').fadeIn('slow');
+0010 0000 37745910001 69
+8A2B08
+FFE8DE
+maldet -b -a /home/?/public_html
+
+rua gorgel do amaral, 5 - r/c direito
+
+
+cd /var/cpanel/bandwidth
+/usr/local/cpanel/3rdparty/bin/rrdtool dump vibraten-ftp-rate.rrd >  1.xml
+/usr/local/cpanel/3rdparty/bin/rrdtool restore -f 1.xml vibraten-ftp-rate.rrd.rrd
+
+pcarmomail@gmail.com
+
+ARRAY /dev/md/0 metadata=1.0 UUID=d573cc51:4274e736:c4336d98:9ab8aa2a name=rescue:0
+ARRAY /dev/md/1 metadata=1.0 UUID=c5c93986:b6ffe5c2:8d07f665:a9e2eed4 name=rescue:1
+ARRAY /dev/md/2 metadata=1.0 UUID=5e653ed5:1f3e0546:812f58b9:cca9581e name=rescue:2
+ARRAY /dev/md/3 metadata=1.0 UUID=94a63811:c82f96f8:c369dd5b:28413606 name=rescue:3
+mdadm /dev/md0 -r /dev/sda1
+mdadm /dev/md1 -r /dev/sda2
+mdadm /dev/md2 -r /dev/sda3
+mdadm /dev/md3 -r /dev/sda5
+
+mdadm /dev/md0 -f /dev/sda1
+mdadm /dev/md1 -f /dev/sda2
+mdadm /dev/md2 -f /dev/sda3
+mdadm /dev/md3 -f /dev/sda5
+
+mdadm --add /dev/md0 /dev/sda1
+mdadm --add /dev/md1 /dev/sda2
+mdadm --add /dev/md2 /dev/sda3
+mdadm --add /dev/md3 /dev/sda5
+
+echo mkdir .ssh | sftp u82523.your-backup.de
+
+
+md2 : active raid1 sdb3[0]
+      1073741688 blocks super 1.0 [2/1] [U_]
+
+md1 : active raid1 sdb2[0]
+      524276 blocks super 1.0 [2/1] [U_]
+
+md3 : active raid1 sdb5[0]
+      1847606608 blocks super 1.0 [2/1] [U_]
+
+md0 : active raid1 sdb1[0]
+      8388596 blocks super 1.0 [2/1] [U_]
+
+dns@hocnet.pt
+hSaxo%6M4*s
+
+dns@pthosting.com
+Kq5cT#&G*!7W
+
+Ruben@datasource.pt
+h2sx98sd83sq3df
+
+
+Dear Cliente,
+
+That was the old that.
+Our Central Bank System changed everything.
+
+This is now the correct data:
+
+SWIFT/BIC  - BBPIPTPL
+IBAN - PT50 0010 0000 3890 3460 0022 1
+
+https://aws.amazon.com/pt/
+all@datasource.pt
+LuqtslCwzBuN7v
+
+service lvestats stop
+mv /var/lve/lveinfo.db /var/lve/lveinfo.db.old
+service lvestats start
+rm -f /var/lve/lveinfo.db.old
+
+sysctl -w net.ipv4.tcp_tw_reuse=1
+sysctl -w net.ipv4.tcp_no_metrics_save=1
+sysctl -w net.ipv4.route.flush=1
+sysctl -w net.ipv6.route.flush=1
+
+
+cd /root/nginx/nginx-1.6.0
+./configure --conf-path=/etc/nginx/nginx.conf \
+--sbin-path=/usr/local/sbin --pid-path=/var/run/nginx.pid \
+--error-log-path=/var/log/nginx/error.log --http-log-path=/var/log/nginx/access.log \
+--http-client-body-temp-path=/var/cache/nginx/client \
+--http-proxy-temp-path=/var/cache/nginx/proxy \
+--http-fastcgi-temp-path=/var/cache/nginx/fastcgi \
+--with-http_ssl_module --with-http_flv_module \
+--with-pcre=/root/nginx/pcre-8.35 --with-pcre-jit \
+--with-file-aio --with-http_stub_status_module --with-http_ssl_module --with-http_spdy_module \
+--without-http_ssi_module --without-http_userid_module --without-http_autoindex_module \
+--without-http_split_clients_module --without-http_fastcgi_module \
+--without-http_referer_module --without-http_uwsgi_module --without-http_scgi_module \
+--without-http_memcached_module --without-http_empty_gif_module \
+--without-http_browser_module --without-http_upstream_ip_hash_module \
+--add-module=/root/nginx/headers-module \
+--add-module=/root/nginx/ngx_cache_purge \
+--add-module=/root/nginx/mod_security/nginx/modsecurity
+        make
+        service nginx stop
+        sleep 8
+        make install
+        cd /root/nginx
+
+cd /root/nginx/nginx-1.6.0
+./configure --with-cc-opt='-g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wformat -Werror=format-security -D_FORTIFY_SOURCE=2' \
+--with-ld-opt='-Wl,-Bsymbolic-functions -Wl,-z,relro' --add-module=/root/nginx/naxsi/naxsi_src \
+--sbin-path=/usr/sbin --conf-path=/etc/nginx/nginx.conf \
+--http-log-path=/var/log/nginx/access.log --error-log-path=/var/log/nginx/error.log \
+--lock-path=/var/lock/nginx.lock --pid-path=/var/run/nginx.pid \
+--http-client-body-temp-path=/var/lib/nginx/body \
+--http-fastcgi-temp-path=/var/lib/nginx/fastcgi \
+--http-proxy-temp-path=/var/lib/nginx/proxy \
+--http-scgi-temp-path=/var/lib/nginx/scgi \
+--http-uwsgi-temp-path=/var/lib/nginx/uwsgi \
+--with-debug --with-pcre=/root/nginx/pcre-8.35 --with-pcre-jit --with-ipv6 --with-http_ssl_module --with-http_stub_status_module \
+--with-http_realip_module --with-http_addition_module --with-http_dav_module --with-http_geoip_module \
+--with-http_gzip_static_module --with-http_spdy_module \
+--with-http_sub_module --with-http_xslt_module --with-mail --with-mail_ssl_module \
+--add-module=/root/nginx/headers-module \
+--add-module=/root/nginx/ngx_cache_purge
+
+
+####################################################################################
+#CRIA PASSWORD E USER PARA PROTEGER SITE POR PASSWORD
+#
+htpasswd -c /home/site/.htpasswd xanubi
+#JA CRIADOS:
+---
+aldina.net
+user: xanubina
+pass: vertigo1.
+user: xanubina
+pass: kikazarajoana777.
+---
+
+####################################################################################
+#REDIRECT WWW to NON-WWW
+#
+if ($host != 'xanubi.com' ) {
+rewrite ^/(.*)$ http://xanubi.com/$1 permanent;
+}
+
+####################################################################################
+#DOKUWIKI
+#
+  index index.html index.htm index.php doku.php;
+  auth_basic "E so Para nos!";
+  auth_basic_user_file /home/faqs.xanubi.com/.htpasswd;
+  try_files $uri $uri/ @dokuwiki;
+}
+
+location ~ ^/lib.*\.(gif|png|ico|jpg)$ {
+  expires 30d;
+}
+
+location = /robots.txt  { access_log off; log_not_found off; }
+location = /favicon.ico { access_log off; log_not_found off; }
+location ~ /\.          { access_log off; log_not_found off; deny all; }
+location ~ ~$           { access_log off; log_not_found off; deny all; }
+
+location @dokuwiki {
+  rewrite ^/_media/(.*) /lib/exe/fetch.php?media=$1 last;
+  rewrite ^/_detail/(.*) /lib/exe/detail.php?media=$1 last;
+  rewrite ^/_export/([^/]+)/(.*) /doku.php?do=export_$1&id=$2 last;
+  rewrite ^/(.*) /doku.php?id=$1 last;
+}
+
+location ~ \.php$ {
+  try_files $uri =404;
+  fastcgi_pass   unix:/var/run/php-fcgi-faqsxanubicom-php-fcgi-0.sock;
+  fastcgi_index  index.php;
+  fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;
+  include /etc/nginx.d/fastcgi_params;
+  fastcgi_param  QUERY_STRING     $query_string;
+  fastcgi_param  REQUEST_METHOD   $request_method;
+  fastcgi_param  CONTENT_TYPE     $content_type;
+  fastcgi_param  CONTENT_LENGTH   $content_length;
+  fastcgi_intercept_errors        on;
+  fastcgi_ignore_client_abort     off;
+  fastcgi_connect_timeout 60;
+  fastcgi_send_timeout 180;
+  fastcgi_read_timeout 180;
+  fastcgi_buffer_size 128k;
+  fastcgi_buffers 4 256k;
+  fastcgi_busy_buffers_size 256k;
+  fastcgi_temp_file_write_size 256k;
+}
+
+location ~ /(data|conf|bin|inc)/ {
+  deny all;
+}
+
+location /RequestDenied {
+  return 406;
+}
+
+location ~ /\.ht {
+  deny  all;
+
+####################################################################################
+#WORDPRESS
+#
+  index index.html index.htm index.php;
+  include    /etc/nginx.d/rules.d/_general.rules;
+  try_files $uri $uri/ /index.php?q=$uri&$args;
+}
+
+include "/etc/nginx.d/estaticos.conf";
+
+location = /robots.txt  { access_log off; log_not_found off; }
+location = /favicon.ico { access_log off; log_not_found off; }
+location ~ /\.          { access_log off; log_not_found off; deny all; }
+location ~ ~$           { access_log off; log_not_found off; deny all; }
+
+location ~ \.php$ {
+  try_files $uri =404;
+  fastcgi_pass   unix:/var/run/php-fcgi-faqsxanubicom-php-fcgi-0.sock;
+  fastcgi_index  index.php;
+  fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;
+  include /etc/nginx.d/fastcgi_params;
+  fastcgi_param  QUERY_STRING     $query_string;
+  fastcgi_param  REQUEST_METHOD   $request_method;
+  fastcgi_param  CONTENT_TYPE     $content_type;
+  fastcgi_param  CONTENT_LENGTH   $content_length;
+  fastcgi_intercept_errors        on;
+  fastcgi_ignore_client_abort     off;
+  fastcgi_connect_timeout 60;
+  fastcgi_send_timeout 180;
+  fastcgi_read_timeout 180;
+  fastcgi_buffer_size 128k;
+  fastcgi_buffers 4 256k;
+  fastcgi_busy_buffers_size 256k;
+  fastcgi_temp_file_write_size 256k;
+}
+
+location /RequestDenied {
+  return 406;
+}
+
+location ~ /\.ht {
+  deny  all;
+
+####################################################################################
+#PARA CONTEUDOS ESTATICOS APENAS, SEM PHP
+#
+  index index.html index.htm index.php;
+  include    /etc/nginx.d/rules.d/_general.rules;
+  try_files $uri $uri/ /index.html;
+}
+
+include "/etc/nginx.d/estaticos.conf";
+
+location = /robots.txt  { access_log off; log_not_found off; }
+location = /favicon.ico { access_log off; log_not_found off; }
+location ~ /\.          { access_log off; log_not_found off; deny all; }
+location ~ ~$           { access_log off; log_not_found off; deny all; }
+
+location /RequestDenied {
+  return 406;
+}
+
+location ~ /\.ht {
+  deny  all;
+
+v59182 - 18h30
+v59189 - 3h20
+m000-104 - 22h45
+m000-113 - 23h11
+m000-110 - 19h30
+m000-115 - 5h10
+m000-116 - 2h25
+m000-118 - 1h10
+m001-108 - 5h35
+v59185 - 00h15
+v59196 - 2h
+v59194 - 3h

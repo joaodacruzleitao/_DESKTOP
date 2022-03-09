@@ -1,0 +1,95 @@
+==============================================
+INSTALL DUPLICITY
+================================================
+cd /home/_src
+wget http://ftp-stud.hs-esslingen.de/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+rpm -ivh epel-release-6-8.noarch.rpm
+yum -y install librsync librsync-devel pylibacl pyxattr ncftp
+cd /home/_src
+wget http://www.python.org/ftp/python/2.7.2/Python-2.7.2.tgz
+tar fxz Python-2.7.2.tgz
+cd Python-2.7.2
+./configure
+make
+make install
+cd /home/_src
+rm -rf *
+rm -f /usr/bin/python
+ln -s /usr/local/bin/python /usr/bin/python
+cd /home/_src
+wget http://pyyaml.org/download/pyyaml/PyYAML-3.10.tar.gz
+tar -xzvf PyYAML-3.10.tar.gz
+cd PyYAML-*
+python setup.py install
+cd /home/_src
+rm -rf *
+wget http://code.launchpad.net/duplicity/0.6-series/0.6.20/+download/duplicity-0.6.20.tar.gz
+tar xzf duplicity-0.6.20.tar.gz
+cd duplicity-0.6.20
+python setup.py install --prefix=/usr/local
+cd /home/_src
+rm -rf *
+rm -f /usr/bin/python
+ln -s /usr/bin/python2.6 /usr/bin/python
+
+export FTP_PASSWORD=8bXDebMfJB; /usr/local/bin/duplicity remove-older-than 8D --force --archive-dir=/home/.backups/.cache --tempdir=/home/.backups -v5 ftp://b41@195.8.59.101/vol_raid10/volraid10/linux/B41_A9/home/
+
+export FTP_PASSWORD=8bXDebMfJB; /usr/local/bin/duplicity collection-status --force --archive-dir=/home/.backups/.cache --tempdir=/home/.backups ftp://b41@195.8.59.101/vol_raid10/volraid10/linux/B41_A9/home/  | egrep "Full|Incremental" | cut -c30-54
+
+export FTP_PASSWORD=vertigo0...; /usr/local/bin/duplicity collection-status --force --archive-dir=/home/.backups/.cache --tempdir=/home/.backups ftp://rufus1@195.8.59.101/vol_raid10/volraid10/linux/Rufus1/home/
+
+echo du -s . | lftp -u rufus1,vertigo0... 195.8.59.101
+
+cd /home/_src
+wget https://github.com/Janhouse/tespeed/archive/master.tar.gz
+tar -zxf master
+cd tes*
+./tespeed.py
+yum install python-lxml -y
+./tespeed.py
+
+FTP_PASSWORD=vertigo0... duplicity --archive-dir=/home/.backups/.cache --tempdir=/home/.backups --file-to-restore nauti4u.tar  ftp://rufus1@195.8.59.101/vol_raid10/volraid10/linux/Rufus1/cpanel /backups/cpbackup/.daily/nauti4u.tar
+export FTP_PASSWORD=8bXDebMfJB; duplicity --archive-dir=/home/.backups/.cache --tempdir=/home/.backups -t 2D --file-to-restore ritacc/public_html  ftp://b41@195.8.59.101/vol_raid10/volraid10/linux/B41_A9/home /backups/cpbackup/_geral/public_html
+
+List available backups:
+FTP_PASSWORD=Sscyl6WfHd duplicity --archive-dir=/home/.backups/.cache --tempdir=/home/.backups collection-status ftp://v59184@195.8.59.101/vol_raid10/volraid10/VPS/v59184/cpanel | egrep "Full|Incremental" | cut -c30-54
+
+FTP_PASSWORD=vertigo1... duplicity --archive-dir=/home/.backups/.cache --tempdir=/home/.backups collection-status ftp://b41@195.8.59.101/vol_raid10/volraid10/linux/B41_A9/cpanel
+
+FTP_PASSWORD=8bXDebMfJB duplicity --archive-dir=/home/.backups/.cache --tempdir=/home/.backups remove-all-but-n-full 2 ftp://b41@195.8.59.101/vol_raid10/volraid10/linux/B41_A9/cpanel
+
+Paste the following script into the backup-daily.sh file. Make sure to edit the password (1234 is an example password) and domain.com to your backups settings. As well, make sure to edit your GPG key settings to the key that was generated earlier.
+
+#!/bin/bash
+export TMPDIR=/usr/local/tmp/
+duplicity remove-older-than 14D –encrypt-key=”0A1C1C1C”
+scp://1234@rsync1.cloudkeeper.net/domain.com/home/
+duplicity remove-older-than 14D –encrypt-key=”0A1C1C1C”
+scp://1234@rsync1.cloudkeeper.net/domain.com/mysql/
+
+duplicity inc –volsize=200 –encrypt-key=”0A1C1C1C”
+–exclude=/home/virtfs /home/
+scp://1795@rsync1.cloudkeeper.net/domain.com/home/
+duplicity inc –volsize=200 –encrypt-key=”0A1C1C1C” /var/lib/mysql/
+scp://1234@rsync1.cloudkeeper.net/domain.com/mysql/
+
+Now lets create the weekly backup script:
+
+vi /usr/local/custom-backup/backup-weekly.sh
+
+Paste the following into the backup-weekly.sh file:
+
+#!/bin/bash
+export TMPDIR=/usr/local/tmp/
+duplicity full –volsize=200 –encrypt-key=”0A1C1C1C”
+–exclude=/home/virtfs /home/
+scp://1234@rsync1.cloudkeeper.net/domain.com/home/
+duplicity full –volsize=200 –encrypt-key=”0A1C1C1C” /var/lib/mysql/
+scp://1234@rsync1.cloudkeeper.net/domain.com/mysql/
+
+Finally, add two crontabs to set the backups to run:
+
+10 2 * * 1-6 sh /usr/local/custom-backup/backup-daily.sh
+10 2 * * 0 sh /usr/local/custom-backup/backup-weekly.sh
+
+Both backups are set to run at 2:10AM. The daily backup will run 6 days a week, backing up only incremental data changes. On Sunday, the weekly backup will run, doing a full backup of all your data.

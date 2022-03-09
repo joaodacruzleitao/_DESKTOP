@@ -1,0 +1,141 @@
+# Manutenção Nginx
+*/15 * * * * root /scripts/_nginx_manutencao.sh >> /dev/null 2>&1
+# Manutenção TMP
+0 9,22 * * * root /scripts/_tmp_manutencao.sh >> /dev/null 2>&1
+# Elimina PHP FCGI Orphan Processos
+*/2 * * * * root /scripts/_dcc.sh -8 >> /dev/null 2>&1
+# Download do GEOIP
+0 14 10-15 * 1 root /scripts/_dcc.sh -2 >> /dev/null 2>&1
+# Copia os backups para o NAS v1
+#35 22 * * 3 root /scripts/_dcc.sh -4 p25 p25-s14
+# Optimiza o MYSQL Completo
+10 8,22 * * * root /scripts/_dcc.sh -15
+# BACKUP DIARIO
+#10 0 * * * root /scripts/_dcc.sh -5 B41_A9 b41 vertigo1... 6
+# BACKUP SEMANAL
+#10 0 * * 0 root /scripts/_dcc.sh -16 B41_A9 b41 vertigo1...
+
+yum install tuned tuned-utils
+tuned-adm profile enterprise-storage
+
+554
+220 - /var/lib/mysql
+300 - /
+4 - tmp
+30 - swap
+
+5.9.105.136:1
+eHqZHWF2
+
+80.79.118.1/24
+82.102.27.9
+82.102.27.10
+82.102.27.12
+82.102.13.107
+195.22.8.74
+
+========================
+yum groupupdate alt-php --enablerepo=cloudlinux-updates-testing
+yum update cagefs lve lvemanager lve-utils --enablerepo=cloudlinux-updates-testing
+cagefsctl --update
+
+cagefsctl --disable-cagefs
+find /var/cagefs -name alt_php.ini | xargs rm -f
+cagefsctl --setup-cl-selector
+cagefsctl --enable-cagefs
+
+/scripts/_dcc.sh nginx_vhosts
+service nginx reload
+cagefsctl --disable-cagefs
+find /var/cagefs -name alt_php.ini | xargs rm -f
+for p in `find /home -name .cl.selector`; do rm -f $p/defaults.cfg; done
+cagefsctl --setup-cl-selector
+cagefsctl --enable-cagefs
+cagefsctl --force-update
+
+PHP.INI INDIVIDUAL
+ln -s /home/sataeco/.cpanel/admin.ini /var/cagefs/`cagefsctl --getprefix sataeco`/sataeco/etc/cl.php.d/alt-php52/admin.ini
+========================
+
+find . -depth | cpio -pmdv /home/prodigio/public_html/culturaonline.net/images/biblioteca/teatro/stories
+umpp}2,oF&3T
+
+Username: Administrator
+Password: admin
+
+https://www.moloni.com/apoio/admin_gd723f/
+sac
+wt_L>f4.%R
+
+sysctl -w kernel.sem="250 32000 32 128"
+sysctl -w net.ipv4.tcp_keepalive_time=7200
+sysctl -w net.ipv4.tcp_fin_timeout=60
+sysctl -w net.core.netdev_max_backlog=1000
+sysctl -w net.ipv4.tcp_max_tw_buckets=262144
+sysctl -w net.core.somaxconn=128
+sysctl -w net.ipv4.tcp_tw_recycle=0
+sysctl -w net.core.rmem_max=131071
+sysctl -w net.core.wmem_max=131071
+sysctl -w net.core.rmem_default=245760
+sysctl -w net.core.wmem_default=245760
+sysctl -w net.ipv4.tcp_rmem="4096        87380   4194304"
+sysctl -w net.ipv4.tcp_wmem="4096        16384   4194304"
+sysctl -w net.ipv4.tcp_mem="3037120      3041216 3045312"
+sysctl -w net.ipv4.route.flush=1
+sysctl -w net.ipv6.route.flush=1
+
+cd /home/_src
+wget http://ftp-stud.hs-esslingen.de/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+rpm -ivh epel-release-6-8.noarch.rpm
+yum -y install librsync librsync-devel pylibacl pyxattr ncftp
+cd /home/_src
+wget http://www.python.org/ftp/python/2.7.2/Python-2.7.2.tgz
+tar fxz Python-2.7.2.tgz
+cd Python-2.7.2
+./configure
+make
+make install
+cd /home/_src
+rm -rf *
+rm -f /usr/bin/python
+ln -s /usr/local/bin/python /usr/bin/python
+cd /home/_src
+wget http://pyyaml.org/download/pyyaml/PyYAML-3.10.tar.gz
+tar -xzvf PyYAML-3.10.tar.gz
+cd PyYAML-*
+python setup.py install
+cd /home/_src
+rm -rf *
+wget http://code.launchpad.net/duplicity/0.6-series/0.6.20/+download/duplicity-0.6.20.tar.gz
+tar xzf duplicity-0.6.20.tar.gz
+cd duplicity-0.6.20
+python setup.py install --prefix=/usr/local
+cd /home/_src
+rm -rf *
+
+/vol_raid10/volraid10/linux/Rufus1
+FTP_PASSWORD=vertigo0... duplicity --archive-dir=/home/.backups/.cache --no-encryption --asynchronous-upload --ftp-passive --tempdir=/home/.backups -v5 /home/centralm ftp://rufus1@195.8.59.101/vol_raid10/volraid10/linux/Rufus1/home/
+FTP_PASSWORD=vertigo0... duplicity --archive-dir=/home/.backups/.cache --tempdir=/home/.backups --file-to-restore public_html/newsletters/Novos_Procedimentos_CentralMed.jpg  ftp://rufus1@195.8.59.101/vol_raid10/volraid10/linux/Rufus1/home /home/centralm/public_html/newsletters/Novos_Procedimentos_CentralMed.jpg
+FTP_PASSWORD=gSLKpi2oHt duplicity --archive-dir=/home/.backups/.cache --no-encryption --asynchronous-upload --ftp-passive --tempdir=/home/.backups -v5 /home/cpbackuptmp/cpbackup/daily ftp://v59182@195.8.59.101/vol_raid10/volraid10/VPS/v59182/daily/
+
+/usr/local/cpanel/bin/cpuwatch 8 /scripts/pkgacct --split --skiphomedir --nocompress --backup vectorma /home/_backups/cpbackup/daily
+FTP_PASSWORD=gSLKpi2oHt /usr/local/cpanel/bin/cpuwatch 4 /usr/local/bin/duplicity incremental --full-if-older-than $6D --volsize 50 --archive-dir=/home/.backups/.cache --no-encryption --asynchronous-upload --ftp-passive --tempdir=/home/.backups -v4 /home/_backups/cpbackup/daily ftp://v59182@195.8.59.101/vol_raid10/volraid10/VPS/v59182/cpanel/
+
+
+LIST
+==================
+FTP_PASSWORD=vertigo0... duplicity --archive-dir=/home/.backups/.cache --tempdir=/home/.backups collection-status ftp://rufus1@195.8.59.101/vol_raid10/volraid10/linux/Rufus1/cpanel
+FTP_PASSWORD=vertigo0... duplicity --archive-dir=/home/.backups/.cache --tempdir=/home/.backups collection-status ftp://rufus1@195.8.59.101/vol_raid10/volraid10/linux/Rufus1/home
+
+RESTORE
+==================
+FTP_PASSWORD=vertigo0... duplicity --archive-dir=/home/.backups/.cache --tempdir=/home/.backups --file-to-restore nauti4u.tar  ftp://rufus1@195.8.59.101/vol_raid10/volraid10/linux/Rufus1/cpanel /backups/cpbackup/.daily/nauti4u.tar
+FTP_PASSWORD=vertigo0... duplicity --archive-dir=/home/.backups/.cache --tempdir=/home/.backups -t 1D nauti4u.tar  ftp://rufus1@195.8.59.101/vol_raid10/volraid10/linux/Rufus1/cpanel /backups/cpbackup/.daily/nauti4u.tar
+FTP_PASSWORD=vertigo0... duplicity --archive-dir=/home/.backups/.cache --tempdir=/home/.backups -t 16H --file-to-restore nauti4u.tar  ftp://rufus1@195.8.59.101/vol_raid10/volraid10/linux/Rufus1/cpanel /backups/cpbackup/.daily/nauti4u.tar
+FTP_PASSWORD=vertigo0... duplicity --archive-dir=/home/.backups/.cache --tempdir=/home/.backups collection-status ftp://rufus1@195.8.59.101/vol_raid10/volraid10/linux/Rufus1/cpanel
+-->SEM OVERWITE
+PASSPHRASE=vertigo0... FTP_PASSWORD=vertigo0... duplicity --archive-dir=/home/.backups/.cache --tempdir=/home/.backups -t 4D --file-to-restore nauti4u.tar  ftp://rufus1@195.8.59.101/vol_raid10/volraid10/linux/Rufus1/cpanel /backups/cpbackup/_geral/nauti4u.tar
+-->COM OVERWITE
+PASSPHRASE=vertigo0... FTP_PASSWORD=vertigo0... duplicity --archive-dir=/home/.backups/.cache --tempdir=/home/.backups --force -t 4D --file-to-restore nauti4u.tar  ftp://rufus1@195.8.59.101/vol_raid10/volraid10/linux/Rufus1/cpanel /backups/cpbackup/_geral/nauti4u.tar
+
+tar -xvf nauti4u.tar

@@ -1,0 +1,80 @@
+Ultimas Noticias de Hacks de Joomla 
+======================================= 
+http://blog.sucuri.net/?s=joomla 
+http://www.exploit-db.com/search/?action=search&filter_page=1&filter_description=&filter_exploit_text=joomla&filter_author=&filter_platform=0&filter_type=0&filter_lang_id=0&filter_port=&filter_osvdb=&filter_cve=
+
+Lista Oficial de problemas de extensoes 
+============================================== 
+http://docs.joomla.org/Vulnerable_Extensions_List 
+http://docs.joomla.org/Archived_vel 
+
+jHackGuard (extensão de segurança para joomla) 
+================================================== 
+http://www.siteground.com/joomla-hosting/joomla-extensions/ver1.5/jhack.htm 
+
+B23
+info@socontentores.pt
+P25
+j.aparicio@iberlab.pt
+
+540 largura
+find . -name '*.html' -exec sed -i 's#jquery.cookie-text-size.js#jquery_cookie-text-size.js#g' {} \;
+find . -name '*.php' -exec grep -i "easy" {} \; | more
+find . -name 'php.ini' -print -exec rm -f {} \;
+
+search hocnet.org
+nameserver 195.8.59.80
+nameserver 195.8.59.50
+nameserver 127.0.0.1
+option timeout:1
+option rotate
+
+search hocnet.org
+nameserver 127.0.0.1
+nameserver 195.8.59.80
+nameserver 195.8.59.50
+option timeout:1
+
+
+/usr/local/varnish/bin/varnishadm -T 127.0.0.1:6082 ban req.http.host == www.topolinobrinquedos.com
+/usr/local/varnish/bin/varnishadm -T 127.0.0.1:6082 ban req.url == "/index_intro.php"
+/usr/local/varnish/bin/varnishadm -T 127.0.0.1:6082 ban req.url == "/bo"
+
+for i in `cat /etc/trueuserdomains | cut -d: -d' ' -f2-` ;do mkdir -p /usr/local/apache/conf/userdata/std/2/$i ;done
+
+for i in `cat /etc/trueuserdomains | cut -d: -d' ' -f2-` ;do echo "RDocumentChRoot /home /$i" > /usr/local/apache/conf/userdata/std/2/$i/ruid2_chroot.conf ;done
+
+for i in `cat /etc/trueuserdomains | cut -d: -d' ' -f2-` ;do echo "" > /usr/local/apache/conf/userdata/std/2/$i/ruid2_chroot.conf ;done
+
+/usr/local/cpanel/scripts/verify_vhost_includes
+/usr/local/cpanel/scripts/ensure_vhost_includes --all-users
+/etc/init.d/httpd restart
+spri -q
+
+tmpfs                   /tempo/nginx/nginx_cache  tmpfs   defaults,noatime,nodiratime,size=200m,mode=1777    0 0
+tmpfs                   /tempo/nginx/nginx_cache  tmpfs   defaults,noatime,nodiratime,size=1G,mode=1777    0 0
+
+
+**************************************************************
+**************************************************************
+http://forums.cpanel.net/f402/lock-account-users-public_html-via-mod_ruid2s-rdocumentchroot-directive-252842.html
+**************************************************************
+**************************************************************
+
+
+https://www.google.pt/webhp?sourceid=chrome-instant&ie=UTF-8#sclient=psy-ab&hl=pt-PT&safe=off&site=webhp&source=hp&q=varnish%20shared%20hosting&oq=&aq=&aqi=&aql=&gs_l=&pbx=1&fp=155c061e65893835&bav=on.2,or.r_gc.r_pw.r_cp.,cf.osb&biw=1024&bih=611
+https://www.google.pt/webhp?sourceid=chrome-instant&ie=UTF-8#q=varnish+static+files&hl=pt-PT&safe=off&site=webhp&prmd=imvns&ei=r0yxT9LmM4a20QWX5smrCQ&start=10&sa=N&bav=on.2,or.r_gc.r_pw.r_cp.,cf.osb&fp=155c061e65893835&biw=1024&bih=667
+
+
+deb http://ftp.pt.debian.org/debian squeeze main
+deb-src http://ftp.pt.debian.org/debian squeeze main
+
+deb http://ftp.pt.debian.org/debian squeeze-updates main
+deb-src http://ftp.pt.debian.org/debian squeeze-updates main
+
+deb http://security.debian.org/ squeeze/updates main
+deb-src http://security.debian.org/ squeeze/updates main
+
+apt-get install openssh-server
+
+dh932gf45

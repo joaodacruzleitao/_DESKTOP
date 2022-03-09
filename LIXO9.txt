@@ -1,0 +1,429 @@
+#
+##############################
+# HOCNET PROPRIEDADE
+#############################################
+#208.74.121.100 # CPANEL
+#208.74.121.100 # CPANEL
+#208.74.121.101 # CPANEL
+#208.74.121.102 # CPANEL
+#208.74.121.103 # CPANEL
+#208.74.125.2 # CPANEL
+#69.175.92.60 # Cloudlinux temporario
+tcp|in|d=3306|s=62.28.232.1
+tcp|out|d=3306|s=62.28.232.1
+127.0.0.1
+195.8.58.0/24
+195.8.59.0/24
+213.228.147.15 # DataSource
+81.92.192.2 # NFSI
+81.92.192.3 # NFSI
+81.92.193.1 # NFSI
+81.92.223.0/24 # NFSI
+91.109.114.9 # NFSI
+78.157.217.106 # NodePING
+176.56.238.119 # NodePING
+130.255.191.151 # NodePING
+5.9.105.136 # Alemanha G1
+144.76.9.142 # Alemanha G2
+5.9.148.113 # Alemanha G3
+144.76.59.39 # Alemanha G4
+144.76.63.13 # Alemanha G5
+144.76.164.182 # Alemanha G6
+176.9.127.14 # Alemanha G7
+5.9.24.73 # Alemanha G8
+188.40.105.194 # Alemanha amon.pth0.net
+188.40.138.81 # Alemanha storage1.pth0.net
+
+#
+##############################
+# HOCNET PROPRIEDADE
+#############################################
+127.0.0.1
+195.8.58.0/24
+195.8.59.0/24
+213.228.147.15
+213.133.113.82
+213.133.113.83
+213.133.113.84
+213.133.113.85
+213.133.113.86
+2a01:4f8:0:a101::5:1
+2a01:4f8:0:a101::6:1
+2a01:4f8:0:a101::6:2
+2a01:4f8:0:a101::6:3
+78.47.119.192/26
+188.40.138.81
+
+
+
+/usr/local/cpanel/bin/register_appconfig /usr/local/cpanel/whostmgr/docroot/cgi/dcc/dcc.conf
+
+mkfs.ext4 /dev/vdb1 -b 4096 -E stride=16,stripe-width=32
+mkfs.ext4 /dev/vdc1 -b 4096 -E stride=16,stripe-width=32
+
+/dev/vdb1               /var/cache/nginx        ext4    defaults,relatime        0 0
+/dev/vdc1               /var/cache/mysql        ext4    defaults,relatime        0 0
+
+
+NFS
+===================================
+195.8.59.121:/mnt/vol_raid10/volraid10/VPS/v59192             /home/1backups          nfs     noauto,noacl,nocto,nfsvers=3,tcp,timeo=600,retrans=2,rsize=32768,wsize=32768,hard,intr,noatime 0 0
+195.8.59.121:/mnt/vol_raid10/volraid10/VPS/v59192             /home/1backups          nfs     noauto,rw,nfsvers=3,tcp,timeo=600,retrans=2,rsize=32768,wsize=32768,hard,intr,noatime 0 0
+195.8.59.121:/mnt/vol_raid10/volraid10/VPS/v59192             /home/1backups          nfs     rw,relatime,vers=3,rsize=524288,wsize=524288,namlen=255,hard,proto=udp,timeo=600,retrans=2,sec=sys,noauto 0 0
+195.8.59.121:/mnt/vol_raid10/volraid10/VPS/v59192             /home/1backups          nfs     _netdev,noauto 0 0
+188.40.138.81:/g9.hocnet.org             /home/1backups          nfs     _netdev,noauto 0 0
+
+CENTOS 5:
+-----------
+mkdir -p /home/1backups
+yum install nfs-utils nfs-utils-lib -y
+chkconfig portmap on
+service portmap restart
+--> no fstab -> 195.8.59.121:/mnt/vol_raid10/volraid10/VPS/m000-118             /home/1backups          nfs     noauto,rw,nfsvers=3,tcp,timeo=600,retrans=2,rsize=32768,wsize=32768,hard,intr,noatime 0 0
+CENTOS 6:
+-----------
+mkdir -p /home/1backups
+yum install nfs-utils nfs-utils-lib -y
+chkconfig rpcbind on
+service rpcbind start
+--> no fstab -> 195.8.59.121:/mnt/vol_raid10/volraid10/VPS/m000-118             /home/1backups          nfs     noauto,rw,nfsvers=3,tcp,timeo=600,retrans=2,rsize=32768,wsize=32768,hard,intr,noatime 0 0
+
+
+find . -maxdepth 1 -name '1*' -delete
+vgcreate vm-discos /dev/sdb1
+
+cd /var/lib/vz/dump
+tar --lzop -xvf vzdump-qemu-108-*.tar.lzo
+qemu-img convert -f qcow2 vm-disk-virtio0.qcow2 -O host_device /dev/vm-discos/vm-103-disk-1
+qemu-img convert -f qcow2 vm-disk-virtio0.qcow2 -O host_device /dev/vm-discos/vm-108-disk-1
+
+yum install nfs-utils nfs-utils-lib -y
+mkdir -p /home/1backups
+service rpcbind start
+chkconfig rpcbind on
+
+OPENVZ
+vzctl set 101 --features "nfs:on" --save
+vzctl restart 101
+
+NFS NORMAL TODOS
+==============================
+195.8.59.121:/mnt/vol_raid10/volraid10/VPS/v59182             /home/1backups          nfs     _netdev,noauto 0 0
+
+NFS3
+=============================
+195.8.59.121:/mnt/vol_raid10/volraid10/VPS/v59187             /home/1backups          nfs     noauto,noac,actimeo=0,rsize=32768,wsize=32768,timeo=5,intr,noatime,nodiratime,retrans=4,vers=3,proto=tcp 0 0
+
+NFS4
+=============================
+188.40.138.81:/home/amon.pth0.net  /home/1backups       nfs4    _netdev,auto,rw,noatime,soft,intr,rsize=65536,wsize=65536  0  0
+
+
+---> NOVO VPS pass: vertigo1
+
+este-vps-e-um-fixolas-1.0
+http://www.demo.whmcsthemes.com/demo.php?systpl=TeenHost
+http://www.demo.whmcsthemes.com/demo.php?systpl=UKHost
+http://www.demo.whmcsthemes.com/demo.php?systpl=BlueHost
+este-vps-e-um-fixolas-1.0
+root
+ALxdxf4K
+
+tmpfs                   /var/cache/nginx        tmpfs   size=100M    0    0
+mkdir -p /var/cache/nginx
+mount /var/cache/nginx
+
+mkdir /tmp/scan
+chown -R 777 /tmp/scan
+mkdir /tmp/webfiles
+chown nobody:clamav /tmp/webfiles
+chmod 2750 /tmp/webfiles
+
+Server address: 144.76.31.51:1
+Password: 4H5gmzV2
+"root" and the following password: wA22b6Rq
+
+lvectl set 3 --cpu=25 --ncpu=1 --io=0 --nproc=0 --pmem=0 --mem=0 --vmem=0 --maxEntryProcs=0 --save-all-parameters
+lveinfo --period=1d --by-fault=mep --display-username
+lvechart -u lecicasa --period=1h --width=12 -o lecicacasa.png
+
+dbctl set iptaco --cpu=70,60,50,40
+dbctl set tdaudio --cpu=70,60,50,40
+dbctl set tdaudio --cpu=150,100,90,70
+dbctl set bdtsoft --cpu=150,100,90,70
+dbctl set oseculo --cpu=150,100,90,70
+dbctl set test2 --cpu=150,100,90,70 --read=2048,1500,1000,800
+
+ip route change default via 144.76.164.161 dev eth0 initcwnd 10 initrwnd 10
+ip route change default via 144.76.9.129 dev eth0 initcwnd 10 initrwnd 10
+
+ip route change default via 195.8.58.254 dev eth0 initcwnd 10 initrwnd 10
+
+ip route change default via 195.8.59.254 dev eth0 initcwnd 10 initrwnd 10
+
+ip route change default via 91.109.114.14 dev eth0 initcwnd 10
+
+ip route change default via 5.9.105.129 dev eth0 initcwnd 10
+
+
+ip route change default via 5.9.148.97 dev eth0 initcwnd 10 initrwnd 10
+sysctl -w net.ipv4.tcp_slow_start_after_idle=0
+sysctl -w net.ipv4.tcp_no_metrics_save=1
+sysctl -w net.ipv4.tcp_moderate_rcvbuf=1
+ip route change default via 195.8.59.254 dev eth0 initcwnd 10 initrwnd 10
+ACPI _SDD failed (AE 0x5)
+ip route change default via 195.8.58.254 dev eth0 initcwnd 10 initrwnd 10
+
+sysctl -w net.ipv4.tcp_slow_start_after_idle=1
+sysctl -w net.ipv4.tcp_no_metrics_save=0
+sysctl -w net.ipv4.tcp_moderate_rcvbuf=0
+
+
+mysql -e "SELECT CONCAT('ALTER TABLE ',table_schema,'.',table_name,' engine=MyISAM;') FROM information_schema.tables WHERE engine = 'InnoDB';" > 1.txt
+
+D^;Z]KreU#Im
+sysctl -w net.ipv4.netfilter.ip_conntrack_tcp_timeout_established=86400
+
+joomla pass
+hj34hgds90.h
+d4e7054b292c42a9c1f634de7559c108:MEqX6nkTLsdvKlZcgGi0aFeoMndp000G
+
+http://www.google.com/calendar/feeds/excentrico.com_89c5ql2q05ke42eci57holpcvo%40group.calendar.google.com/public/basic
+http://www.google.com/calendar/feeds/xanubi.com_2a50ti4q0t4v6ausp0jv0n0k5s%40group.calendar.google.com/public/basic
+
+YQ2#NY[nTE
+2j3498h_:;IK1
+
+v59190
+Ti67XihsDP
+
+v59191
+Uq2xBS49Za
+
+cd %plesk_bin%
+C:\Program Files (x86)\Parallels\Plesk\admin\bin>dbclient --direct-sql --sql="UPDATE smb_users SET ownerId=(SELECT id FROM clients WHERE login='adbcdacasa.pt') WHERE email like '%adbcdacasa.pt';"
+
+6btp4k6577
+iBXkTF!6IB
+
+yum update lvemanager cagefs lve-utils --enablerepo=cloudlinux-updates-testing
+yum groupupdate alt-php --enablerepo=cloudlinux-updates-testing
+
+CL5 Kernel:
+yum install kernel-2.6.18-408.8.2.el5.lve0.8.62 --enablerepo=cloudlinux-updates-testing
+
+CL6 Kernel:
+$ yum install kernel-2.6.32-379.22.1.lve1.2.12.el6 --enablerepo=cloudlinux-updates-testing 
+
+CL6 Kernel hybrid servers:
+$ yum install kernel-2.6.32-379.22.1.lve1.2.12.el5h --enablerepo=cloudlinux-hybrid-testing
+
+
+wget -qq -O - http://www.cloudlinux.com/sshd-hack/check.sh |/bin/bash
+dir /lib64/libkeyutils-1.2.so.*
+
+for i in `ls -1a --color=never /lib/ | grep libkey`; do echo -ne "/lib/$i --> "; /bin/rpm -qf /lib/$i; done
+for i in `ls -1a --color=never /lib64/ | grep libkey`; do echo -ne "/lib64/$i -->"; /bin/rpm -qf /lib64/$i; done
+
+ls -1 ls /lib64/ | grep libkey
+
+echo "deadline" > /sys/block/vda/queue/scheduler
+blockdev --setra 256 /dev/vda
+
+echo "cfq" > /sys/block/sda/queue/scheduler
+echo "cfq" > /sys/block/sdb/queue/scheduler
+blockdev --setra 256 /dev/sda
+blockdev --setra 256 /dev/sdb
+
+echo "deadline" > /sys/block/sda/queue/scheduler
+echo "deadline" > /sys/block/sdb/queue/scheduler
+blockdev --setra 256 /dev/sda
+blockdev --setra 256 /dev/sdb
+
+tmpfs                   /tmp/.nginx             tmpfs   defaults,rw,noexec,nosuid,nodev,size=1g,mode=1777 0 0
+tmpfs                   /tmp/.nginx             tmpfs   defaults,rw,noexec,nosuid,nodev,size=300m,mode=1777 0 0
+tmpfs                   /tmp/.nginx             tmpfs   defaults,rw,noexec,nosuid,nodev,size=150m,mode=1777 0 0
+
+tuned-adm profile throughput-performance
+blockdev --setra 256 /dev/sda
+blockdev --setra 256 /dev/sdb
+
+useradd u57992
+passwd u57992
+smbpasswd –a u57992
+mount.cifs -o user=u57992 //u57992.your-backup.de/backup /home/1backups
+smbclient \\\\u57992.your-backup.de\\backup bFbBnf5mFKqCoN41
+
+echo mkdir .ssh | sftp u57992@u57992.your-backup.de
+scp backup_authorized_keys u57992@u57992.your-backup.de:.ssh/authorized_keys
+sftp u57992@u57992.your-backup.de
+faj2GMcptcAw9JIE
+jonix-e-fixe-0.1.
+
+rsync -av --partial /home/1backups/2013-12-16 /home/1backups/
+
+SELECT * FROM ::fn_trace_getinfo(0)
+
+SELECT 
+     loginname,
+     loginsid,
+     spid,
+     hostname,
+     applicationname,
+     servername,
+     databasename,
+     objectName,
+     e.category_id,
+     cat.name as [CategoryName],
+     textdata,
+     starttime,
+     eventclass,
+     eventsubclass,--0=begin,1=commit
+     e.name as EventName
+FROM ::fn_trace_gettable('C:\Program Files\Microsoft SQL Server\MSSQL10.MSSQLSERVER\MSSQL\Log\log_1972.trc',0)
+     INNER JOIN sys.trace_events e
+          ON eventclass = trace_event_id
+     INNER JOIN sys.trace_categories AS cat
+          ON e.category_id = cat.category_id
+WHERE databasename = 'santosesantos' AND
+      objectname IS NULL AND --filter by objectname
+      e.category_id = 5 AND --category 5 is objects
+      e.trace_event_id = 47 
+      --trace_event_id: 46=Create Obj,47=Drop Obj,164=Alter Obj
+
+
+	  
+===========================
+If another server has the same issue, first check whether it is using a 64-bit OS--the "x86_64" in the output below shows you that this server is 64-bit:
+[root@3886285lib64]cPs# uname -a
+Linux p25.hocnet.org 2.6.32-379.22.1.lve1.2.14.1.el5h.x86_64 #1 SMP Wed Mar 6 18:20:24 EET 2013 x86_64 x86_64 x86_64 GNU/Linux
+
+Then run this command to link the 32-bit library to the 64-bit one:
+ln -sf /usr/lib64/libexpat.so /usr/lib/libexpat.so
+
+To verify that the link was created correctly, list the 32-bit library; you should get output like this:
+
+[root@3886285lib64]cPs# ls -l /usr/lib/libexpat.so
+lrwxrwxrwx 1 root root 22 Mar 18 21:02 /usr/lib/libexpat.so -> /usr/lib64/libexpat.so*
+===========================
+
+Vê quanto gasta o apache em memória:
+ps -ylC httpd | awk '{x += $8;y += 1} END {print "Apache Memory Usage (MB): "x/1024; print "Average Proccess Size (MB): "x/((y-1)*1024)}'
+
+Reconstroi php depois de mudar valores:
+cagefsctl --rebuild-alt-php-ini
+
+
+export FTP_PASSWORD=8bXDebMfJB; /usr/local/bin/duplicity collection-status --force --archive-dir=/home/.backups/.cache --tempdir=/home/.backups ftp://b41@195.8.59.101/vol_raid10/volraid10/linux/B41_A9/home/  | egrep "Full|Incremental" | cut -c30-54
+export FTP_PASSWORD=8bXDebMfJB; duplicity --archive-dir=/home/.backups/.cache --tempdir=/home/.backups -t 2D --file-to-restore ritac/public_html  ftp://b41@195.8.59.101/vol_raid10/volraid10/linux/B41_A9/home /backups/cpbackup/_geral/public_html
+export FTP_PASSWORD=8bXDebMfJB; duplicity --archive-dir=/home/.backups/.cache --tempdir=/home/.backups -t 2D --file-to-restore rotanaci.tar  ftp://b41@195.8.59.101/vol_raid10/volraid10/linux/B41_A9/cpanel /backups/cpbackup/_geral/rotanaci.tar
+export FTP_PASSWORD=8bXDebMfJB; duplicity --archive-dir=/home/.backups/.cache --tempdir=/home/.backups -t 2D --file-to-restore ritac/public_html  ftp://b41@195.8.59.101/vol_raid10/volraid10/linux/B41_A9/home /home/ritac/public_html --force
+
+
+
+export FTP_PASSWORD=8bXDebMfJB; duplicity --archive-dir=/home/.backups/.cache --tempdir=/home/.backups -t 5D --file-to-restore terrasy1.tar  ftp://b41@195.8.59.101/vol_raid10/volraid10/linux/B41_A9/cpanel /backups/cpbackup/_geral/terrasy1.tar
+
+
+FcgidMinProcessesPerClass 0
+# 4GB=3 | 8GB=4 | 16GB=8
+FcgidMaxProcessesPerClass 8
+# 4GB=100 | 8GB=150 | 16GB=300
+FcgidMaxProcesses         150
+FcgidIdleTimeout          60
+FcgidProcessLifeTime      120
+FcgidIdleScanInterval     30
+# default=400 | tuning=2000
+FcgidIOTimeout            2000
+FcgidMaxRequestLen        1073741824
+# default=300 | tuning=3600
+#FcgidBusyTimeout          3600
+FcgidConnectTimeout       30
+FcgidZombieScanInterval   3
+
+
+FcgidMaxRequestsPerProcess 1500
+FcgidMinProcessesPerClass 0
+FcgidMaxProcessesPerClass 3
+FcgidConnectTimeout 60
+FcgidIOTimeout 2000
+FcgidFixPathinfo 1
+FcgidIdleTimeout 900
+FcgidIdleScanInterval 120
+FcgidBusyTimeout 300
+FcgidBusyScanInterval 120
+FcgidErrorScanInterval 9
+FcgidZombieScanInterval 9
+FcgidProcessLifeTime 3600
+
+
+   location / {
+      error_page 405 = @backend;
+      include connection_limits.inc;
+      proxy_pass http://${IP}:6081;
+      include cache.inc;
+      include proxy.inc;
+   }
+
+
+/usr/local/cpanel/bin/apache_conf_distiller --update
+   
+   
+cp -Rp /var/cpanel/users /root/users-pre-replace.bak
+replace "IP=127.0.0.1" "IP=195.8.58.155" -- /var/cpanel/users/*
+/scripts/updateuserdomains
+
+
+cp -Rp /var/cpanel/userdata /var/cpanel/userdata.backup
+/usr/local/cpanel/bin/userdata_update -reset
+/usr/local/cpanel/scripts/updateuserdatacache --force
+/usr/local/cpanel/bin/build_apache_conf
+
+sou-um-ica-estrangeiro-1.0
+===================================
+/var/run/pure-ftpd
+1) Upload do _dccU.sh e fazer update do _DCC
+2)editar clamav_scan=1 no /usr/local/maldet/modsec.sh
+maldet -k
+maldet -p
+chattr -i /var/run/pure-ftpd/clamscan.sh
+chattr +i /var/run/pure-ftpd/clamscan.sh
+-->Feitos:
+v59183
+v59186
+===================================
+===================================
+1)-------------> Meter backups a fazer para o NAS
+Feitos:
+
+===================================
+
+virtio0: disks:vm-103-disk-1,size=32G
+echo "deadline" > /sys/block/vda/queue/scheduler
+echo "noop" > /sys/block/vda/queue/scheduler
+mkdir -p /var/lib/vz/images/103
+qemu-img convert -f raw -O qcow2 /dev/vm-discos/vm-103-disk-1 /var/lib/vz/images/103/vm-103-disk-1.qcow2
+
+echo "deadline" > /sys/block/vda/queue/scheduler
+echo "deadline" > /sys/block/vdb/queue/scheduler
+echo "deadline" > /sys/block/vdc/queue/scheduler
+echo 671088 >/proc/sys/vm/dirty_background_bytes
+echo 21474836 >/proc/sys/vm/dirty_bytes
+swapoff /dev/vg_v59183/lv_swap
+/dev/vdd1               /tmp                    reiserfs    defaults,noexec,nosuid,nodev        0 0
+/tmp                    /var/tmp                none        defaults,noexec,nosuid,nodev,bind 0 0
+/dev/mapper/vg_v59183-lv_swap swap                    swap    defaults        0 0
+
+/usr/tmpDSK             /tmp                    ext3    defaults,noauto        0 0
+
+KVM HOST
+=====================
+echo $((32*1024*1024*)) >/proc/sys/vm/dirty_background_bytes
+echo $((1024*1024*1024)) >/proc/sys/vm/dirty_bytes
+
+
+1) No grub adiciona "crashkernel=128M" e retira "rgbh quiet"
+2) instala:
+yum -y install kexec-tools
+yum -y install kernel-debug kernel-debug-devel
+yum install abrt-cli abrt-addon-vmcore
+

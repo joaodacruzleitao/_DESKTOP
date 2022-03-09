@@ -1,0 +1,127 @@
+sp_cycle_errorlog
+ALTER DATABASE db_name SET OFFLINE
+
+yum clean all --enablerepo=cloudlinux-updates-testing
+yum reinstall lve-utils lve-stats lvemanager --enablerepo=cloudlinux-updates-testing
+yum reinstall lve-utils lve-stats lvemanager
+
+yum update lve-utils lve-stats lvemanager --enablerepo=cloudlinux-updates-testing
+yum update lvemanager --enablerepo=cloudlinux-updates-testing
+yum update cagefs lve-utils --enablerepo=cloudlinux-updates-testing
+
+yum install db-governor --enablerepo=cloudlinux-updates-testing
+/usr/share/lve/dbgovernor/install-mysql.py --install
+yum update db-governor db-governor-mysql --enablerepo=cloudlinux-updates-testing
+service db_governor restart
+
+yum update cagefs --enablerepo=cloudlinux-updates-testing
+/dev/sda7               /tempo                  xfs     noatime,nodiratime,logbufs=8        1 2
+
+
+--> OLD --> */5 * * * * root pkill -9 -P 1 php  >> /dev/null 2>&1
+
+# Elimina PHP FCGI Orphan Processos
+*/5 * * * * root /scripts/_dcc.sh -8 >> /dev/null 2>&1
+# Download do GEOIP
+0 14 10-15 * 1 root /scripts/_dcc.sh -2 >> /dev/null 2>&1
+# Copia os backups para o NAS v1
+#35 22 * * 3 root /scripts/_dcc.sh -4 p25 p25-s14
+# Optimiza o MYSQL Completo
+10 8,22 * * * root /scripts/_dcc.sh -15
+
+
+
+
+10 8,22 * * * nice -n 8 mysqlcheck --auto-repair -Aa
+
+-ravz -e "ssh -l root -i b70" "/cygdrive/D/Backups" "195.8.59.100::b70-a4/"
+
+#####  MySQL governor install: 
+yum install db-governor --enablerepo=cloudlinux-updates-testing 
+/usr/share/lve/dbgovernor/install-mysql.py --install
+#####  MySQL governor update: 
+yum update db-governor db-governor-mysql --enablerepo=cloudlinux-updates-testing 
+service db_governor restart 
+#####  MySQL governor remove: 
+/ussharlvdbgovernoinstall-mysql.py --delete 
+yum erase db-governor db-governor-mysql
+
+mysqlcheck --auto-repair -a --all-databases
+
+
+;disable_functions = show_source, system, shell_exec, passthru, exec, popen, proc_open, allow_url_fopen
+disable_functions = show_source, system, shell_exec, passthru, exec, popen, proc_open, allow_url_fopen, symlink, ini_restore, mysql_list_dbs stream_select , socket_select, socket_create, socket_create_listen, socket_listen, socket_accept, socket_bind, socket_strerror, readlink, link, pfsockopen, ini_alter, openlog, syslog, putenv, pcntl_exec, pcntl_fork, p_cntl_signal, pcntl_waitpid, pcntl_wexitstatus, pcntl_wifexited, pcntl_wifsignaled, pcntl_wifstopped, pcntl_wstopsig, pcntl_wtermsig, fpassthru, detcwd
+
+
+desktop-pc$ rdiff-backup /mnt/server/Desktop/ ~/Desktop/
+desktop-pc$ rdiff-backup --remove-older-than 2W ~/Desktop/
+server$ rdiff-backup /mnt/desktop-pc/Documents/ ~/Documents/
+server$ rdiff-backup --remove-older-than 2W ~/Documents
+
+tar -xzf cpremote.*.tar.gz
+cd cpremote/
+./install.sh
+
+time dd if=/dev/zero of=/backups/junk.img bs=8192 count=1024
+
+/scripts/pkgacct --allow-override --skiphomedir --skipacctdb --incremental diemept /home/_src/1
+/scripts/pkgacct --allow-override --skiphomedir --backup acsantos /home/_src/1
+cat /sys/block/sda/queue/max_sectors_kb
+cat /sys/block/sdb/queue/max_sectors_kb
+
+
+received_header_text
+received_header_text = Received: \
+  ${if def:sender_rcvhost {from $sender_rcvhost\n\t}\
+  {${if def:sender_ident {from $sender_ident }}\
+  ${if def:sender_helo_name {(helo=$sender_helo_name)\n\t}} }}\
+  by $primary_hostname \
+  ${if def:sender_address {(envelope-from\n\t\
+  <$sender_address>)\n\t}}\
+  ${if def:received_protocol {with $received_protocol}} \
+  ${if def:tls_cipher {($tls_cipher)\n\t}}\
+  (Exim $version_number)\n\t\
+  id $message_id\
+  ${if def:received_for {\n\tfor $received_for}}
+
+find . -name '*.*' -exec grep -Hn "www.apfn.com.pt" {} \; | more
+
+yum -y install tuned
+tuned-adm profile latency-performance
+chkconfig tuned on
+--
+tuned-adm profile latency-performance
+# a server profile for typical latency performance tuning. 
+# it disables tuned and ktune power saving mechanisms and enables sysctl settings 
+# that improve the latency performance of your network I/O.
+
+tuned-adm profile throughput-performance
+# a server profile for typical throughput performance tuning. 
+# It disables tuned and ktune power saving mechanisms, 
+# enables sysctl settings that improve the throughput performance of your disk and network I/O, 
+# and switches to the deadline scheduler.
+
+tuned-adm profile enterprise-storage
+# A server profile to improve throughput performance for enterprise-sized server configurations. 
+# This switches to the deadline scheduler and disables certain I/O barriers, dramatically improving throughput.
+
+mkfs -t ext2 /usr/tmpDSK1
+
+service httpd stop 
+lvectl destroy all 
+service lve restart 
+service httpd start
+
+
+rm -rf /usr/local/cpanel/base/3rdparty/Attracta*
+rm -rf /usr/local/cpanel/3rdparty/Attracta*
+rm -rf /usr/local/cpanel/Cpanel/Attracta*
+rm -rf /usr/local/cpanel/base/frontend/*/*/*attracta*
+rm -rf /usr/local/cpanel/base/frontend/*/*/*attracta*
+rm -rf /usr/local/cpanel/whostmgr/addonfeatures/attracta_*
+rm -rf /usr/local/cpanel/bin/attractaadmin
+rm -rf /usr/local/cpanel/bin/attractawrap
+rm -rf /var/cpanel/registered_cpanelplugins/attracta_*
+
+
+

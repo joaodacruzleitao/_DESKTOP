@@ -1,0 +1,208 @@
+secret
+d2064d358136996bd22421584a7cb33e:trd7TvKHx6dMeoMmBVxYmg0vuXEA4199
+
+vertigo0..
+7818c006d288a7db014858ba43a80676:5PIbnZGLKuBdUCVKPcFKllXBNpdpFiCa
+
+FmSzm$2g7q
+4f562943914dd99d3d151f1f51ee579d:I4qwxrxAscgeYGPqUQYprbSvcXdZnms5
+
+
+/usr/local/maldetect/maldet -b -r /home?/?/public_html 1
+find . -name '*.php' -mtime -1 -ls > /root/1.txt
+
+grep -RPn "(passthru|shell_exec|system|base64_decode|chmod|php_uname|eval) *\(" /home/bvloriga/public_html
+grep -RPn "(base64_decode) *\(" /home/bvloriga/public_html
+
+
+JOOMLA 1.0
+====================
+secret
+5ebe2294ecd0e0f08eab7690d2a6ee69
+e06154d4a37504dda2185dae59fb28d0
+2012-03-08 19:43:19
+
+find . -iname '*' -mtime -2 -type f > 1.txt
+
+*/1 * * * * root /sbin/insmod /root/dumploadavg/dumploadavg.ko >> /dev/null 2>&1
+ferpal1vil
+RipN%7YE8l@T
+
+p(m9q^b($2K9
+
+madger@eprin.net
++2iM}[nSvCIf
+
+eprin.df@iol.pt
+
+find . -name '.htaccess' -print -exec rm -f {} \;
+find . -name '*' -print -exec rm -rf {} \;
+
+find . -name '*.inc' -exec grep -Hn "32M" {} \;
+
+@2eAZ%gm154}
+
+ln -s /usr/local/spri/spri /usr/sbin/spri
+
+==================================
+cp -rf mysql 1
+
+cd /var/lib
+cp -rf mysql /backups/1/
+
+rpm -e MariaDB-client-5.3.2-102.el5
+rpm -e MariaDB-devel-5.3.2-102.el5
+rpm -e MariaDB-server-5.3.2-102.el5 --nodeps
+rpm -e MariaDB-shared-5.3.2-102.el5
+
+rpm -e MariaDB-client-5.3.3-108.el5
+rpm -e MariaDB-devel-5.3.3-108.el5
+rpm -e MariaDB-server-5.3.3-108.el5 --nodeps
+rpm -e MariaDB-shared-5.3.3-108.el5
+
+# 1) a seguir apagar do /etc o mysqlupdisable
+# 2) a seguir ir ao cpanel e ligar no UPdate o MYSQL
+
+/scripts/mysqlup --force
+/scripts/makecpphp
+==================================
+vertigo0.1
+E7Gf32XX7cQw
+
+cd /backups/nginxdir
+cd mysql
+dir
+dir /scripts/*mysql*
+cd /var/lib/mysql
+rm -rf *
+rpm -e MariaDB-client-5.3.2-102.el5
+rpm -e MariaDB-devel-5.3.2-102.el5
+rpm -e MariaDB-server-5.3.2-102.el5 --nodeps
+rpm -e MariaDB-shared-5.3.2-102.el5
+/scripts/mysqlup --force
+/scripts/mysqlup --force
+/scripts/mysqlup --force
+service mysql restart
+/scripts/makecpphp
+exit
+mysql_upgrade --verbose
+mysql_upgrade --verbose --force
+service mysql restart
+mysqlcheck -o --all-databases
+service mysql restart
+
+echo 1 > /sys/block/sdb/device/queue_depth
+echo 1 > /sys/block/sda/device/queue_depth
+
+echo 31 > /sys/block/sdb/device/queue_depth
+echo 31 > /sys/block/sda/device/queue_depth
+
+
+echo "cfq" > /sys/block/sda/queue/scheduler
+echo "cfq" > /sys/block/sdb/queue/scheduler
+
+blockdev --setra 1024 /dev/sda
+blockdev --setra 1024 /dev/sdb
+blockdev --setra 1024 /dev/md3
+blockdev --setra 1024 /dev/md7
+blockdev --setra 1024 /dev/md6
+blockdev --setra 1024 /dev/md5
+blockdev --setra 1024 /dev/md2
+blockdev --setra 1024 /dev/md1
+blockdev --setra 1024 /dev/md0
+
+blockdev --setra 2048 /dev/md6
+blockdev --setra 2048 /dev/md5
+blockdev --setra 2048 /dev/md4
+blockdev --setra 2048 /dev/md3
+blockdev --setra 2048 /dev/md2
+blockdev --setra 2048 /dev/md1
+blockdev --setra 2048 /dev/md0
+
+blockdev --setra 256 /dev/sda
+blockdev --setra 256 /dev/sdb
+blockdev --setra 256 /dev/md7
+blockdev --setra 256 /dev/md6
+blockdev --setra 256 /dev/md5
+blockdev --setra 256 /dev/md3
+blockdev --setra 256 /dev/md2
+blockdev --setra 256 /dev/md1
+blockdev --setra 256 /dev/md0
+
+blockdev --setra 256 /dev/sda
+blockdev --setra 256 /dev/sdb
+echo 512 > /sys/block/sda/queue/max_sectors_kb
+echo 512 > /sys/block/sdb/queue/max_sectors_kb
+
+
+
+echo "cfq" > /sys/block/sda/queue/scheduler
+echo "cfq" > /sys/block/sdb/queue/scheduler
+echo 1024 > /sys/block/sda/queue/max_sectors_kb 
+echo 1024 > /sys/block/sda/queue/read_ahead_kb
+echo 1024 > /sys/block/sdb/queue/max_sectors_kb 
+echo 1024 > /sys/block/sdb/queue/read_ahead_kb
+
+echo 4096 > /sys/block/sda/queue/max_sectors_kb 
+echo 4096 > /sys/block/sda/queue/read_ahead_kb
+echo 4096 > /sys/block/sdb/queue/max_sectors_kb 
+echo 4096 > /sys/block/sdb/queue/read_ahead_kb
+
+/usr/sbin/named
+
+echo "deadline" > /sys/block/sda/queue/scheduler
+echo "deadline" > /sys/block/sdb/queue/scheduler
+echo 0 > /sys/block/sda/queue/iosched/front_merges
+echo 150 > /sys/block/sda/queue/iosched/read_expire
+echo 1500 > /sys/block/sda/queue/iosched/write_expire
+echo 0 > /sys/block/sdb/queue/iosched/front_merges
+echo 150 > /sys/block/sdb/queue/iosched/read_expire
+echo 1500 > /sys/block/sdb/queue/iosched/write_expire
+
+echo "cfq" > /sys/block/sda/queue/scheduler
+echo "cfq" > /sys/block/sdb/queue/scheduler
+
+echo 1 > /sys/block/sda/queue/iosched/front_merges
+echo 1 > /sys/block/sdb/queue/iosched/front_merges
+echo 500 > /sys/block/sda/queue/iosched/read_expire
+echo 5000 > /sys/block/sda/queue/iosched/write_expire
+echo 500 > /sys/block/sdb/queue/iosched/read_expire
+echo 5000 > /sys/block/sdb/queue/iosched/write_expire
+
+sysctl -w net.core.rmem_max=8388608
+sysctl -w net.core.wmem_max=8388608
+sysctl -w net.core.rmem_default=65536
+sysctl -w net.core.wmem_default=65536
+sysctl -w net.ipv4.tcp_rmem='4096 87380 8388608'
+sysctl -w net.ipv4.tcp_wmem='4096 65536 8388608'
+sysctl -w net.ipv4.tcp_mem='8388608 8388608 8388608'
+sysctl -w net.ipv4.route.flush=1
+sysctl -w net.ipv6.route.flush=1
+
+sysctl -w net.core.rmem_max=131071
+sysctl -w net.core.wmem_max=131071
+sysctl -w net.core.rmem_default=133120
+sysctl -w net.core.wmem_default=133120
+sysctl -w net.ipv4.tcp_rmem='4096 87380 4194304'
+sysctl -w net.ipv4.tcp_wmem='4096 16384 4194304'
+sysctl -w net.ipv4.tcp_mem='1520896 1524992 1529088'
+sysctl -w net.ipv4.route.flush=1
+sysctl -w net.ipv6.route.flush=1
+
+modprobe tcp_cubic
+sysctl -w net.ipv4.tcp_congestion_control=cubic
+sysctl -w net.ipv4.route.flush=1
+sysctl -w net.ipv6.route.flush=1
+
+https://www.google.pt/search?sugexp=chrome,mod=7&sourceid=chrome&ie=UTF-8&q=linux+speed+tuning#q=nginx+speed+tuning&hl=pt-PT&safe=off&prmd=imvns&ei=e8WAT7-PJ9Kz0QXL-ICIBw&start=40&sa=N&bav=on.2,or.r_gc.r_pw.r_cp.,cf.osb&fp=b893882461c52197&biw=1024&bih=667
+https://www.google.pt/search?sugexp=chrome,mod=7&sourceid=chrome&ie=UTF-8&q=windows+2008+FTP+Logon+Attempt+Restrictions#q=windows+2008+FTP+Logon+Attempt+Restrictions&hl=pt-PT&safe=off&prmd=imvns&ei=qYiBT4_cKPCX0QX0qIjmBg&start=10&sa=N&bav=on.2,or.r_gc.r_pw.r_cp.,cf.osb&fp=b893882461c52197&biw=1024&bih=667
+
+/backups                xfs     noatime,nodiratime,logbufs=8,allocsize=32M        0 2
+/tempo                  xfs     noatime,nodiratime,logbufs=8,allocsize=256k,nobarrier        0 2
+
+
+service nginx stop
+mount -o remount /tempo
+
+service nginx restart
+spri -v

@@ -1,0 +1,1509 @@
+PASSWORD do ficheiro de passwords: vertigem-vertigo-1
+
+
+2TzdMvgx4I
+tmpfs                   /tmp                    tmpfs   defaults,noexec,nosuid,nodev,noatime,nodiratime,size=512m,mode=1777    0 0
+PeJ-2BPV$J=%
+
+www.rumonet.pt/dir/admin
+Username: admin
+Pass: Oa7u9PQm
+
+Nome: Carlos Fernando Duarte Pais
+N�mero de BI: 11101825
+
+
+sysctl -w net.ipv4.tcp_mtu_probing=1
+sysctl -w net.ipv4.tcp_workaround_signed_windows=1
+sysctl -w net.ipv4.tcp_mtu_probing=0
+sysctl -w net.ipv4.tcp_workaround_signed_windows=0
+
+AuthType Basic
+AuthName "receitas"
+AuthUserFile "/home/playnet/.htpasswds/public_html/receitasdadina.com/passwd"
+require valid-user
+
+http://www.linuxforums.org/forum/programming-scripting/13287-how-find-directory-size.html
+http://forums.cpanel.net/f189/apache-optimisation-during-backup-186302.html
+http://www.cyberciti.biz/faq/redhat-centos-linux-yum-update-exclude-packages/
+http://www.sysprobs.com/windows-7-network-slow
+
+http://www.allbots.org/forum/viewtopic.php?f=30&t=5686&hilit=rewardville&start=10
+http://www.google.com/search?q=tuning+mpm+worker+for+performance&hl=en&safe=off&client=firefox-a&rls=org.mozilla%3Aen-US%3Aofficial&biw=1024&bih=534&sa=X&ei=4D-gTsjmK9H74QSrnPncBA&ved=0CAkQpwUoBjge&source=lnt&tbs=cdr%3A1%2Ccd_min%3A2%2F1%2F2011%2Ccd_max%3A10%2F20%2F2011&tbm=#sclient=psy-ab&hl=en&safe=off&client=firefox-a&rls=org.mozilla:en-US%3Aofficial&tbs=cdr:1%2Ccd_min%3A2%2F1%2F2011%2Ccd_max%3A10%2F20%2F2011&source=hp&q=tuning+mpm+worker&pbx=1&oq=tuning+mpm+worker&aq=f&aqi=&aql=&gs_sm=e&gs_upl=1022132l1022274l0l1023265l2l2l0l0l0l1l447l447l4-1l1l0&bav=on.2,or.r_gc.r_pw.,cf.osb&fp=dc20b2672385f007&biw=1024&bih=534
+
+200 - S�nia
+201 - Pedro
+202 - Jason
+203 - Carlos
+204 - Gon�alo
+205 - Leit�o
+206 - T�cnica (meio piso)
+207 - Ruben
+208 - Viseu.com
+
+Lisboa - 211 452 060
+*************************************************************************
+1-> sysctl
+2-> rc.local
+3-> fstab
+4-> /boot/grub mudar kernel
+5-> SPRI
+5-> yum --exclude=kernel* update
+6-> cpanel tweak settings -> rrdtool
+
+1-> Instalar MYSQL NOVO
+2-> strip mysql
+3-> Adicionar nova config do Apache WORKER
+4-> EasyApache
+5-> Apache configuration meter valores correctos
+6-> Strip Apache e PHP
+*************************************************************************
+Include "/usr/local/apache/conf/includes/rpaf.conf"
+/usr/local/cpanel/bin/apache_conf_distiller --update --main
+/scripts/rebuildhttpdconf
+
+echo "core" > /proc/sys/kernel/core_pattern
+echo "|/usr/libexec/abrt-hook-ccpp %s %c %p %u %g %t e" > /proc/sys/kernel/core_pattern
+cd /home/_core
+gdb /usr/local/apache/bin/httpd -c core.358001
+
+kika-zara-joana-777
+
+/usr/local/cpanel/3rdparty/attracta/scripts/link_server.pl servidores@datasource.pt 87902
+
+DNS1=127.0.0.1
+DNS2=81.92.192.3
+DNS3=195.8.59.80
+
+search hocnet.org
+nameserver 127.0.0.1
+nameserver 81.92.192.2
+nameserver 195.8.59.80
+
+
+&7UKDQ]&%w
+&K,v+ovg)fd;
+$P$BbsdbyBAMEwLg.4tZ7PI8XZMFObA3o/
+
+====================================
+PERL FRAMEWORKS
+====================================
+http://mojolicio.us/
+http://www.catalystframework.org/
+**********************************************************************
+
+10 * * * * root /root/nginx_manutencao.sh  >> /dev/null 2>&1
+
+v=spf1 a mx ip4:195.8.58.37 mx:mail.cr3informatica.com -all
+v=spf1 a mx ip4:195.8.58.0/24 ip4:195.8.59.0/24 -all
+/usr/local/cpanel/3rdparty/mysqltuner/mysqltuner.pl
+/usr/local/cpanel/bin/setupdbmap
+
+mount -t tmpfs -o size=2048M,mode=0777 tmpfs /backups/mysqltmp
+
+strip --strip-unneeded  /usr/sbin/mysqld
+strip --strip-unneeded  /usr/local/sbin/nginx
+
+service httpd stop
+
+strip --strip-unneeded /usr/local/apache/bin/httpd
+strip --strip-unneeded /usr/bin/php
+strip --strip-unneeded /usr/local/apache/modules/mod_suphp.so
+strip --strip-unneeded /usr/local/apache/modules/mod_security2.so
+strip --strip-unneeded /usr/local/apache/modules/mod_rpaf-2.0.so
+
+service httpd restart
+
+
+strip --strip-unneeded  /usr/local/lib/php/extensions/no-debug-non-zts-20060613/memcache.so
+strip --strip-unneeded  /usr/local/lib/php/extensions/no-debug-non-zts-20060613/xcache.so
+strip --strip-unneeded  /usr/local/lib/php/extensions/no-debug-non-zts-20060613/timezonedb.so
+/etc/init.d/httpd restart
+spri -q
+
+service exim stop
+strip --strip-unneeded /usr/sbin/exim
+service exim restart
+spri -q
+
+
+(C!T]S(E7zCv
+[memcached]
+extension=memcache.so
+
+strip /usr/local/bin/memcached
+
+yum update kernel --enablerepo=cloudlinux-updates-testing
+
+��enable-inline-optimization ��disable-debug
+195.8.58.245
+scp -P 2726 cpmove-icairoica.tar root@195.201.123.72:/home/
+scp -P 2726 cpmove-icairoica.tar root@138.201.16.36:/home/
+
+scp -P 2726 *.sql root@95.216.217.10:/home/
+
+OO258H0Isqiaca1o
+
+4A7tTHy...u
+Y15OZrHiNJti
+2&z4rt.wz5'
+
+Da7Ves9LLMqb4A7tTHyu
+kawaiipa_kpbasedados
+docker exec -i 1d396bba2cb1  mysql -uroot -pDa7Ves9LLMqb4A7tTHyu kawaiipa_kpbasedados < kawaiipa_kpbasedados.sql
+docker exec -i 1d396bba2cb1  mysqldump -uroot -pDa7Ves9LLMqb4A7tTHyu --host=localhost --single-transaction --quick --opt kawaiipa_kpbasedados > kawaiipa_kpbasedados.sql
+CREATE DATABASE kawaiipa_kpbasedados;
+CREATE USER 'kawaiipa_adminsc'@'%' IDENTIFIED BY 'lavanda1979sugary19';
+GRANT ALL PRIVILEGES ON *.* TO 'kawaiipa_adminsc'@'%' WITH GRANT OPTION;
+
+UBUNTU
+sudo su -c /usr/lib/openssh/sftp-server
+
+CENTOS
+sudo su -c /usr/libexec/openssh/sftp-server
+
+MySQL ROOT PASSWORD: iyUQZrK7fWz5MxmJeWL6PRfgXqpUCVhoGJ4BYvQmTnFpOK29nhXMScx
+User: runcloud
+Password: sbH2bKYJtA_S0W7EmVkj94MVHjzFVaGHQ5ueDUxL2vs2DodK7LRvpDj
+
+kwb
+GFk2ZkW4T2x9MX0kT62hJZ2JRytnZZPO
+kT62hJZ2JRytnZZPO
+
+Jorgehilario56@gmail.com
+Fjosetfpinto@gmail.com
+jfanzeres@gmail.com
+lmfpaulacampos@gmail.com
+
+scp -c arcfour -P 2726 *.tar root@195.8.59.26:/home/_backups/cpbackup/OLD/
+scp -c arcfour -P 2726 farmodie.tar root@195.8.59.26:/home/_backups/cpbackup/OLD/
+
+scp -c arcfour -P 22 -l 24576 *.tar root@195.8.59.101:/mnt/vol_raid10/volraid10/Outros/euromilhoes/
+scp -c arcfour -P 22 -l 24576 obrasegu.tar root@195.8.59.101:/mnt/vol_raid10/volraid10/Outros/obrasegura/
+(30mb/s)
+scp -c arcfour -P 22 -l 147456 vzdump-qemu-106* root@195.8.59.101:/mnt/vol_raid10/volraid10/VPS/vpsb/dump/
+
+scp -c arcfour -P 2726 *.tar.gz root@195.8.59.33:/backups/2014-02-01/accounts/
+scp -c arcfour -P 2726 anibalec.tar root@5.9.105.136:/backups/cpbackup/_geral/
+scp -c arcfour -P 2726 lncfpt.tar root@5.9.105.136:/backups/cpbackup/_geral/
+scp -c arcfour -P 2726 thefashi.tar root@195.8.58.200:/backups/cpbackup/_geral
+scp -c arcfour -P 2726 programa.tar root@195.8.59.59:/home/
+cd /home/_backups/2014-01-27/accounts
+scp -c arcfour -P 2726 *.tar.gz root@188.40.105.194:/home/2backups/2014-01-27/
+scp -c arcfour -P 2726 backup-2.21.2014_22-39-04_casadoca.tar.gz root@188.40.105.194:/home/
+scp -c arcfour -P 2726 1.zip root@195.8.58.169:/home/
+scp -c arcfour -P 2726 cpmove-elsamex.tar.gz root@195.8.58.169:/home/
+scp -c arcfour -P 22 * root@195.8.58.155:/home/2015-resto/
+scp -c arcfour -P 2726 backup-11.28.2015_16-48-46_molonip.tar.gz root@195.8.59.190:/home/
+scp -c arcfour -P 2729 paypal.tar root@195.8.59.95:/home/hocnetf/public_html/
+scp -c arcfour -P 2726 facarang.tar root@46.4.71.107/home/
+scp -c arcfour -P 2726 1.zip root@88.99.214.6:/home/jorgenun/public_html/
+scp -P 2726 1.tar root@c5cx41.hocnet.org:/home/megam/public_html/
+Vertigo1.........
+----------------
+1MB de upload
+========================
+scp -c arcfour -P 2726 -l 8192 anibalec.tar root@5.9.105.136:/backups/cpbackup/_geral/
+----------------
+3MB de upload
+========================
+scp -c arcfour -P 2726 -l 24576  cpmove-kawaiipa.tar root@88.99.31.203:/home/
+scp -c arcfour -P 2726 cpmove-*.tar root@195.8.58.71:/home/
+scp -c arcfour -P 2726 cpmove-arcosseg.tar  root@88.99.31.203:/home/
+scp -c arcfour -P 2726 system.zip root@88.99.120.173:/home/blkfunkyreps/public_html/
+
+6MB de upload
+========================
+scp -c arcfour -P 2726 -l 80192 *.tar root@195.8.59.68:/home/_backups/cpbackup/daily/
+scp -c arcfour -P 2726 -l 60152 *.tar root@195.8.59.67:/home/_backups/cpbackup/daily/
+scp -c arcfour -P 2726 -l 60152 backup-3.1.2013_19-48-57_izibuys.tar.gz root@195.8.59.57:/home/_backups/cpbackup/_geral/
+
+24MB de upload
+========================
+scp -c arcfour -P 2726 -l 180456 *.tar root@195.8.59.95:/backups/cpbackup/daily/
+scp -c arcfour -P 2726 1.sql root@195.8.59.95:/home/
+scp -P 2726 1.sql root@gn5.hocnet.org:/home/
+
+scp -c arcfour -P 22 *.tar root@195.8.58.200:/backups/cpbackup/OLD/
+scp -c arcfour -P 2726 1.sql root@195.8.58.128:/root/
+scp -c arcfour -P 2726 /home/quantumd/public_html1.zip root@195.8.59.23:/home/quantumd/public_html/
+
+VPS
+scp -P 2726 veigamou.tar root@195.8.58.200:/backups/cpbackup/_geral/
+
+scp -c arcfour -P 22 -l 32768 daf.tar.gz root@176.9.127.14:/home/
+scp -c arcfour -P 2726 *.tar root@195.8.59.134:/home/
+scp -c arcfour -P 2726 alshipn.tar root@195.8.59.134:/home/
+scp -c arcfour -P 2726 docesinf.tar.gz root@195.8.59.134:scp -c arcfour -P 2726 bejodesi_loja.sql root@176.9.127.14:/home/
+scp -c arcfour -P 2726 cpmove-vizelpas.tar.gz root@195.8.59.23:/home/
+scp -c arcfour -P 2726 prodigio.tar.gz root@195.8.59.81:/home/
+scp -c arcfour -P 22 backup-4.27.2014_23-55-42_prodigio.tar.gz root@195.8.59.101:/mnt/vol_raid10/volraid10/VPS/vpsa/
+
+scp -c arcfour -P 2726 -l 81920 bimotord.tar root@5.9.24.73:/home/
+scp -c arcfour -P 2726 cpmove-kawaiipa.tar root@88.99.31.203:/home/
+scp -c arcfour -P 2726 *.sql root@195.8.59.100:/mnt/vol_raid10/volraid10/linux/b94-a5/moloni/
+==============
+VPS
+=========================================
+scp -P 2726 briosa.tar root@195.8.58.43:/home/_src/
+scp -P 22 1.zip root@195.8.59.170:/home/
+scp -P 2726 designis.tar.gz root@188.40.138.81:/home/
+scp -P 2726 moloni.tar root@195.8.59.190:/home/_backups.legacy/
+scp -P 2726 moloni.tar root@195.201.27.191:/home/
+
+=========================================
+NAS
+scp -c arcfour -P 2726 -l 2014-11-19 root@195.8.59.121:/mnt/vol_raid10/volraid10/linux/Rufus1/
+scp -v -P 2729 moloni_11_15_2017-21_30.sql root@195.8.59.95:/home/hocnetf/public_html/_1/  2>&1 | grep 'Transferred' | awk '{print $(NF - 1) * 1000}'
+scp -v src dest 2>&1 | grep 'Transferred' | awk '{print $(NF - 1) * 1000}'
+=========================================
+N2k@XAmCOh
+
+cd /backups/cpbackup/OLD
+mv cardinamonteiro.com /home/pctcom/public_html/
+
+RXL_3673fh2E
+
+CREATE USER 'jonix'@'%' IDENTIFIED BY 'vertigo1.';
+
+
+blockdev --setra 16384 /dev/sda
+
+tmpfs			   /var/spool/exim/db      tmpfs   size=96m,defaults,noatime,nodiratime        1 2
+
+rpm -qa | grep -i lve
+yum update cpanel-lve --enablerepo=cloudlinux-updates-testing
+
+----------> ******************** 21h 15m ******************************
+
+rsync --progress -ravz -e "ssh -l root -i /root/.ssh/b155" "/backups/cpbackup/daily" "195.8.59.100::b155s3/"
+rsync --progress -ravz -e "ssh -c arcfour -l root -i /root/.ssh/b155" "/backups/cpbackup/daily" "195.8.59.100::b155s3/"
+--> rsync --progress -rav -e "ssh -o Compression=no -l root -i /root/.ssh/b155" "/backups/cpbackup/daily" "195.8.59.100::b155s3/"
+
+
+30 17 * * 1 nice -n 19 ionice -c2 -n7 rsync -ravz /backups/cpbackup/daily 195.8.59.101::b22s8/
+0 16 * * 1 nice -n 19 rsync -rav --bwlimit=25600 /backups/cpbackup/daily 195.8.59.101::b23a7/
+0 17 * * 1 nice -n 19 ionice -c2 -n7 rsync -ravz /backups/cpbackup/daily 195.8.59.101::b49a16/
+30 18 * * 1 nice -n 19 ionice -c2 -n7 rsync -ravz /backups/cpbackup/daily 195.8.59.101::b52a20/
+49 11 * * 1 nice -n 19 ionice -c2 -n7 rsync -rav --bwlimit=25600 /backups/cpbackup/daily 195.8.59.101::b154s2/
+0 12 * * 1 nice -n 19 ionice -c2 -n7 rsync -ravz /backups/cpbackup/daily 195.8.59.101::b155s3/
+0 12 * * 1 nice -n 19 ionice -c2 -n7 rsync -ravz /backups/cpbackup/daily 195.8.59.101::b155s3/
+0 13 * * 1 nice -n 19 ionice -c2 -n7 rsync -ravz  /backups/cpbackup/daily 195.8.59.101::b200a15/
+30 20 * * 1 nice -n 19 ionice -c2 -n7 rsync -ravz /backups/cpbackup/daily 195.8.59.101::p23s12/
+35 22 * * 1  nice -n 19 rsync -rav --bwlimit=25600 /backups/cpbackup/daily 195.8.59.101::p25s14/
+30 14 * * 2 nice -n 19 ionice -c2 -n7 rsync -ravz /backups/cpbackup/daily 195.8.59.101::b128a3/
+50 11 * * 2 nice -n 19 ionice -c2 -n7 rsync -ravz /backups/cpbackup/daily 195.8.59.101::ms90s10/
+10 19 * * 2 nice -n 19 ionice -c2 -n7 rsync -ravz /backups/cpbackup/daily 195.8.59.100::b160a19/
+50 19 * * 2 nice -n 19 ionice -c2 -n7 rsync -ravz /backups/cpbackup/daily 195.8.59.100::b25s9/
+50 17 * * 2 nice -n 19 ionice -c2 -n7 rsync -ravz /backups/cpbackup/daily 195.8.59.101::p40s11/
+50 17 * * 3 nice -n 19 ionice -c2 -n7 rsync -ravz /backups/cpbackup/daily 195.8.59.100::b41a9/
+50 8 * * 3 nice -n 19 ionice -c2 -n7 rsync -ravz /backups/cpbackup/daily 195.8.59.101::b56a11/
+50 9 * * 3 nice -n 19 ionice -c2 -n7 rsync -ravz /backups/cpbackup/daily 195.8.59.101::b83a10/
+50 16 * * 3 nice -n 19 ionice -c2 -n7 rsync -ravz /backups/cpbackup/daily 195.8.59.100::b94a5/
+59 15 * * 4 nice -n 19 ionice -c2 -n7 rsync -ravz /backup/cpbackup/daily 195.8.59.101::milhoes1/
+27 22 * * 3 nice -n 19 ionice -c2 -n7 rsync -ravz /backups/cpbackup/daily 195.8.59.101::p25s14/
+41 10 * * 5 nice -n 19 rsync -rav --bwlimit=25600 /backups/cpbackup/daily 195.8.59.101::p70a16/
+
+
+======================================
+CLOUDLINUX - GRSECURITY
+======================================
+#GRsecurity
+kernel.grsecurity.tpe = 1
+kernel.grsecurity.tpe_restrict_all = 1
+kernel.grsecurity.grsec_lock = 1
+**********************************************************************
+
+==================================================================
+/ETC/RC.LOCAL --- SERVIDORES NORMAIS SEM RAID
+==================================================================
+ifconfig eth0 txqueuelen 10000
+ethtool -G eth0 rx 4096 tx 4096
+echo "deadline" > /sys/block/sda/queue/scheduler
+echo "deadline" > /sys/block/sdb/queue/scheduler
+blockdev --setra 2048 /dev/sda
+blockdev --setra 2048 /dev/sdb
+echo 512 > /sys/block/sda/queue/nr_requests
+echo 512 > /sys/block/sdb/queue/nr_requests
+
+blockdev --setra 256 /dev/sda
+blockdev --setra 256 /dev/sdb
+echo 128 > /sys/block/sda/queue/nr_requests
+echo 128 > /sys/block/sdb/queue/nr_requests
+
+70,60,50,40
+200,180,150,100
+400,380,350,300
+echo "cfq" > /sys/block/sda/queue/scheduler
+echo "cfq" > /sys/block/sdb/queue/scheduler
+blockdev --setra 256 /dev/sda
+blockdev --setra 256 /dev/sdb
+
+echo "deadline" > /sys/block/sda/queue/scheduler
+echo "deadline" > /sys/block/sdb/queue/scheduler
+echo 0 > /sys/block/sda/queue/iosched/front_merges
+echo 150 > /sys/block/sda/queue/iosched/read_expire
+echo 1500 > /sys/block/sda/queue/iosched/write_expire
+echo 0 > /sys/block/sdb/queue/iosched/front_merges
+echo 150 > /sys/block/sdb/queue/iosched/read_expire
+echo 1500 > /sys/block/sdb/queue/iosched/write_expire
+
+echo 1 > /sys/block/sda/queue/iosched/front_merges
+echo 500 > /sys/block/sda/queue/iosched/read_expire
+echo 5000 > /sys/block/sda/queue/iosched/write_expire
+
+echo deadline > /sys/block/sda/queue/scheduler
+echo deadline > /sys/block/sdb/queue/scheduler
+echo 4096  > /sys/block/sda/queue/nr_requests
+echo 8192  > /sys/block/sda/queue/read_ahead_kb
+echo 5000  > /sys/block/sda/queue/iosched/read_expire
+echo 1000 > /sys/block/sda/queue/iosched/write_expire
+echo 2048  > /sys/block/sda/queue/iosched/fifo_batch
+echo 4 > /sys/block/sda/queue/iosched/writes_starved
+echo 4096  > /sys/block/sdb/queue/nr_requests
+echo 8192  > /sys/block/sdb/queue/read_ahead_kb
+echo 5000  > /sys/block/sdb/queue/iosched/read_expire
+echo 1000 > /sys/block/sdb/queue/iosched/write_expire
+echo 2048  > /sys/block/sdb/queue/iosched/fifo_batch
+echo 4 > /sys/block/sdb/queue/iosched/writes_starved
+
+echo 128 > /sys/block/sda/queue/nr_requests
+echo 256 > /sys/block/sda/queue/read_ahead_kb
+echo 500 > /sys/block/sda/queue/iosched/read_expire
+echo 5000 > /sys/block/sda/queue/iosched/write_expire
+echo 16  > /sys/block/sda/queue/iosched/fifo_batch
+echo 4 > /sys/block/sda/queue/iosched/writes_starved
+echo 128 > /sys/block/sdb/queue/nr_requests
+echo 256 > /sys/block/sdb/queue/read_ahead_kb
+echo 500 > /sys/block/sdb/queue/iosched/read_expire
+echo 5000 > /sys/block/sdb/queue/iosched/write_expire
+echo 16  > /sys/block/sdb/queue/iosched/fifo_batch
+echo 4 > /sys/block/sdb/queue/iosched/writes_starved
+
+echo 250 > /sys/block/sda/queue/iosched/read_expire
+echo 60000 > /sys/block/sda/queue/iosched/write_expire
+echo 10 > /sys/block/sda/queue/iosched/writes_starved
+echo 16384 > /sys/block/sda/queue/nr_requests
+echo 250 > /sys/block/sdb/queue/iosched/read_expire
+echo 60000 > /sys/block/sdb/queue/iosched/write_expire
+echo 10 > /sys/block/sdb/queue/iosched/writes_starved
+echo 16384 > /sys/block/sdb/queue/nr_requests
+
+echo 500 > /sys/block/sda/queue/iosched/read_expire
+echo 5000 > /sys/block/sda/queue/iosched/write_expire
+echo 2 > /sys/block/sda/queue/iosched/writes_starved
+echo 128 > /sys/block/sda/queue/nr_requests
+echo 500 > /sys/block/sdb/queue/iosched/read_expire
+echo 5000 > /sys/block/sdb/queue/iosched/write_expire
+echo 2 > /sys/block/sdb/queue/iosched/writes_starved
+echo 128 > /sys/block/sdb/queue/nr_requests
+
+
+yum install tuned -y
+service tuned start
+chkconfig tuned on
+service ktune start
+chkconfig ktune on
+
+tuned-adm active
+tuned-adm list
+tuned-adm off
+
+
+echo 2 > /proc/sys/vm/overcommit_memory
+
+***********************************************************************
+
+==================================================================
+/ETC/RC.LOCAL --- SERVIDORES COM RAID SOFTWARE
+==================================================================
+ifconfig eth0 txqueuelen 2000
+ethtool -G eth0 rx 4096 tx 4096
+echo 96 > /sys/block/sda/queue/nr_requests
+echo 96 > /sys/block/sdb/queue/nr_requests
+echo 512 > /sys/block/sda/queue/max_sectors_kb
+echo 512 > /sys/block/sdb/queue/max_sectors_kb
+blockdev --setra 1024 /dev/sda
+blockdev --setra 1024 /dev/sdb
+blockdev --setra 1024 /dev/md6
+blockdev --setra 1024 /dev/md5
+blockdev --setra 1024 /dev/md3
+blockdev --setra 1024 /dev/md2
+blockdev --setra 1024 /dev/md1
+blockdev --setra 1024 /dev/md0
+echo 2 > /proc/sys/vm/overcommit_memory
+***********************************************************************
+
+==================================================================
+/ETC/RC.LOCAL --- SERVIDORES COM PLACA RAID
+==================================================================
+ifconfig eth0 txqueuelen 2000
+ethtool -G eth0 rx 4096 tx 4096
+echo "deadline" > /sys/block/sda/queue/scheduler
+echo "deadline" > /sys/block/sdb/queue/scheduler
+
+
+#Rule of thumb is tune this down for lower latency or up for throughput.
+#DEFAULT: 16
+echo 16 > /sys/block/sda/queue/iosched/fifo_batch
+echo 16 > /sys/block/sdb/queue/iosched/fifo_batch
+echo 150 > /sys/block/sda/queue/iosched/read_expire
+echo 150 > /sys/block/sdb/queue/iosched/read_expire
+#TUNING: 4
+echo 32 > /sys/block/sda/queue/iosched/fifo_batch
+echo 32 > /sys/block/sdb/queue/iosched/fifo_batch
+
+#DEFAULT: 1
+echo 1 > /sys/block/sda/queue/iosched/front_merges
+echo 1 > /sys/block/sdb/queue/iosched/front_merges
+#TUNING: 0
+echo 0 > /sys/block/sda/queue/iosched/front_merges
+echo 0 > /sys/block/sdb/queue/iosched/front_merges
+
+#DEFAULT: 500
+#TUNING: 150
+echo 150 > /sys/block/sda/queue/iosched/read_expire
+echo 150 > /sys/block/sdb/queue/iosched/read_expire
+
+#DEFAULT: 5000
+#TUNING: 0
+echo 1500 > /sys/block/sda/queue/iosched/write_expire
+echo 1500 > /sys/block/sdb/queue/iosched/write_expire
+
+#DEFAULT: 2
+echo 2 > /sys/block/sda/queue/iosched/writes_starved
+echo 2 > /sys/block/sdb/queue/iosched/writes_starved
+
+**********************************************************************
+
+
+================================================
+APACHE - PREFORK MOD_Ruid2
+================================================
+HostnameLookups Off
+KeepAlive On
+KeepAliveTimeout 2
+MaxKeepAliveRequests 80
+Timeout 20
+
+<IfModule prefork.c>
+StartServers       2
+MinSpareServers    2
+MaxSpareServers    5
+ServerLimit        200
+MaxClients         200
+MaxRequestsPerChild  4000
+</IfModule>
+
+<IfModule mod_deflate.c>
+# Insert filter
+SetOutputFilter DEFLATE
+
+# Netscape 4.x has some problems...
+BrowserMatch ^Mozilla/4 gzip-only-text/html
+
+# Netscape 4.06-4.08 have some more problems
+BrowserMatch ^Mozilla/4\.0[678] no-gzip
+
+# MSIE masquerades as Netscape, but it is fine
+# BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+
+# NOTE: Due to a bug in mod_setenvif up to Apache 2.0.48
+# the above regex won't work. You can use the following
+# workaround to get the desired effect:
+BrowserMatch \bMSI[E] !no-gzip !gzip-only-text/html
+
+# Don't compress images
+SetEnvIfNoCase Request_URI \
+\.(?:gif|jpe?g|png)$ no-gzip dont-vary
+
+# Make sure proxies don't deliver the wrong content
+Header append Vary User-Agent env=!dont-vary
+</IfModule>
+
+<IfModule mod_expires.c>
+ ExpiresActive Off
+</IfModule>
+
+<IfModule mod_qos.c>
+# handles connections from up to 100000 different IPs
+QS_ClientEntries 100000
+
+# will allow only 50 connections per IP
+QS_SrvMaxConnPerIP 50
+
+# maximum number of active TCP connections is limited to 256
+MaxClients 256
+
+# disables keep-alive when 70% of the TCP connections are occupied:
+QS_SrvMaxConnClose 180
+
+# minimum request/response speed (deny slow clients blocking the server, ie. slowloris keeping connections open without requesting anything):
+QS_SrvMinDataRate 150 1200
+
+# and limit request header and body (carefull, that limits uploads and post requests too):
+# LimitRequestFields 30
+# QS_LimitRequestBody 102400
+</IfModule>
+
+**********************************************************************
+
+<IfModule worker.c>
+StartServers         4
+MaxClients         400
+MinSpareThreads     25
+MaxSpareThreads     75
+ThreadsPerChild     25
+MaxRequestsPerChild  4000
+</IfModule>
+
+
+================================================
+APACHE - EVENT + SUPHP (960 conex�es)
+================================================
+HostnameLookups Off
+KeepAlive Off
+MaxKeepAliveRequests 80
+KeepAliveTimeout 10
+Timeout 30
+EnableSendfile On
+
+<IfModule event.c>
+    ServerLimit           15
+    MaxClients           960
+
+    StartServers           2
+
+    ThreadsPerChild       64
+    ThreadLimit           64
+
+    MinSpareThreads       32
+    # must be >= (MinSpareThreads + ThreadsPerChild)
+    MaxSpareThreads      112
+
+    # at 200 r/s, 20000 r results in a process lifetime of 2 minutes
+    MaxRequestsPerChild 20000
+
+#    SendBufferSize 65536
+#    ReceiveBufferSize 65536
+</IfModule>
+
+<IfModule mod_deflate.c>
+# Insert filter
+SetOutputFilter DEFLATE
+
+# Netscape 4.x has some problems...
+BrowserMatch ^Mozilla/4 gzip-only-text/html
+
+# Netscape 4.06-4.08 have some more problems
+BrowserMatch ^Mozilla/4\.0[678] no-gzip
+
+# MSIE masquerades as Netscape, but it is fine
+# BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+
+# NOTE: Due to a bug in mod_setenvif up to Apache 2.0.48
+# the above regex won't work. You can use the following
+# workaround to get the desired effect:
+BrowserMatch \bMSI[E] !no-gzip !gzip-only-text/html
+
+# Don't compress images
+SetEnvIfNoCase Request_URI \
+\.(?:gif|jpe?g|png)$ no-gzip dont-vary
+
+# Make sure proxies don't deliver the wrong content
+Header append Vary User-Agent env=!dont-vary
+</IfModule>
+
+<IfModule mod_expires.c>
+ ExpiresActive Off
+</IfModule>
+**********************************************************************
+
+================================================
+APACHE - EVENT + SUPHP (200 conexoes)
+================================================
+HostnameLookups Off
+KeepAlive On
+MaxKeepAliveRequests 100
+KeepAliveTimeout 20
+Timeout 40
+EnableMMAP On
+EnableSendfile On
+
+<IfModule event.c>
+StartServers 2
+MaxClients 64
+MinSpareThreads 4
+MaxSpareThreads 8
+ThreadsPerChild 16
+ThreadLimit 16
+SendBufferSize 65536
+ReceiveBufferSize 65536
+MaxRequestsPerChild 2500
+</IfModule>
+
+<IfModule mod_deflate.c>
+# Insert filter
+SetOutputFilter DEFLATE
+
+# Netscape 4.x has some problems...
+BrowserMatch ^Mozilla/4 gzip-only-text/html
+
+# Netscape 4.06-4.08 have some more problems
+BrowserMatch ^Mozilla/4\.0[678] no-gzip
+
+# MSIE masquerades as Netscape, but it is fine
+# BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+
+# NOTE: Due to a bug in mod_setenvif up to Apache 2.0.48
+# the above regex won't work. You can use the following
+# workaround to get the desired effect:
+BrowserMatch \bMSI[E] !no-gzip !gzip-only-text/html
+
+# Don't compress images
+SetEnvIfNoCase Request_URI \
+\.(?:gif|jpe?g|png)$ no-gzip dont-vary
+
+# Make sure proxies don't deliver the wrong content
+Header append Vary User-Agent env=!dont-vary
+</IfModule>
+
+<IfModule mod_expires.c>
+ ExpiresActive Off
+</IfModule>
+
+<IfModule mod_qos.c>
+# handles connections from up to 100000 different IPs
+QS_ClientEntries 100000
+
+# will allow only 50 connections per IP
+QS_SrvMaxConnPerIP 50
+
+# maximum number of active TCP connections is limited to 256
+MaxClients 256
+
+# disables keep-alive when 70% of the TCP connections are occupied:
+QS_SrvMaxConnClose 180
+
+# minimum request/response speed (deny slow clients blocking the server, ie. slowloris keeping connections open without requesting anything):
+QS_SrvMinDataRate 150 1200
+
+# and limit request header and body (carefull, that limits uploads and post requests too):
+# LimitRequestFields 30
+# QS_LimitRequestBody 102400
+</IfModule>
+
+**********************************************************************
+
+
+0 22 * * * nice -n 8 mysqlcheck --auto-repair -Aao
+mysqlcheck -o --all-databases
+mysqlcheck --auto-repair -a --all-databases
+10 8,22 * * * nice -n 8 mysqlcheck --auto-repair -Aa
+
+free
+swapoff -a && swapon -a
+free
+
+
+Estimado cliente,
+
+Ligando as protec��es no painel de controle no alojamento, o DomainKeys, SpamAssassin e SPF.
+
+Para que n�o perca tempo, configur�mos j� para si, como requer actualiza��o de dns, demorar� a toda a internet ver as altera��es entre 2h a 24h.
+
+===============================
+Estimado cliente,
+
+Com o servidor n�o se passa nada, simplesmente existem hackers da russia a atacar, e como n�o tem as protec��es no painel de controle do alojamento ligadas, acontece-lhe isso (protec��es ligadas apenas pelo cliente).
+
+O problema resolve-se ligando as protec��es no painel de controle no alojamento, o DomainKeys, SpamAssassin e SPF.
+
+Para que n�o perca tempo, configur�mos j� para si, como requer actualiza��o de dns, demorar� a toda a internet ver as altera��es entre 2h a 24h.
+
+
+
+
+==============================
+"v=spf1 a mx ip4:195.8.59.23 ip4:195.8.58.0/24 ip4:195.8.59.0/24 -all"
+
+/spf_installer abaporp "ip4:195.8.59.23 ip4:195.8.58.0/24 ip4:195.8.59.0/24" -all
+
+SORBS
+http://www.au.sorbs.net/using.shtml
+dnsbl.sorbs.net
+
+
+INSTALAR EXIM COM DKIM
+======================================
+Tirado do url: http://www.thecpaneladmin.com/using-dkim-with-exim-and-cpanel/
+------------------------------
+Ir ao Service Manager e desligar:
+Antirelayd
+EximStats
+
+Instalar upgrade 32bits:
+rpm -Uvh http://httpupdate.cpanel.net/exim/4.70-4/centos/5.6/exim-4.70-4_cpanel_maildir.i386.rpm --nodeps
+Instalar upgrade 64bits:
+rpm -Uvh http://httpupdate.cpanel.net/exim/4.70-4/64/centos/5.0/exim-4.70-4_cpanel_maildir.x86_64.rpm --nodeps
+rpm -qa |grep -i exim
+touch /etc/eximupdisable
+mv -f /etc/localdomains.rpmsave /etc/localdomains
+mv -f /etc/remotedomains.rpmsave /etc/remotedomains
+
+ADICIONAR no exim.conf no topo:
+DKIM_DOMAIN = ${lc:${domain:$h_from:}}
+DKIM_FILE = /var/cpanel/domain_keys/private/${lc:${domain:$h_from:}}
+DKIM_PRIVATE_KEY = ${if exists{DKIM_FILE}{DKIM_FILE}{0}}
+
+Pesquisar no exim.conf
+-------------------------------
+remote_smtp:
+  driver = smtp
+
+e meter
+---------------------
+remote_smtp:
+  driver = smtp
+  dkim_domain = DKIM_DOMAIN
+  dkim_selector = default
+  dkim_private_key = DKIM_PRIVATE_KEY
+  dkim_canon = relaxed
+  dkim_strict = 0
+
+chattr +ia /etc/exim.conf
+service exim restart
+
+Enviar email para check-auth@verifier.port25.com para ver se est� tudo ok.
+
+/usr/local/cpanel/bin/tailwatchd --disable=Cpanel::TailWatch::Antirelayd
+/usr/local/cpanel/bin/tailwatchd --enable=Cpanel::TailWatch::Antirelayd
+
+dns.exe --add example.com -mx mail3 -mailexchanger mail.example.com
+dns.exe -a meritis.pt -txt "v=spf1 a mx ip4:195.8.58.0/24 ip4:195.8.59.0/24 -all"
+
+dns.exe -d meritis.pt -txt "v=spf1 a mx ip4:195.8.58.14 -all"
+
+
+http://support.hostgator.com/articles/webhost-manager-whm/edit-reseller-dns-zone-template
+
+/scripts/_nginxcpanelvhosts.py
+
+yum install kernel-2.6.18-338.19.1.el5.lve0.8.36.1 --enablerepo=cloudlinux-updates-testing
+
+
+
+
+mkfs.xfs -f -b size=4k -l internal,lazy-count=1,size=64m /dev/sda7
+/dev/md5                /tmp                    ext4    defaults,noexec,nosuid,noatime,nodiratime,data=writeback,barrier=0,nobh,errors=remount-ro        1 2
+
+
+tmpfs                   /tmp                    tmpfs   defaults,noexec,nosuid,nodev,noatime,nodiratime,mode=1777    0 0
+
+tmpfs                   /var/spool/exim         tmpfs   size=1G,nr_inodes=10k,uid=47,gid=12,mode=0750    0 0
+log_selector = +arguments +subject +received_recipients
+smtp_accept_queue_per_connection = 0
+split_spool_directory = true
+queue_run_max = 10
+remote_max_parallel = 15
+
+yum clean all
+yum install xfsprogs
+/dev/md5
+mkfs.xfs -l size=64m,lazy-count=1 -f /dev/md5
+mkfs.xfs -f -d su=64k,sw=3 -l size=32m,su=16k /dev/sdb1
+mkfs.xfs -f -d su=64k,sw=3 -l internal,lazy-count=1,size=128m /dev/sdb1
+mkfs.xfs -f -d su=64k,sw=3 -l internal,size=128m /dev/sdb1
+/dev/sdb1               /backups                xfs     noatime,nodiratime,allocsize=512m,logbufs=8        0 2
+/dev/sdb1               /backups                xfs     noatime,nodiratime,allocsize=512m,logbufs=8,logbsize=256k        0 2
+
+cp -R -p /var/lib/mysql /backups
+cp -R -p /backups/mysql /backups/1
+
+cp -R -p /backups/mysql /backups/nginx
+
+ifconfig eth0 txqueuelen 2000
+ethtool -G eth0 rx 4096 tx 4096
+ethtool -G eth0 rx 511 tx 511
+
+echo deadline > /sys/block/sda/queue/scheduler
+echo 4096 > /sys/block/sda/queue/read_ahead_kb
+echo 0 > /sys/block/sda/queue/iosched/front_merges
+echo 150 > /sys/block/sda/queue/iosched/read_expire
+echo 1500 > /sys/block/sda/queue/iosched/write_expire
+echo 2000 > /sys/block/sda/queue/iosched/read_expire
+--------------------
+echo 128 > /sys/block/sda/queue/nr_requests
+echo 150 > /sys/block/sda/queue/iosched/read_expire
+echo 128 > /sys/block/sdb/queue/nr_requests
+echo 150 > /sys/block/sdb/queue/iosched/read_expire
+echo cfq > /sys/block/sdb/queue/scheduler
+
+echo deadline > /sys/block/sdb/queue/scheduler
+echo 4096 > /sys/block/sdb/queue/read_ahead_kb
+echo 0 > /sys/block/sdb/queue/iosched/front_merges
+echo 150 > /sys/block/sdb/queue/iosched/read_expire
+echo 1500 > /sys/block/sdb/queue/iosched/write_expire
+echo 2000 > /sys/block/sdb/queue/iosched/read_expire
+1
+500
+5000
+/usr/tmpDSK             /tmp                    ext3    defaults,noauto,noexec,nosuid,noatime,nodiratime        0 0
+==========================================
+ver se d�: ethtool -i eth0
+ifconfig eth0 txqueuelen 2000
+ethtool -G eth0 rx 4096 tx 4096
+echo deadline > /sys/block/sda/queue/scheduler
+echo deadline > /sys/block/sdb/queue/scheduler
+echo 128 > /sys/block/sda/queue/max_sectors_kb
+echo 128 > /sys/block/sda/queue/read_ahead_kb
+echo 128 > /sys/block/sdb/queue/max_sectors_kb
+echo 128 > /sys/block/sdb/queue/read_ahead_kb
+echo 2 > /proc/sys/vm/overcommit_memory
+==========================================
+
+ifconfig eth0 txqueuelen 2000
+ethtool -G eth0 rx 511 tx 511
+echo deadline > /sys/block/sda/queue/scheduler
+echo deadline > /sys/block/sdb/queue/scheduler
+echo 128 > /sys/block/sda/queue/max_sectors_kb
+echo 128 > /sys/block/sda/queue/read_ahead_kb
+echo 128 > /sys/block/sdb/queue/max_sectors_kb
+echo 128 > /sys/block/sdb/queue/read_ahead_kb
+blockdev --setra 4096 /dev/md3
+blockdev --setra 4096 /dev/md2
+blockdev --setra 4096 /dev/md1
+blockdev --setra 4096 /dev/md0
+echo 2 > /proc/sys/vm/overcommit_memory
+==========================================
+echo deadline > /sys/block/sda/queue/scheduler
+echo deadline > /sys/block/sdb/queue/scheduler
+echo 1024 > /sys/block/sda/queue/max_sectors_kb
+echo 1024 > /sys/block/sda/queue/read_ahead_kb
+echo 1024 > /sys/block/sdb/queue/max_sectors_kb
+echo 1024 > /sys/block/sdb/queue/read_ahead_kb
+blockdev --setra 65536 /dev/md3
+blockdev --setra 65536 /dev/md2
+blockdev --setra 65536 /dev/md1
+blockdev --setra 65536 /dev/md0
+
+echo 128 > /sys/block/sda/queue/max_sectors_kb
+echo 128 > /sys/block/sda/queue/read_ahead_kb
+echo 128 > /sys/block/sdb/queue/max_sectors_kb
+echo 128 > /sys/block/sdb/queue/read_ahead_kb
+blockdev --setra 128 /dev/md3
+blockdev --setra 128 /dev/md2
+blockdev --setra 128 /dev/md1
+blockdev --setra 128 /dev/md0
+
+echo 4096 > /sys/block/sda/queue/max_sectors_kb
+echo 4096 > /sys/block/sda/queue/read_ahead_kb
+echo 4096 > /sys/block/sdb/queue/max_sectors_kb
+echo 4096 > /sys/block/sdb/queue/read_ahead_kb
+blockdev --setra 65536 /dev/md3
+blockdev --setra 65536 /dev/md2
+blockdev --setra 65536 /dev/md1
+blockdev --setra 65536 /dev/md0
+
+echo cfq > /sys/block/sda/queue/scheduler
+echo cfq > /sys/block/sdb/queue/scheduler
+
+echo deadline > /sys/block/sda/queue/scheduler
+echo deadline > /sys/block/sdb/queue/scheduler
+
+
+echo deadline > /sys/block/sdc/queue/scheduler
+echo 0 > /sys/block/sdc/queue/iosched/front_merges
+echo 150 > /sys/block/sdc/queue/iosched/read_expire
+echo 1500 > /sys/block/sdc/queue/iosched/write_expire
+echo 1 > /sys/block/sdc/queue/iosched/fifo_batch
+
+echo 0 > /sys/block/sda/queue/iosched/front_merges
+echo 150 > /sys/block/sda/queue/iosched/read_expire
+echo 1500 > /sys/block/sda/queue/iosched/write_expire
+echo 1 > /sys/block/sda/queue/iosched/fifo_batch
+
+
+echo 0 > /sys/block/sdb/queue/iosched/front_merges
+echo 150 > /sys/block/sdb/queue/iosched/read_expire
+echo 1500 > /sys/block/sdb/queue/iosched/write_expire
+echo 1 > /sys/block/sdb/queue/iosched/fifo_batch
+
+
+echo 1 > /sys/block/sda/queue/iosched/front_merges
+echo 500 > /sys/block/sda/queue/iosched/read_expire
+echo 3000 > /sys/block/sda/queue/iosched/write_expire
+echo 1 > /sys/block/sdb/queue/iosched/front_merges
+echo 500 > /sys/block/sdb/queue/iosched/read_expire
+echo 3000 > /sys/block/sdb/queue/iosched/write_expire
+
+
+echo cfq > /sys/block/sda/queue/scheduler
+echo cfq > /sys/block/sdb/queue/scheduler
+
+
+
+
+
+
+
+
+
+
+
+
+vzctl set 102 --ipdel all --save
+
+ftp://vps59-14-102:L1GMvzlS@195.8.58.100/vol_raid10/volraid10/VPS/vps59-14-102/daily/1.tar
+
+
+sysctl -w vm.dirty_ratio=40
+sysctl -w vm.dirty_background_ratio=1
+sysctl -w vm.dirty_writeback_centisecs=30000
+
+cd /root
+wget http://downloads.sourceforge.net/project/mod-ruid/mod_ruid2/mod_ruid2-0.9.4.tar.bz2
+tar xvfj mod_ruid2-0.9.4.tar.bz2
+cd mod_ruid2-0.9.4
+apxs -a -i -l cap -c mod_ruid2.c
+
+
+
+
+echo 1 > /sys/block/sdb/queue/iosched/front_merges
+echo 500 > /sys/block/sdb/queue/iosched/read_expire
+echo 5000 > /sys/block/sdb/queue/iosched/write_expire
+
+echo 0 > /sys/block/sda/queue/iosched/front_merges
+echo 150 > /sys/block/sda/queue/iosched/read_expire
+echo 1500 > /sys/block/sda/queue/iosched/write_expire
+echo 0 > /sys/block/sdb/queue/iosched/front_merges
+echo 150 > /sys/block/sdb/queue/iosched/read_expire
+echo 1500 > /sys/block/sdb/queue/iosched/write_expire
+
+
+sysctl -w net.ipv4.tcp_keepalive_time=100
+sysctl -w net.ipv4.tcp_keepalive_probes=5
+sysctl -w net.ipv4.tcp_keepalive_intvl=15
+
+Este comando da:
+cat __clamdscan_2014-02-22.log | grep -i "/root/.virus" | cut -d' ' -f1 | cut -d':' -f1
+Este resultado:
+
+
+Este comando da:
+cat __clamdscan_2014-02-22.log | grep -i "/root/.virus" | cut -d' ' -f4 | cut -d"'" -f2
+Este resultado:
+
+first="$i"
+second="Sara"
+first=${first/Suzy/$second}
+
+for i in `cat __clamdscan_2014-02-22.log | grep -i "/root/.virus" | cut -d' ' -f4 | cut -d"'" -f2`
+do
+first="$i"
+second="//"
+first=${first#Suzy#$second}
+echo $i
+done
+
+ | cut -d" " -f4 | cut -d"'" -f2
+
+cat /var/cpanel/userdata/obrasegu/obrasegura.com_SSL | grep sslcacertificatefile | awk '{print $2}'
+cat /var/cpanel/userdata/obrasegu/obrasegura.com_SSL | grep sslcertificatefile | awk '{print $2}'
+cat /var/cpanel/userdata/obrasegu/obrasegura.com_SSL | grep sslcertificatekeyfile | awk '{print $2}'
+cat /var/cpanel/userdata/obrasegu/obrasegura.com_SSL | grep sslengine | awk '{print $2}'
+cat /var/cpanel/userdata/obrasegu/obrasegura.com_SSL | grep documentroot | awk '{print $2}'
+cat /var/cpanel/userdata/obrasegu/obrasegura.com_SSL | grep serveralias | sed "s/serveralias: //g" | sed "s/www\.\*\.$DOMAIN//g"
+
+junk.ndb
+jurlbl.ndb
+scamnailer.ndb
+spamimg.hdb
+
+
+
+
+
+
+
+
+
+
+
+
+function NGINXvhosts1 {
+#---------------------------------------
+# Fun��o a ser usada na NGINXvhosts2
+# e que serve para criara cada ficheiro
+# de configura��o de um alojamento
+# recebendo como parametro o sub/dominio
+# COM CACHE
+#---------------------------------------
+    for DOMAIN in $@ ; do
+        ROOT=`cat /var/cpanel/userdata/$USER/$DOMAIN | grep documentroot | awk '{print $2}'`
+        ALIASES=`cat /var/cpanel/userdata/$USER/$DOMAIN | grep serveralias | sed "s/serveralias: //g" | sed "s/www\.\*\.$DOMAIN//g"`
+        VHOSTFILE="/etc/nginx/vhosts/${DOMAIN}.conf"
+        if [ ! -f /etc/nginx/vhosts/${DOMAIN}_.inc ]
+        then
+    cat > "/etc/nginx/vhosts/${DOMAIN}_.inc" << EOF
+#   location ~* "^/$" {
+#      error_page 405 = @backend;
+#      include connection_limits.inc;
+#      proxy_pass http://${IP}:6081;
+#      include cache.inc;
+#      include proxy.inc;
+#   }
+EOF
+        fi
+        cat > "$VHOSTFILE" << EOF
+server {
+   error_log /var/log/nginx/vhost-error_log warn;
+   listen $IP:80;
+   server_name ${DOMAIN} $ALIASES;
+   access_log /usr/local/apache/domlogs/$DOMAIN bytes_log;
+   access_log /usr/local/apache/domlogs/$DOMAIN combined;
+   root $ROOT;
+
+   ## Bloco DEFESAS ANTI-HACKERS
+   include "/etc/nginx/_anti-hacker_.inc";
+
+   ## Bloco CONNECTIONS LIMIT and PROTECTED DIRECTORIES
+   include "/etc/nginx/_anti-flood_.inc";
+
+   ## Bloco REGRAS ESPECIAIS ADICIONAIS
+   include "/etc/nginx/vhosts/${DOMAIN}_.inc";
+
+   location ~ /hocnetclean(/.*) {
+      proxy_cache_purge microcache $scheme$host$1$is_args$args;
+   }
+
+   location ~ "\.pagespeed\.([a-z]\.)?[a-z]{2}\.[^.]{10}\.[^.]+" { }
+   location ~ "^/ngx_pagespeed_static/" { }
+   location ~ "^/ngx_pagespeed_beacon$" { }
+
+   location ~* ^.+\.(flv)$ {
+      expires 7d;
+      flv;
+      try_files \$uri \$uri/ @backend;
+   }
+
+   location ~* ^.+\.(3gp|wmv|avi|asf|asx|mpg|mpeg|mp4|pls|mp3|mid|wav|exe|zip|tar|rar|gz|tgz|bz2|uha|7z|doc|rtf|docx|xls|xlsx|pdf|iso)$ {
+      expires 15m;
+      try_files \$uri \$uri/ @backend;
+   }
+   location ~* ^.+\.(gif|jpg|jpeg|png|bmp|ico|swf)$ {
+      expires 30d;
+      try_files \$uri \$uri/ @backend;
+   }
+   location ~* ^.+\.(css)$ {
+      expires 7d;
+      try_files \$uri \$uri/ @backend;
+   }
+   location ~* ^.+\.(js)$ {
+      expires 600s;
+      try_files \$uri \$uri/ @backend;
+   }
+   location ~* ^.+\.(html|htm|txt|xml|rss)$ {
+      expires 600s;
+      try_files \$uri \$uri/ @backend;
+   }
+
+   location / {
+      error_page 405 = @backend;
+      include connection_limits.inc;
+      proxy_pass http://${IP}:6081;
+      include cache.inc;
+      include proxy.inc;
+   }
+
+   location @backend {
+      internal;
+      include connection_limits.inc;
+      proxy_pass http://${IP}:6081;
+      include cache.inc;
+      include proxy.inc;
+   }
+
+   location @floodANDdir {
+      internal;
+      include connection_limits.inc;
+      proxy_pass http://${IP}:6081;
+      include proxy.inc;
+   }
+
+}
+EOF
+    done
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+   server_name ${DOMAIN} $ALIASES;
+   access_log /usr/local/apache/domlogs/${DOMAIN} bytes_log;
+   access_log /usr/local/apache/domlogs/${DOMAIN} combined;
+   root $ROOT;
+
+   ## Inicializacao das opcoes de Firewall e cache
+   include "/etc/nginx/vhosts/${DOMAIN}_CONFIG__.inc";
+
+   ## Firewall Regras
+   include "/etc/nginx/__firewall__.inc";
+   ##### Firewall Regras ####
+
+   ## Bloco CONNECTIONS LIMIT and PROTECTED DIRECTORIES
+   include "/etc/nginx/_anti-flood_.inc";
+
+   location ~* ^.+\.(3gp|wmv|avi|mpg|mpeg|mp4|pls|mp3|mid|wav|exe|zip|tar|rar|gz|tgz|bz2|uha|7z|iso)$ {
+      sendfile       off;
+      aio            on;
+      output_buffers 1 2M;
+      expires  30d;
+      try_files \$uri \$uri/ @backend;
+   }
+
+   location ~* ^.+\.(flv)$ {
+      expires 7d;
+      flv;
+      try_files \$uri \$uri/ @backend;
+   }
+
+   location ~* ^.+\.(asf|asx|doc|rtf|docx|xls|xlsx|pdf)$ {
+      expires 15m;
+      try_files \$uri \$uri/ @backend;
+   }
+
+   location ~* ^.+\.(gif|jpg|jpeg|png|bmp|ico|swf)$ {
+      expires 30d;
+      try_files \$uri \$uri/ @backend;
+   }
+
+   location ~* ^.+\.(css)$ {
+      expires 7d;
+      try_files \$uri \$uri/ @backend;
+   }
+
+   location ~* ^.+\.(js)$ {
+      expires 600s;
+      try_files \$uri \$uri/ @backend;
+   }
+
+   location ~* ^.+\.(html|htm|txt|xml|rss)$ {
+      expires 600s;
+      try_files \$uri \$uri/ @backend;
+   }
+
+   # Deny access to hidden files
+   location ~ /\. {
+      deny all;
+      access_log off;
+      log_not_found off;
+   }
+
+   location / {
+      error_page 405 = @backend;
+      include connection_limits.inc;
+      proxy_pass http://${IP}:6081;
+	  include cache.inc;
+      include proxy.inc;
+   }
+
+   location @backend {
+      internal;
+      include connection_limits.inc;
+      proxy_pass http://${IP}:6081;
+	  include cache.inc;
+      include proxy.inc;
+   }
+
+   location @floodANDdir {
+      internal;
+      include connection_limits.inc;
+      proxy_pass http://${IP}:6081;
+      include proxy.inc;
+   }
+
+}
+EOF
+/home/academia/public_html/administrator/components/com_rsgallery2/language/english-utf8.php: moved to '/root/.virus/fullscan/english-utf8.php'
+HOMEUSER=$( echo "/home/academia/public_html/administrator/components/com_rsgallery2/language/english-utf8.php: moved to '/root/.virus/fullscan/english-utf8.php'" | cut -d' ' -f1 | cut -d':' -f1 );
+USERUSER=$( echo "${HOMEUSER}"  | cut -d'/' -f3 );
+echo "${USERUSER}";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function NGINXvhostsUser_Cache {
+#---------------------------------------
+# Fun��o a ser usada na NGINXvhosts2b
+# e que serve para criar cada ficheiro
+# de configura��o de um alojamento
+# recebendo como parametro o sub/dominio
+# SEM CACHE
+#---------------------------------------
+    #printf "%s" "$@"
+    #echo
+    for DOMAIN in $1 ; do
+        ROOT=`cat /var/cpanel/userdata/$2/$DOMAIN | grep documentroot | awk '{print $2}'`
+        ALIASES=`cat /var/cpanel/userdata/$2/$DOMAIN | grep serveralias | sed "s/serveralias: //g" | sed "s/www\.\*\.$DOMAIN//g"`
+        VHOSTFILE="/etc/nginx/vhosts/${DOMAIN}.conf"
+        VHOSTFILESSL="/etc/nginx/vhosts/${DOMAIN}_SSL.conf"
+        Strict_Transport_Security=`cat /etc/nginx/userdata/$2 | grep "Strict_Transport_Security" | awk '{print $2}'`
+        Caching=`cat /etc/nginx/userdata/$2 | grep "Caching" | awk '{print $2}'`
+        X_Frame_Options=`cat /etc/nginx/userdata/$2 | grep "X_Frame_Options" | awk '{print $2}'`
+
+        if [ ! -f /etc/nginx/vhosts/${DOMAIN}_CONFIG__.inc ]; then
+            cat > "/etc/nginx/vhosts/${DOMAIN}_CONFIG__.inc" << EOF
+	### INTRUCOES ###############
+	# 1=Ligado
+	# 0=Desligado
+
+	####### Configuracao de CACHE ######################################
+	set \$querocacheSimNao "${Caching}";
+
+	####### BAD Countries Rules ######################################
+	set \$no_countries "1";
+
+    ####### JOOMLA Rules ######################################
+	set \$joomla_n001 "1";
+	set \$joomla_n002 "1";
+	set \$joomla_n003 "1";
+	set \$joomla_n003 "1";
+	set \$joomla_n004 "1";
+	set \$joomla_n005 "1";
+
+    ####### USER-AGENTS Rules ######################################
+    set \$user_agents "1";
+
+    ####### COMMON EXPLOITS Rules ######################################
+    set \$common_exploits "1";
+
+EOF
+        else
+            if [ "${Caching}" == "0" ]; then
+                replace 'set $querocacheSimNao "1";' 'set $querocacheSimNao "0";' -- /etc/nginx/vhosts/${DOMAIN}_CONFIG__.inc
+            else
+                replace 'set $querocacheSimNao "0";' 'set $querocacheSimNao "1";' -- /etc/nginx/vhosts/${DOMAIN}_CONFIG__.inc
+            fi
+        fi
+
+        cat > "$VHOSTFILE" << EOF
+server {
+   error_log /var/log/nginx/vhost-error_log warn;
+   listen $IP:80;
+   server_name ${DOMAIN} $ALIASES;
+   access_log /usr/local/apache/domlogs/${DOMAIN} bytes_log;
+   access_log /usr/local/apache/domlogs/${DOMAIN} combined;
+   root $ROOT;
+
+EOF
+        if [ "$X_Frame_Options" == "1" ]; then
+            cat >> "$VHOSTFILE" << EOF
+   # config to don't allow the browser to render the page inside an frame or iframe
+   # and avoid clickjacking http://en.wikipedia.org/wiki/Clickjacking
+   # if you need to allow [i]frames, you can use SAMEORIGIN or even set an uri with ALLOW-FROM uri
+   # https://developer.mozilla.org/en-US/docs/HTTP/X-Frame-Options
+   add_header X-Frame-Options SAMEORIGIN;
+
+EOF
+        fi
+        cat >> "$VHOSTFILE" << EOF
+   ## Inicializacao das opcoes de Firewall e cache
+   include "/etc/nginx/vhosts/${DOMAIN}_CONFIG__.inc";
+
+   ## Firewall Regras
+   include "/etc/nginx/__firewall__.inc";
+   ##### Firewall Regras ####
+
+   ## Bloco CONNECTIONS LIMIT and PROTECTED DIRECTORIES
+   include "/etc/nginx/_anti-flood_.inc";
+
+   location / {
+      error_page 405 = @backend;
+      include connection_limits.inc;
+      proxy_pass http://${IP}:6081;
+      include proxy.inc;
+	  include cache.inc;
+      try_files \$uri \$uri/ @backend;
+   }
+
+   include "/etc/nginx/estaticos.conf";
+   include "/etc/nginx/drop.conf";
+
+   location @backend {
+      internal;
+      include connection_limits.inc;
+      proxy_pass http://${IP}:6081;
+	  include cache.inc;
+      include proxy.inc;
+   }
+
+   location @floodANDdir {
+      internal;
+      include connection_limits.inc;
+      proxy_pass http://${IP}:6081;
+      include proxy.inc;
+   }
+
+}
+EOF
+
+        if [ -f /var/cpanel/userdata/$2/${DOMAIN}_SSL ]; then
+            if [ ! -f /etc/nginx/vhosts/${DOMAIN}_SSL_CONFIG__.inc ]; then
+                cat > "/etc/nginx/vhosts/${DOMAIN}_SSL_CONFIG__.inc" << EOF
+	### INTRUCOES ###############
+	# 1=Ligado
+	# 0=Desligado
+
+	####### Configuracao de CACHE ######################################
+	set \$querocacheSimNao "${Caching}";
+
+	####### BAD Countries Rules ######################################
+	set \$no_countries "1";
+
+    ####### JOOMLA Rules ######################################
+	set \$joomla_n001 "1";
+	set \$joomla_n002 "1";
+	set \$joomla_n003 "1";
+	set \$joomla_n003 "1";
+	set \$joomla_n004 "1";
+	set \$joomla_n005 "1";
+
+    ####### USER-AGENTS Rules ######################################
+    set \$user_agents "1";
+
+    ####### COMMON EXPLOITS Rules ######################################
+    set \$common_exploits "1";
+
+EOF
+            else
+                if [ "${Caching}" == "0" ]; then
+                    replace 'set $querocacheSimNao "1";' 'set $querocacheSimNao "0";' -- /etc/nginx/vhosts/${DOMAIN}_SSL_CONFIG__.inc
+                else
+                    replace 'set $querocacheSimNao "0";' 'set $querocacheSimNao "1";' -- /etc/nginx/vhosts/${DOMAIN}_SSL_CONFIG__.inc
+                fi
+            fi
+
+            CERTIFICADO=`cat /var/cpanel/userdata/$2/${DOMAIN}_SSL | grep sslcertificatefile | awk '{print $2}'`
+            CHAVE=`cat /var/cpanel/userdata/$2/${DOMAIN}_SSL | grep sslcertificatekeyfile | awk '{print $2}'`
+            CABUNDLE=`cat /var/cpanel/userdata/$2/${DOMAIN}_SSL | grep sslcacertificatefile | awk '{print $2}'`
+			if [ "${CABUNDLE}" == "" ]; then
+                CABUNDLEF="#ssl_trusted_certificate ;"
+                SSLSTAPLING="#ssl_stapling on;"
+            else
+                CABUNDLEF="ssl_trusted_certificate ${CABUNDLE};"
+                SSLSTAPLING="ssl_stapling on;"
+            fi
+            cat > "$VHOSTFILESSL" << EOF
+server {
+   error_log /var/log/nginx/vhost-error_log warn;
+   listen $IP:443 ssl spdy;
+   server_name ${DOMAIN} $ALIASES;
+
+   ssl_certificate     ${CERTIFICADO};
+   ssl_certificate_key ${CHAVE};
+   ssl_protocols       SSLv3 TLSv1 TLSv1.1 TLSv1.2;
+   ssl_prefer_server_ciphers on;
+   ssl_ciphers "ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-RC4-SHA:ECDHE-RSA-RC4-SHA:ECDH-ECDSA-RC4-SHA:ECDH-RSA-RC4-SHA:ECDHE-RSA-AES256-SHA:RC4-SHA:HIGH:!aNULL:!eNULL:!LOW:!3DES:!MD5:!EXP:!CBC:!EDH:!kEDH:!PSK:!SRP:!kECDH";
+   ssl_session_cache   shared:SSL:10m;
+   ssl_session_timeout 10m;
+   spdy_headers_comp 0;
+   ssl_buffer_size 4k;
+   ${SSLSTAPLING}
+   ${CABUNDLEF}
+
+   access_log /usr/local/apache/domlogs/${DOMAIN}-ssl_log bytes_log;
+   access_log /usr/local/apache/domlogs/${DOMAIN}-ssl_log combined;
+   root $ROOT;
+
+EOF
+
+            if [ "${X_Frame_Options}" == "1" ]; then
+                cat >> "$VHOSTFILESSL" << EOF
+   # config to don't allow the browser to render the page inside an frame or iframe
+   # and avoid clickjacking http://en.wikipedia.org/wiki/Clickjacking
+   # if you need to allow [i]frames, you can use SAMEORIGIN or even set an uri with ALLOW-FROM uri
+   # https://developer.mozilla.org/en-US/docs/HTTP/X-Frame-Options
+   add_header X-Frame-Options SAMEORIGIN;
+
+EOF
+            fi
+
+            if [ "${Strict_Transport_Security}" == "1" ]; then
+                cat >> "$VHOSTFILESSL" << EOF
+   add_header Strict-Transport-Security "max-age=31536000; includeSubdomains";
+
+EOF
+            fi
+            cat >> "$VHOSTFILESSL" << EOF
+   ## Inicializacao das opcoes de Firewall e cache
+   include "/etc/nginx/vhosts/${DOMAIN}_SSL_CONFIG__.inc";
+
+   ## Firewall Regras
+   include "/etc/nginx/__firewall__.inc";
+
+   ## Bloco CONNECTIONS LIMIT and PROTECTED DIRECTORIES
+   include "/etc/nginx/_anti-flood_.inc";
+
+   location / {
+      error_page 405 = @backend;
+      include connection_limits.inc;
+      proxy_pass https://${IP}:444;
+	  include cache.inc;
+      include proxy.inc;
+	  try_files \$uri \$uri/ @backend;
+   }
+
+   include "/etc/nginx/estaticos.conf";
+   include "/etc/nginx/drop.conf";
+
+   location @backend {
+      internal;
+      include connection_limits.inc;
+      proxy_pass https://${IP}:444;
+	  include cache.inc;
+      include proxy.inc;
+   }
+
+   location @floodANDdir {
+      internal;
+      include connection_limits.inc;
+      proxy_pass https://${IP}:444;
+      include proxy.inc;
+   }
+
+}
+EOF
+        fi
+
+    done
+}
+
+
+
+
+hocnet
++E.W&RsEGlwJ
+

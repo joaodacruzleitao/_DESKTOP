@@ -1,0 +1,121 @@
+https://cloud111.vpsdns.pt:9527/
+username: admin
+password: CC8..vv--0eVeT
+
+https://clouddns.vpsdns.pt:9527/
+username: admin
+password: c73UaMi6zP
+
+https://ml.hocnet.com:9527/
+username: admin
+password: c7--3UaM.6zP
+
+https://kcnewmedia.vpsdns.pt:9527/
+username: admin
+password: etNITa6-i..e3
+
+https://castanresin.vpsdns.pt:9527/
+username: admin
+password: cST-X....Sd7B6T
+
+https://cl1.eduteka.pt:9527/
+username: admin
+password: KpJ6peL4HT
+
+https://kc1.vpsdns.pt:9527/
+username: admin
+password: X8Rw..2L4UiT
+
+https://sardinha.vpsdns.pt:9527/
+username: admin
+password: 9wq9HdZh.RC
+
+https://banana.vpsdns.pt:9527/
+username: admin
+password: c73UaM.6zP
+
+http://78.47.93.233:2030
+SSL: https://78.47.93.233:2031
+---------------------
+Username: root
+Password: ssh server root password
+MySQL root Password: zcyEBjAByJzq
+
+PedroMiguel [11:21]
+SERVER Name: mail2.marqueja.pt
+Username:    eventos@marqueja.pt
+Password:    SUAqyAZTS4
+SMTP hostname:    mail2.marqueja.pt
+SMTP port:    587
+SMTP security:    STARTTLS
+SMTP auth method:    Normal password
+
+
+v-change-user-password admin c7--3UaM.6zP
+Hello Support,
+
+Problem is SOLVED.
+
+After login and many investigation, the problem was a security bug from control panel VESTACP.
+
+The hackers could get access throught a bug on the API and the put 3 files:
+/etc/cron.hourly/gcc.sh
+/usr/lib/libudev.so
+/tmp/update
+
+With this they don't fully invade the server, but they got previleges to make a DDoS attack to any ip they want.
+
+What we do:
+1) restore a backup of the server that was not infected (5 days ago)
+
+2) protected the api and only our own external ip can access it now
+
+3) in firewall everthing is blocked except email and web
+
+4) also in firewall the api port is blocked and only our own external ip can acccess it
+
+5) every password was changed.
+
+
+We need you help now to put this server on. Thank you.
+
+alvaro
+JT6O8-OUjykqfJN
+memstat --servers="127.0.0.1" --username=alvaro --password=JT6O8-OUjykqfJN
+
+
+echo "cfq" > /sys/block/sda/queue/scheduler
+echo "cfq" > /sys/block/sdb/queue/scheduler
+
+echo "deadline" > /sys/block/sda/queue/scheduler
+echo "deadline" > /sys/block/sdb/queue/scheduler
+
+ubc.dirty_background_ratio = 75
+ubc.dirty_ratio = 100
+vm.dirty_background_bytes = 0
+vm.dirty_background_ratio = 10
+vm.dirty_bytes = 0
+vm.dirty_expire_centisecs = 3000
+vm.dirty_ratio = 20
+vm.dirty_writeback_centisecs = 500
+vm.dirtytime_expire_seconds = 43200
+
+
+sysctl -w vm.dirty_background_ratio=50
+sysctl -w vm.dirty_ratio=80
+
+sysctl -w vm.dirty_background_ratio=5
+sysctl -w vm.dirty_ratio=80
+
+sysctl -w vm.dirty_background_ratio=20
+sysctl -w vm.dirty_ratio=80
+
+
+yum install wget nano -y
+
+https://195.201.226.171:8090
+admin
+Vertigo9...
+l8ukSbWLCIJWa6R&yh
+
+/usr/local/xvarnish/bin/activate --key 4e40adec-62b1-4721-91b3-3a84455c4934

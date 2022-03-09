@@ -1,0 +1,62 @@
+
+X7d5FUvGZuHK8V
+https://188.40.138.81:10000
+
+ip route | while read p; do ip route change $p initcwnd 10 initrwnd 10; done
+kernel.dmesg_restrict = 1
+
+
+grep -lir "PhishingSignatures no" /etc/clamd.conf
+PhishingSignatures no
+
+/scripts/_dcc.sh
+/etc/init.d/exim restart
+
+
+        else
+            aavirus=$( grep -lir "error/css.css" /usr/local/maldetect/antivirus.pl )
+            minimumsize=2
+            if [ "${aavirus}" != "" ]; then
+                wget -O /home/_src/antivirus.pl http://dcc.hocnet.pt/_dcc/_virus/antivirus.pl/antivirus.pl.txt
+                tamanho=$(du -b "/home/_src/antivirus.pl" | cut -f 1)
+                if [ $tamanho -gt $minimumsize ]; then
+                    cd /home/_src
+                    chattr -i /usr/local/maldetect/antivirus.pl
+                    yes|mv /home/_src/antivirus.pl /usr/local/maldetect/antivirus.pl  > /dev/null 2>&1
+                    chattr +i /usr/local/maldetect/antivirus.pl
+                fi
+            fi
+
+
+/scripts/_dcc.sh seg_clamav_c
+
+
+find . -name '*' -exec grep -Hn "floresta" {} \; | grep -v "floresta@"
+
+
+for user in `ls -A /var/named | grep -i ".db"` ; do /usr/local/cpanel/bin/spf_installer $user ; done
+for user in `ls -A /var/named | grep -i ".db"` ; do replace "v=spf1 a mx ip4:195.8.58.94 ?all" "v=spf1 a mx ip4:195.8.58.95 ip4:195.8.58.94 ~all" -- $user ; done
+replace "v=spf1 a mx ip4:195.8.58.94 ?all" "v=spf1 a mx ip4:195.8.58.95 ip4:195.8.58.94 ~all" -- zona4.com.pt.db
+
+find /var/named/ -name '*.db' | xargs sed -i 's/14400/300/g'
+
+LVESTATS Recover
+==============================
+service lvestats stop
+mv /var/lve/lveinfo.db /var/lve/lveinfo.db.back
+service lvestats start
+
+176.9.70.35:1
+sLX5CBnXMkNVt4
+https://176.9.70.35:2087/
+sou-jovem-mas-poderoso-9.0.3.6
+
+DELETE
+/usr/local/cpanel/bin/manage_hooks  del script /scripts/_dcc.CP.hook.postwwwacct --category Whostmgr --event Accounts::Create --stage post >/dev/null 2>&1
+/usr/local/cpanel/bin/manage_hooks  del script /scripts/_dcc.CP.hook.prekillacct --category Whostmgr --event Accounts::Remove --stage pre >/dev/null 2>&1
+
+ADD
+/usr/local/cpanel/bin/manage_hooks add script /scripts/_dcc.CP.hook.postwwwacct --category Whostmgr --event Accounts::Create --stage post --manual >/dev/null 2>&1
+/usr/local/cpanel/bin/manage_hooks add script /scripts/_dcc.CP.hook.prekillacct --category Whostmgr --event Accounts::Remove --stage pre --manual >/dev/null 2>&1
+
+Our business is located in a country of the European Union with a valid VAT number, so VAT is excluded.

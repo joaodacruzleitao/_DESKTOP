@@ -1,0 +1,37 @@
+# wb.kawaii-panda.com
+# kp
+# 9qJP8DPJ3tK1T6p
+# mq.kawaii-panda.com
+#
+#cloud-config
+users:
+  - name: hocnetx
+    groups: sudo
+    shell: /bin/bash
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    ssh-authorized-keys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAhbuqp5geHOCF2o4FNEGoeMX5Al2FgB+gvSQf072V3rN82JV83pgvoNfjcM59R9r9UrRuypyGJrNhrLW0HVVeVQdtB/e36FAfvuSPgf9ZS8YuDwDo+PMj+/59V5aiFjKVPQtpGvlzg4aPQE1NvqFNvxng2bEJr7YvZm7D8eHILX6cRlbKOkirLT3nipLvKS8HUAgnWQO6srTM9AxahEKdKVq/vXUOuxvClvkqoaA9EZLBzBiSVDfRIAHLSGYCSWpSLjI23ZZYH2j2B6rYHAq5PFgK7gVQ34vTDC00TBUu2zLMusOr7vo5TIh8Ex1B5zOdbsgaeOTjjcNpqW5gMWRj7Q== hocnetx
+  - name: kpw
+    groups: sudo
+    shell: /bin/bash
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    ssh-authorized-keys:
+      - ssh-rsa ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAjkwlqUcGvUXSSJ81eP1pAcVvCmz4+x3TF7PU+be1j4TDZLnP50BUaoEgwP81uoDPysg9J6GfRaAOA8GTKCEwSLBkLmY7sXQMj3PTKkKf1mzb4HTk4ferX4CpFd4ZpGH8zXh2l/gUu02ArjRQeh2WhmWTfA29RfVvbzlDBwgxXRoamN2n8xUq6Y/h9xWJr7BYPYoXcM0WRRchXhHt6Pn8RaYW7aKHcYhHbnYew/JaT/8apuS+wJCCI5aEXd0z5tkIBc4NMu3ZB2ELPXvwyRj9y3ohyhHJSIXlZKWtrlXHnM6vX6sFKfdtKAhK9j1aCOc3wdKYyWRQ0MNiBNnCkjR7mw==
+package_update: true
+package_upgrade: true
+packages:
+  - wget
+  - nano
+runcmd:
+  - sed -i -e '/^#UseDNS/s/^.*$/UseDNS no/' /etc/ssh/sshd_config
+  - sed -i -e '/^#AddressFamily any/s/^.*$/AddressFamily inet/' /etc/ssh/sshd_config
+  - sed -i -e '$aAllowUsers hocnetx kpw' /etc/ssh/sshd_config
+  - sysctl -w net.ipv6.conf.all.disable_ipv6=1
+  - sysctl -w net.ipv6.conf.default.disable_ipv6=1
+  - echo 'net.ipv6.conf.all.disable_ipv6 = 1' > /etc/sysctl.conf
+  - echo 'net.ipv6.conf.default.disable_ipv6 = 1' >> /etc/sysctl.conf
+  - systemctl restart sshd
+power_state:
+  delay: now
+  mode: reboot
+  message: Bye bye

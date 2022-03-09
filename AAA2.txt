@@ -1,0 +1,157 @@
+/usr/local/vesta/bin/v-update-sys-queue dns-cluster
+
+
+&Jbb$ax(p]Up
+
+
+
+https://castanresin.vpsdns.pt:8083
+username: admin
+password: OTka88oV0Z
+
+SELECT c.*, i.catid, i.title, i.alias, category.alias as catalias, category.name as categoryname FROM rti8x_k2_comments as c LEFT JOIN rti8x_k2_items as i ON i.id=c.itemID LEFT JOIN rti8x_k2_categories as category ON category.id=i.catid WHERE i.published=1 AND ( i.publish_up = '0000-00-00 00:00:00' OR i.publish_up <= '2018-02-09 08:51:23' ) AND ( i.publish_down = '0000-00-00 00:00:00' OR i.publish_down >= '2018-02-09 08:51:23' ) AND i.trash=0 AND i.access IN(1,1) AND category.published=1 AND category.trash=0 AND category.access IN(1,1) AND c.published=1 AND category.language IN ('pt-PT', '*') AND i.language IN ('pt-PT', '*') ORDER BY c.commentDate DESC LIMIT 0, 3
+
+
+29 maio manha
+21 maio manha
+
+El6p5@m0
+
+
+= Fotografia em Acção / Photography Action =
+**Project: Street 
+
+#JoaoDaCruzLeitao #blackandwhite #street
+
+
+= Local Mágico / Magic Place =
+**Project: Night 
+
+Alcochete, um local sempre mágico, principalmente quando chega a noite. Maré vazia.
+
+#JoaoDaCruzLeitao #colors #night
+
+
+echo "//u158817.your-storagebox.de/backup /backups cifs iocharset=utf8,rw,credentials=/home/_backups/.backupc,uid=0,gid=0,file_mode=0777,dir_mode=0777 0 0" >> /etc/fstab
+mkdir -p /home/_backups/
+mkdir -p /backups
+echo "username=u158817" > /home/_backups/.backupc
+echo "password=jExP7OKtQigWyl1B" >> /home/_backups/.backupc
+
+============
+Regras associadas ao Cloud Server:
+1) Listagem do IP em listas de spam
+1.1) Primeira vez tentamos tirar sem custos adicionais
+1.2) Segunda vez tentamos tirar, e será aplicado um fee de 50 euros + iva
+1.3) Terceira vez, o servidor terá de ser eliminado e terá de ser adquirido um servidor novo para substituir
+
+2) Suporte
+2.1) O Servidor é entregue com Ubuntu Server 16.04 e chave para SSH para o user root
+2.2) O Painel de controle é Gratuito, sendo VestaCP (é bem mais simples que o cpanel)
+2.3) O Cliente tem acesso total ao servidor com root e é responsavél pela manutenção do mesmo, tudo estará configurado á partida para ser fácil para o cliente começar
+2.4) Todas as noites entre as 2h e as 6h é realizada uma imagem completa do servidor em questão (backup), ficando disponivel um restauro sempre dos ultimos 7 dias (7 dias diferentes individualizados)
+2.5) O suporte disponibilizado é de OS Reload ou Restauro de backup total do servidor Cloud (incluidos sempre ultimos 7 dias)
+
+3) Extras
+3.1) Manutenção: se o cliente pretender que seja a Hocnet a efectuar a manutenção do servidor, ficará apenas com acesso à conta local de alojamento do servidor, e tem um custo mensal 35 euros + IVA
+3.2) O cliente pode solicitar uma drive de backup extra que será instalada, sendo a minima de 100GB com um custo de X euros + iva mês
+
+==============
+
+kcnewmedia.vpsdns.pt
+
+
+
+
+the_warri0r
+
+23 paginas
+5, 13
+5, 13, 15
+
+SecRule REQUEST_URI " /lojaonline/contact-us*" nolog,deny
+
+
+
+AVISO: SPAM de paulusstore.com - Prestashop
+
+Estimado Cliente,
+
+Antes demais os nossos sinceros agradecimentos por por preferir os serviços da Hocnet.pt .
+
+Foi detectado que a partir do formulario de contactos do seu site, um hacker estava a tentar enviar vários MILHÕES de mensagens de SPAM e PHISHING. Após investigação, verificámos que tem um script de loja chamado prestashop e quetem o formulário de contacto desprotegido.
+
+A solução para parar o hacker, foi desactivar o modulo de contactos do site, através de linhas de comando.
+
+O que tem a fazer agora é fazer o upgrade do seu script ou se não o fizer tem de proteger o formulario de contactos antes de o activar (terá de ver com a prestashop como o fazer).
+
+Se for novamente detectada a mesma situação, teremos de suspender novamente o formulario mas de forma mais definitiva, pois o problema causado para os outros clientes e para os ip's do servidor foram muito graves.
+
+
+
+https://78.46.137.204:8083
+username: admin
+password: d3xnVMUpdu
+
+G0 - 148.251.180.73 - Obrasegura
+
+
+
+https://clouddns.vpsdns.pt:8083
+username: admin
+password: 6tF0SUPRoG
+
+
+Ver com mais resolução em:
+https://www.flickr.com/photos/jonixk/39626544955/
+(Clicando na foto do link para ecrã completo)
+
+
+Thank you everyone for your visit, favorites and comments.
+
+_____________
+Item: 2018.02.17.F03
+Project: Emotions
+Type: B&W
+
+
+ml.ml-pt.net EXPORTAR LISTAS
+=================================================
+SELECT `emailaddress` FROM `email_list_subscribers` where `listid`=367;
+
+
+
+
+
+DKIM_DOMAIN = ${lc:${domain:$h_from:}}
+DKIM_FILE = /etc/exim4/domains/${lc:${domain:$h_from:}}/dkim.pem
+DKIM_PRIVATE_KEY = ${if exists{DKIM_FILE}{DKIM_FILE}{0}}
+
+
+DKIM_DOMAIN = ml.hocnet.com
+DKIM_FILE = /etc/exim4/domains/ml.hocnet.com/dkim.pem
+DKIM_PRIVATE_KEY = ${if exists{DKIM_FILE}{DKIM_FILE}{0}}
+
+
+"v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtdZKTUuOLQE7EjIcqsjZVNmGxMtF7dw8XfbsY/BxT3oB4GbHbEDa7XaGvWiDmDnzlW5KrgWvxaOA3NwdiYAZB1i9ZxgPpVWp2UZa+f2ZTetM6vgFbx1Tq6Ud50UWpUmX322QhbcGosLQLVbMivz1x7IOTp9exNtxP0h5v5dsMMbj5g7tjT3Kecq2bo6ZcoJzs" LKgguAHGI9ZTiXGmW05Y2/pxx3DminOADrvasojGOrOABN1ROanIdmKR/95q8ga19hLBbv3wbZAHDuKUA7aoteInuRGzmSzlS35lPxh0u/bVEFiaBA+Xqd6b5gmpwOxemOttQw/DEReELv8v37NfwIDAQAB\;
+"v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA71HhvEUelF1W3zUl4miDwBUsZoumWjt42aDlk9By4KlX2APg/jZRym2GYrWuPdy2SWTqXHvHYEzrvLqvqAGl/j4U/anMYGydXUterq3nLrzBOal6hNbfrA2A/gcY5luVboTwMgZC9ONN+PSk5Ni9rbcHupDXJgSrmtq/D4lHgWWYkBMd5TNmhp05cgFu1F+u+" uTuXGIke8auAI/D+IN8oj2e6nmTTruVq7crqKXpebgkrS5OfLyDrFMCDh8lL1fEkZXZ+ZaJo8YlGKBl82PrAVxzjwJ3VidsEudSxKzrwxbyb3YPDexJyb3rZ685Up7pO09snuFRF09Y2/0DKwK3cQIDAQAB"
+"v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA71HhvEUelF1W3zUl4miDwBUsZoumWjt42aDlk9By4KlX2APg/jZRym2GYrWuPdy2SWTqXHvHYEzrvLqvqAGl/j4U/anMYGydXUterq3nLrzBOal6hNbfrA2A/gcY5luVboTwMgZC9ONN+PSk5Ni9rbcHupDXJgSrmtq/D4lHgWWYkBMd5TNmhp05cgFu1F+u+uTuXGIke8auAI/D+IN8oj2e6nmTTruVq7crqKXpebgkrS5OfLyDrFMCDh8lL1fEkZXZ+ZaJo8YlGKBl82PrAVxzjwJ3VidsEudSxKzrwxbyb3YPDexJyb3rZ685Up7pO09snuFRF09Y2/0DKwK3cQIDAQAB"
+
+tcp|in|d=3306|s=2.82.63.39  #hocnet
+tcp|out|d=3306|s=2.82.63.39  #hocnet
+#sunset #sunsets #sunsetlovers #igsuper_shotz #ig_sunsetshots #ig_shotz_sunset #igworldclub_sunset #ptk_sky #phototag_sunset #sunsets_oftheworld #tgif_sunset #super_photosunsets #sunset_ig #sky_central #sky_central #sky_sultans #sky_perfection #sunset_love #sunset_stream #sunset_vision #sunset_universe #igsunset #sunsets_captures #world_bestsky #impressivephotography #super_sunset_channel #shotzdelight #beautifuldestinations #topportugalphoto #lisboa
+
+
+#bnw #portrait #drama #blackandwhite
+#colors # #igers
+
+#webstagram #instagramers #igersoftheday #hijabhigh #hijabilookbook #chichijab #dailyhijab #fashionmodesty #vscocamsg #tslmakan #vscocommunity #bnw #bw #monochrome #bnw_society #bnw_captures #blackandwhitephotography #bnw_life #bw_lover #bnw_planet #bnw_drama #bw_society #noir #bw_photooftheday #igersbnw #bnw_demand #insta_bw #instablackandwhite 
+
+
+#bnw_greatshots #monochrome #blackandwhitephotography #bnw_society #bw_lover #bnw_captures #bnw_life #monoart #bw_photooftheday #bw_society #noir #igersbnw #insta_bw #instablackandwhite #monochromatic #bnw_planet #bw_crew #magic #bwstyles_gf #bnw_planet #bnw_demand #irox_bw #blancoynegro #bnw_globe #blackandwhitephoto #monotone #bnwmood #bnw #streetphoto #bnw_madrid
+
+
+P25
+ma@vizelpas.pt
+https://78.46.150.51:2031/login/index.php
+

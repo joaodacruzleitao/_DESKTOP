@@ -1,0 +1,14 @@
+IPv4	78.47.96.87
+IPv6	2a01:4f8:c17:14e0::/64
+User	root
+Password: Me9+n3Wm%VN47PVs
+https://78.47.96.87:8083
+username: admin
+password: WoDbAzXHQB
+
+IPv4	78.47.96.87
+IPv6	2a01:4f8:c17:14e0::/64
+User	root
+Password: Me9+n3Wm%VN47PVs
+
+KZYiFWEtYcGiLHPs2APiuRZRZx5pkceKyjU7AnN

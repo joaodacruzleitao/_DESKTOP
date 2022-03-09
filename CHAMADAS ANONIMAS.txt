@@ -1,0 +1,10 @@
+
+
+---------> no /backups em todos tirar: defaults,noatime
+---------> e meter antes só: noatime
+
+
+No telefone fixo, fazer:
+                        
+*10*numero telefone#
+

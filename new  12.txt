@@ -1,0 +1,132 @@
+https://www.google.pt/search?sugexp=chrome,mod=14&sourceid=chrome&ie=UTF-8&q=haproxy+on+single+web+server#q=haproxy+on+single+web+server&hl=pt-PT&safe=off&prmd=imvns&ei=192RT4PlBsX80QXvkvnpAQ&start=150&sa=N&bav=on.2,or.r_gc.r_pw.r_cp.,cf.osb&fp=ded6bd2e44386bf7
+https://www.google.pt/search?sugexp=chrome,mod=14&sourceid=chrome&ie=UTF-8&q=haproxy+in+front+of+nignx+and+apache#q=haproxy+in+front+of+nginx+and+apache&hl=pt-PT&safe=off&prmd=imvns&ei=ddiRT5uMGYjIhAfx-_SNBA&start=160&sa=N&bav=on.2,or.r_gc.r_pw.r_cp.,cf.osb&fp=ded6bd2e44386bf7
+http://coder28.wordpress.com/2009/06/29/low-cost-load-balancing-with-nginx-and-haproxy-on-linux/
+
+rumonet
+Qy}7sKfVn^+Q
+
+---------------------------------------------->>>>http://cityvillebot.forumotion.eu/f5-unofficial-updates-by-users
+
+/scripts/restartsrv_chkservd
+
+yum update rhn-setup --enablerepo=cloudlinux-updates-testing  
+/usr/sbin/normal-to-hybrid 
+reboot 
+
+service nginx stop
+chkconfig nginx off
+chkconfig --del nginx
+
+useradd haproxy
+passwd haproxy
+cd /home/_src
+mkdir /etc/haproxy
+tar xvfz haproxy-1.5-*.tar.gz
+cd haproxy-1.5-*
+make -j4 install
+cd ..
+cp haproxy.cfg /etc/haproxy/
+chmod 755 /etc/haproxy/haproxy.cfg
+cp _etc_chkserv.d/haproxy /etc/chkserv.d/
+chmod 755 /etc/chkserv.d/haproxy
+cp _etc_init.d/haproxy /etc/init.d/
+chmod 755 /etc/init.d/haproxy
+chkconfig --add haproxy
+chkconfig haproxy on
+service haproxy restart
+
+joanav
+GCCo@eh8Z^
+
+## DISABLE IPV6 - CENTOS 6+ ####################################
+sysctl -w net.ipv6.conf.all.disable_ipv6=1
+sysctl -w net.ipv6.conf.default.disable_ipv6=1
+## DISABLE IPV6 - CENTOS 6+ ####################################
+
+echo 1024 > /sys/block/sda/queue/max_sectors_kb
+echo 1024 > /sys/block/sdb/queue/max_sectors_kb
+
+echo 512 > /sys/block/sda/queue/max_sectors_kb
+echo 512 > /sys/block/sdb/queue/max_sectors_kb
+.sN1&,Kwebi8
+https://www.google.pt/search?sugexp=chrome,mod=7&sourceid=chrome&ie=UTF-8&q=sysctl+tuning+2.6.32#q=sysctl+tuning+2.6.32&hl=pt-PT&safe=off&prmd=imvns&ei=AQCgT4S0Mqi_0QXj2pWwAw&start=10&sa=N&bav=on.2,or.r_gc.r_pw.r_cp.,cf.osb&fp=75c89949e96b70d8&biw=1024&bih=667
+
+
+yum install gcc44 gcc44-c++
+
+export CC=gcc44 CXX=g++44
+export CFLAGS="-march=native -mtune=native"
+export CFLAGS="-march=native -mtune=native -msse4.2"
+
+http://www.wireshark.org/
+
+ip route change default via 195.8.58.254 initcwnd 10
+
+
+exe:/usr/local/cpanel/3rdparty/bin/english/webalizer
+exe:/usr/lib/courier-imap/bin/pop3d
+exe:/usr/lib/courier-imap/bin/imapd
+exe:/usr/sbin/pure-ftpd
+exe:/usr/local/cpanel/cpsrvd
+exe:/usr/local/cpanel/3rdparty/bin/imapd
+exe:/usr/local/apache/bin/httpd
+exe:/usr/local/sbin/nginx
+exe:/usr/local/cpanel/bin/cppop
+exe:/usr/sbin/sshd
+exe:/usr/sbin/proftpd
+exe:/usr/local/cpanel/3rdparty/bin/php
+exe:/usr/local/cpanel/3rdparty/bin/analog
+exe:/usr/local/urchin/bin/urchinwebd
+exe:/usr/local/cpanel/cpsrvd-ssl
+exe:/usr/bin/spamc
+exe:/usr/local/cpanel/bin/cppop-ssl
+exe:/usr/local/cpanel/bin/logrunner
+exe:/usr/local/cpanel/cpdavd
+exe:/usr/local/cpanel/bin/cpwrap
+exe:/usr/libexec/gam_server
+exe:/usr/sbin/named
+exe:/usr/sbin/exim
+exe:/usr/sbin/mysqld
+exe:/usr/sbin/mysqld_safe
+exe:/usr/libexec/hald-addon-acpi
+exe:/usr/sbin/hald
+exe:/bin/dbus-daemon
+exe:/usr/bin/dbus-daemon-1
+exe:/usr/libexec/hald-addon-keyboard
+exe:/usr/libexec/dovecot/imap
+exe:/usr/libexec/dovecot/pop3
+exe:/usr/sbin/nsd
+exe:/usr/libexec/dovecot/pop3-login
+exe:/usr/libexec/dovecot/imap-login
+exe:/var/cpanel/3rdparty/bin/php
+exe:/usr/bin/postgres
+exe:/usr/sbin/clamd
+exe:/usr/sbin/crond
+exe:/bin/gtar
+exe:/bin/tar
+exe:/bin/gzip
+exe:/scripts/cpbackup
+exe:/usr/local/cpanel/bin/cpuwatch
+cmd:/usr/local/cpanel/bin/logrunner
+cmd:/usr/local/cpanel/3rdparty/bin/portuguese/webalizer
+exe:/scripts/cpbackup
+exe:/usr/local/cpanel/cpanel
+exe:/usr/sbin/ntpd
+exe:/usr/local/bin/memcached
+exe:/usr/local/sbin/haproxy
+exe:/usr/local/varnish/sbin/varnishd
+exe:/usr/sbin/qpidd
+exe:/usr/local/cpanel/3rdparty/bin/php-cgi
+exe:/usr/local/cpanel/3rdparty/sbin/mydns
+exe:/usr/sbin/cpulimit
+exe:/usr/share/cagefs-skeleton/usr/bin/php
+pcmd:/usr/local/cpanel/3rdparty/bin/python /usr/local/cpanel/3rdparty/mailman/bin/qrunner.*
+pcmd:/usr/local/cpanel/3rdparty/bin/python /usr/local/cpanel/3rdparty/mailman/bin/mailmanctl.*
+pcmd:/usr/bin/perl /usr/local/cpanel/3rdparty/bin/awstats\.pl.*
+pcmd:/usr/bin/perl /usr/local/cpanel/base/awstats\.pl.*
+pcmd:.*/usr/local/cpanel/3rdparty/bin/awstats\.pl .*
+cmd:pkgacct
+cmd:cpanellogd
+cmd:spamd child
+user:munin
+user:mailman

@@ -1,0 +1,48 @@
+/etc/cron.hourly/gcc.sh
+/etc/rc.d/init.d/update
+/etc/rc.d/rc1.d/S90update
+/etc/rc.d/rc2.d/S90update
+/etc/rc.d/rc3.d/S90update
+/etc/rc.d/rc4.d/S90update
+/etc/rc.d/rc5.d/S90update
+/usr/lib/libudev.so
+/tmp/update
+
+ln -s /etc/roundcube/apache.conf /etc/apache2/conf.d/roundcube.conf
+service apache2 restart
+
+
+rm /etc/apache2/conf.d/roundcube.conf
+service apache2 restart
+
+195.8.59.0/24,195.201.25.112
+/usr/local/vesta/data/firewall
+v-update-firewall
+
+/usr/local/vesta/nginx/conf
+service vesta restart
+
+CRIAR SSH KEY
+/root/.ssh
+
+
+
+ROOT
+Your new secret key is: KGLWF3HQPHJ5H35S
+Your verification code is 597630
+Your emergency scratch codes are:
+  96114406
+  40672969
+  74987836
+  32103897
+  32175671
+
+HOCNETX
+  Your new secret key is: TTG2BFMHDFWO3YNI
+  Your verification code is 821144
+  Your emergency scratch codes are:
+    55257912
+    86631419
+    25176828
+    25789742
+    16276632

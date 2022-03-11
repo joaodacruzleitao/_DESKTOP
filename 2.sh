@@ -60,13 +60,13 @@ rm -rf -- *
 find / -exec ls -la {} \; | awk '{ if ( $8==2003) printf $0"\n" }'
 
 function NGINXvhosts1b {
-  #---------------------------------------
-  # Função a ser usada na NGINXvhosts2b
-  # e que serve para criar cada ficheiro
-  # de configuração de um alojamento
-  # recebendo como parametro o sub/dominio
-  # SEM CACHE
-  #---------------------------------------
+    #---------------------------------------
+    # Função a ser usada na NGINXvhosts2b
+    # e que serve para criar cada ficheiro
+    # de configuração de um alojamento
+    # recebendo como parametro o sub/dominio
+    # SEM CACHE
+    #---------------------------------------
     for DOMAIN in "$@"; do
         ROOT=$( grep documentroot </var/cpanel/userdata/"$USER"/"$DOMAIN" | awk '{print $2}')
         ALIASES=$( grep serveralias </var/cpanel/userdata/"$USER"/"$DOMAIN" | sed "s/serveralias: //g" | sed "s/www\.\*\.$DOMAIN//g")
@@ -75,12 +75,12 @@ function NGINXvhosts1b {
                  cat <<EOF
 pagespeed LoadFromFileMatch "^https?://$DOMAIN/" "$ROOT/";
 EOF
-    )
+        )
         VARNISH=$(
                    cat <<EOF
 pagespeed MapRewriteDomain $DOMAIN $DOMAIN:8081;
 EOF
-    )
+        )
 
         for DOMAIN2 in $ALIASES; do
             JONIX=$(
@@ -88,14 +88,14 @@ EOF
 ${JONIX}
    pagespeed LoadFromFileMatch "^https?://$DOMAIN2/" "$ROOT/";
 EOF
-      )
+            )
             VARNISH=$(
                        cat <<EOF
 ${VARNISH}
    pagespeed MapRewriteDomain $DOMAIN2 $DOMAIN2:8081;
 EOF
-      )
-    done
+            )
+        done
         cat >"$VHOSTFILE"  <<EOF
 upstream ${DOMAIN}_P {
     server ${IP}:8081;
@@ -181,7 +181,7 @@ server {
    }
 }
 EOF
-  done
+    done
 }
 #===============================================================================================================================
 # Configuration file for varnish
@@ -345,122 +345,122 @@ lockfile="/var/lock/subsys/varnish"
 
 start() {
 
-  if [ ! -x $exec ]; then
-    echo $exec not found
-    exit 5
-  fi
+    if [ ! -x $exec ]; then
+        echo $exec not found
+        exit 5
+    fi
 
-  if [ ! -f $config ]; then
-    echo $config not found
-    exit 6
-  fi
-  echo -n "Starting Varnish Cache: "
+    if [ ! -f $config ]; then
+        echo $config not found
+        exit 6
+    fi
+    echo -n "Starting Varnish Cache: "
 
-  # Open files (usually 1024, which is way too small for varnish)
-  ulimit -n ${NFILES:-131072}
+    # Open files (usually 1024, which is way too small for varnish)
+    ulimit -n ${NFILES:-131072}
 
-  # Varnish wants to lock shared memory log in memory.
-  ulimit -l ${MEMLOCK:-82000}
+    # Varnish wants to lock shared memory log in memory.
+    ulimit -l ${MEMLOCK:-82000}
 
         # $DAEMON_OPTS is set in /etc/sysconfig/varnish. At least, one
         # has to set up a backend, or /tmp will be used, which is a bad idea.
-  if [ "$DAEMON_OPTS" = "" ]; then
-    echo "\$DAEMON_OPTS empty."
-    echo -n "Please put configuration options in $config"
-    return 6
-  else
-    # Varnish always gives output on STDOUT
-    daemon --pidfile $pidfile $exec -P $pidfile "$DAEMON_OPTS" >/dev/null 2>&1
-    retval=$?
-    if [ $retval -eq 0 ]; then
-      touch $lockfile
-      echo_success
-      echo
+    if [ "$DAEMON_OPTS" = "" ]; then
+        echo '$DAEMON_OPTS empty.'
+        echo -n "Please put configuration options in $config"
+        return 6
     else
-      echo_failure
-      echo
+        # Varnish always gives output on STDOUT
+        daemon --pidfile $pidfile $exec -P $pidfile "$DAEMON_OPTS" >/dev/null 2>&1
+        retval=$?
+        if [ $retval -eq 0 ]; then
+            touch $lockfile
+            echo_success
+            echo
+        else
+            echo_failure
+            echo
+        fi
+        return $retval
     fi
-    return $retval
-  fi
 }
 
 stop() {
-  echo -n "Stopping Varnish Cache: "
-  killproc -p $pidfile $prog
-  retval=$?
-  echo
-  [ $retval -eq 0 ] && rm -f $lockfile
-  return $retval
+    echo -n "Stopping Varnish Cache: "
+    killproc -p $pidfile $prog
+    retval=$?
+    echo
+    [ $retval -eq 0 ] && rm -f $lockfile
+    return $retval
 }
 
 restart() {
-  stop
-  start
+    stop
+    start
 }
 
 reload() {
-  if [ "$RELOAD_VCL" = "1" ]; then
-    $reload_exec
-  else
-    force_reload
-  fi
+    if [ "$RELOAD_VCL" = "1" ]; then
+        $reload_exec
+    else
+        force_reload
+    fi
 }
 
 force_reload() {
-  restart
+    restart
 }
 
 rh_status() {
-  status -p $pidfile $prog
+    status -p $pidfile $prog
 }
 
 rh_status_q() {
-  rh_status >/dev/null 2>&1
+    rh_status >/dev/null 2>&1
 }
 
 configtest() {
     if [ -f "$VARNISH_VCL_CONF" ]; then
         $exec -f "$VARNISH_VCL_CONF" -C -n /tmp >/dev/null  && echo "Syntax ok"
-  else
-    echo "VARNISH_VCL_CONF is  unset or does not point to a file"
-  fi
+    else
+        echo "VARNISH_VCL_CONF is  unset or does not point to a file"
+    fi
 }
 
 # See how we were called.
 case "$1" in
-  start)
-    rh_status_q && exit 0
-    $1
-    ;;
-  stop)
-    rh_status_q || exit 0
-    $1
-    ;;
-  restart)
-    $1
-    ;;
-  reload)
-    rh_status_q || exit 7
-    $1
-    ;;
-  force-reload)
-    force_reload
-    ;;
-  status)
-    rh_status
-    ;;
-  condrestart | try-restart)
-    rh_status_q || exit 0
-    restart
-    ;;
-  configtest)
-    configtest
-    ;;
-  *)
-    echo "Usage: $0 {start|stop|status|restart|condrestart|try-restart|reload|force-reload}"
+    start)
+        rh_status_q && exit 0
+        $1
+        ;;
+    stop)
+        rh_status_q || exit 0
+        $1
+        ;;
+    restart)
+        $1
+        ;;
+    reload)
+        rh_status_q || exit 7
+        $1
+        ;;
+    force-reload)
+        force_reload
+        ;;
+    status)
+        rh_status
+        ;;
+    condrestart | try-restart)
+        rh_status_q || exit 0
+        restart
+        ;;
+    configtest)
+        configtest
+        ;;
+    *)
+        echo "Usage: $0 {start|stop|status|restart|condrestart|try-restart|reload|force-reload}"
 
-    exit 2
-    ;;
+        exit 2
+        ;;
 esac
 
 exit $?

@@ -1,16 +1,4 @@
-PASSWORD do ficheiro de passwords: vertigem-vertigo-1
-
-
-2TzdMvgx4I
 tmpfs                   /tmp                    tmpfs   defaults,noexec,nosuid,nodev,noatime,nodiratime,size=512m,mode=1777    0 0
-PeJ-2BPV$J=%
-
-www.rumonet.pt/dir/admin
-Username: admin
-Pass: Oa7u9PQm
-
-Nome: Carlos Fernando Duarte Pais
-N�mero de BI: 11101825
 
 
 sysctl -w net.ipv4.tcp_mtu_probing=1
@@ -27,37 +15,9 @@ http://www.linuxforums.org/forum/programming-scripting/13287-how-find-directory-
 http://forums.cpanel.net/f189/apache-optimisation-during-backup-186302.html
 http://www.cyberciti.biz/faq/redhat-centos-linux-yum-update-exclude-packages/
 http://www.sysprobs.com/windows-7-network-slow
-
 http://www.allbots.org/forum/viewtopic.php?f=30&t=5686&hilit=rewardville&start=10
 http://www.google.com/search?q=tuning+mpm+worker+for+performance&hl=en&safe=off&client=firefox-a&rls=org.mozilla%3Aen-US%3Aofficial&biw=1024&bih=534&sa=X&ei=4D-gTsjmK9H74QSrnPncBA&ved=0CAkQpwUoBjge&source=lnt&tbs=cdr%3A1%2Ccd_min%3A2%2F1%2F2011%2Ccd_max%3A10%2F20%2F2011&tbm=#sclient=psy-ab&hl=en&safe=off&client=firefox-a&rls=org.mozilla:en-US%3Aofficial&tbs=cdr:1%2Ccd_min%3A2%2F1%2F2011%2Ccd_max%3A10%2F20%2F2011&source=hp&q=tuning+mpm+worker&pbx=1&oq=tuning+mpm+worker&aq=f&aqi=&aql=&gs_sm=e&gs_upl=1022132l1022274l0l1023265l2l2l0l0l0l1l447l447l4-1l1l0&bav=on.2,or.r_gc.r_pw.,cf.osb&fp=dc20b2672385f007&biw=1024&bih=534
 
-200 - S�nia
-201 - Pedro
-202 - Jason
-203 - Carlos
-204 - Gon�alo
-205 - Leit�o
-206 - T�cnica (meio piso)
-207 - Ruben
-208 - Viseu.com
-
-Lisboa - 211 452 060
-*************************************************************************
-1-> sysctl
-2-> rc.local
-3-> fstab
-4-> /boot/grub mudar kernel
-5-> SPRI
-5-> yum --exclude=kernel* update
-6-> cpanel tweak settings -> rrdtool
-
-1-> Instalar MYSQL NOVO
-2-> strip mysql
-3-> Adicionar nova config do Apache WORKER
-4-> EasyApache
-5-> Apache configuration meter valores correctos
-6-> Strip Apache e PHP
-*************************************************************************
 Include "/usr/local/apache/conf/includes/rpaf.conf"
 /usr/local/cpanel/bin/apache_conf_distiller --update --main
 /scripts/rebuildhttpdconf
@@ -67,30 +27,11 @@ echo "|/usr/libexec/abrt-hook-ccpp %s %c %p %u %g %t e" > /proc/sys/kernel/core_
 cd /home/_core
 gdb /usr/local/apache/bin/httpd -c core.358001
 
-kika-zara-joana-777
-
-/usr/local/cpanel/3rdparty/attracta/scripts/link_server.pl servidores@datasource.pt 87902
-
-DNS1=127.0.0.1
-DNS2=81.92.192.3
-DNS3=195.8.59.80
-
-search hocnet.org
-nameserver 127.0.0.1
-nameserver 81.92.192.2
-nameserver 195.8.59.80
-
-
-&7UKDQ]&%w
-&K,v+ovg)fd;
-$P$BbsdbyBAMEwLg.4tZ7PI8XZMFObA3o/
-
 ====================================
 PERL FRAMEWORKS
 ====================================
 http://mojolicio.us/
 http://www.catalystframework.org/
-**********************************************************************
 
 10 * * * * root /root/nginx_manutencao.sh  >> /dev/null 2>&1
 
@@ -126,7 +67,6 @@ strip --strip-unneeded /usr/sbin/exim
 service exim restart
 spri -q
 
-
 (C!T]S(E7zCv
 [memcached]
 extension=memcache.so
@@ -135,21 +75,11 @@ strip /usr/local/bin/memcached
 
 yum update kernel --enablerepo=cloudlinux-updates-testing
 
-��enable-inline-optimization ��disable-debug
-195.8.58.245
 scp -P 2726 cpmove-icairoica.tar root@195.201.123.72:/home/
 scp -P 2726 cpmove-icairoica.tar root@138.201.16.36:/home/
 
 scp -P 2726 *.sql root@95.216.217.10:/home/
 
-OO258H0Isqiaca1o
-
-4A7tTHy...u
-Y15OZrHiNJti
-2&z4rt.wz5'
-
-Da7Ves9LLMqb4A7tTHyu
-kawaiipa_kpbasedados
 docker exec -i 1d396bba2cb1  mysql -uroot -pDa7Ves9LLMqb4A7tTHyu kawaiipa_kpbasedados < kawaiipa_kpbasedados.sql
 docker exec -i 1d396bba2cb1  mysqldump -uroot -pDa7Ves9LLMqb4A7tTHyu --host=localhost --single-transaction --quick --opt kawaiipa_kpbasedados > kawaiipa_kpbasedados.sql
 CREATE DATABASE kawaiipa_kpbasedados;
@@ -170,36 +100,6 @@ kwb
 GFk2ZkW4T2x9MX0kT62hJZ2JRytnZZPO
 kT62hJZ2JRytnZZPO
 
-Jorgehilario56@gmail.com
-Fjosetfpinto@gmail.com
-jfanzeres@gmail.com
-lmfpaulacampos@gmail.com
-
-scp -c arcfour -P 2726 *.tar root@195.8.59.26:/home/_backups/cpbackup/OLD/
-scp -c arcfour -P 2726 farmodie.tar root@195.8.59.26:/home/_backups/cpbackup/OLD/
-
-scp -c arcfour -P 22 -l 24576 *.tar root@195.8.59.101:/mnt/vol_raid10/volraid10/Outros/euromilhoes/
-scp -c arcfour -P 22 -l 24576 obrasegu.tar root@195.8.59.101:/mnt/vol_raid10/volraid10/Outros/obrasegura/
-(30mb/s)
-scp -c arcfour -P 22 -l 147456 vzdump-qemu-106* root@195.8.59.101:/mnt/vol_raid10/volraid10/VPS/vpsb/dump/
-
-scp -c arcfour -P 2726 *.tar.gz root@195.8.59.33:/backups/2014-02-01/accounts/
-scp -c arcfour -P 2726 anibalec.tar root@5.9.105.136:/backups/cpbackup/_geral/
-scp -c arcfour -P 2726 lncfpt.tar root@5.9.105.136:/backups/cpbackup/_geral/
-scp -c arcfour -P 2726 thefashi.tar root@195.8.58.200:/backups/cpbackup/_geral
-scp -c arcfour -P 2726 programa.tar root@195.8.59.59:/home/
-cd /home/_backups/2014-01-27/accounts
-scp -c arcfour -P 2726 *.tar.gz root@188.40.105.194:/home/2backups/2014-01-27/
-scp -c arcfour -P 2726 backup-2.21.2014_22-39-04_casadoca.tar.gz root@188.40.105.194:/home/
-scp -c arcfour -P 2726 1.zip root@195.8.58.169:/home/
-scp -c arcfour -P 2726 cpmove-elsamex.tar.gz root@195.8.58.169:/home/
-scp -c arcfour -P 22 * root@195.8.58.155:/home/2015-resto/
-scp -c arcfour -P 2726 backup-11.28.2015_16-48-46_molonip.tar.gz root@195.8.59.190:/home/
-scp -c arcfour -P 2729 paypal.tar root@195.8.59.95:/home/hocnetf/public_html/
-scp -c arcfour -P 2726 facarang.tar root@46.4.71.107/home/
-scp -c arcfour -P 2726 1.zip root@88.99.214.6:/home/jorgenun/public_html/
-scp -P 2726 1.tar root@c5cx41.hocnet.org:/home/megam/public_html/
-Vertigo1.........
 ----------------
 1MB de upload
 ========================
@@ -257,15 +157,9 @@ scp -c arcfour -P 2726 -l 2014-11-19 root@195.8.59.121:/mnt/vol_raid10/volraid10
 scp -v -P 2729 moloni_11_15_2017-21_30.sql root@195.8.59.95:/home/hocnetf/public_html/_1/  2>&1 | grep 'Transferred' | awk '{print $(NF - 1) * 1000}'
 scp -v src dest 2>&1 | grep 'Transferred' | awk '{print $(NF - 1) * 1000}'
 =========================================
-N2k@XAmCOh
 
 cd /backups/cpbackup/OLD
 mv cardinamonteiro.com /home/pctcom/public_html/
-
-RXL_3673fh2E
-
-CREATE USER 'jonix'@'%' IDENTIFIED BY 'vertigo1.';
-
 
 blockdev --setra 16384 /dev/sda
 
@@ -331,9 +225,6 @@ blockdev --setra 256 /dev/sdb
 echo 128 > /sys/block/sda/queue/nr_requests
 echo 128 > /sys/block/sdb/queue/nr_requests
 
-70,60,50,40
-200,180,150,100
-400,380,350,300
 echo "cfq" > /sys/block/sda/queue/scheduler
 echo "cfq" > /sys/block/sdb/queue/scheduler
 blockdev --setra 256 /dev/sda
@@ -705,35 +596,6 @@ free
 swapoff -a && swapon -a
 free
 
-
-Estimado cliente,
-
-Ligando as protec��es no painel de controle no alojamento, o DomainKeys, SpamAssassin e SPF.
-
-Para que n�o perca tempo, configur�mos j� para si, como requer actualiza��o de dns, demorar� a toda a internet ver as altera��es entre 2h a 24h.
-
-===============================
-Estimado cliente,
-
-Com o servidor n�o se passa nada, simplesmente existem hackers da russia a atacar, e como n�o tem as protec��es no painel de controle do alojamento ligadas, acontece-lhe isso (protec��es ligadas apenas pelo cliente).
-
-O problema resolve-se ligando as protec��es no painel de controle no alojamento, o DomainKeys, SpamAssassin e SPF.
-
-Para que n�o perca tempo, configur�mos j� para si, como requer actualiza��o de dns, demorar� a toda a internet ver as altera��es entre 2h a 24h.
-
-
-
-
-==============================
-"v=spf1 a mx ip4:195.8.59.23 ip4:195.8.58.0/24 ip4:195.8.59.0/24 -all"
-
-/spf_installer abaporp "ip4:195.8.59.23 ip4:195.8.58.0/24 ip4:195.8.59.0/24" -all
-
-SORBS
-http://www.au.sorbs.net/using.shtml
-dnsbl.sorbs.net
-
-
 INSTALAR EXIM COM DKIM
 ======================================
 Tirado do url: http://www.thecpaneladmin.com/using-dkim-with-exim-and-cpanel/
@@ -945,16 +807,7 @@ echo cfq > /sys/block/sdb/queue/scheduler
 
 
 
-
-
-
-
-
-
-
 vzctl set 102 --ipdel all --save
-
-ftp://vps59-14-102:L1GMvzlS@195.8.58.100/vol_raid10/volraid10/VPS/vps59-14-102/daily/1.tar
 
 
 sysctl -w vm.dirty_ratio=40
@@ -1015,18 +868,6 @@ cat /var/cpanel/userdata/obrasegu/obrasegura.com_SSL | grep sslcertificatekeyfil
 cat /var/cpanel/userdata/obrasegu/obrasegura.com_SSL | grep sslengine | awk '{print $2}'
 cat /var/cpanel/userdata/obrasegu/obrasegura.com_SSL | grep documentroot | awk '{print $2}'
 cat /var/cpanel/userdata/obrasegu/obrasegura.com_SSL | grep serveralias | sed "s/serveralias: //g" | sed "s/www\.\*\.$DOMAIN//g"
-
-junk.ndb
-jurlbl.ndb
-scamnailer.ndb
-spamimg.hdb
-
-
-
-
-
-
-
 
 
 
@@ -1142,13 +983,6 @@ EOF
 
 
 
-
-
-
-
-
-
-
    server_name ${DOMAIN} $ALIASES;
    access_log /usr/local/apache/domlogs/${DOMAIN} bytes_log;
    access_log /usr/local/apache/domlogs/${DOMAIN} combined;
@@ -1239,17 +1073,6 @@ EOF
 HOMEUSER=$( echo "/home/academia/public_html/administrator/components/com_rsgallery2/language/english-utf8.php: moved to '/root/.virus/fullscan/english-utf8.php'" | cut -d' ' -f1 | cut -d':' -f1 );
 USERUSER=$( echo "${HOMEUSER}"  | cut -d'/' -f3 );
 echo "${USERUSER}";
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1506,4 +1329,3 @@ EOF
 
 hocnet
 +E.W&RsEGlwJ
-
